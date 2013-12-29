@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>German (de_DE) Localization File for Snowfall.</comment>
+	
+	<entry key="item.redgear.snowfall.itemToolSnowshovelWood.name">Holzschneeschaufel</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelStone.name">Stein Schneeschaufel</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelBronze.name">Bronze Schneeschaufel</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelIron.name">Eisen Schneeschaufel</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelSteel.name">Stahlschneeschaufel</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelGold.name">Goldene Schneeschaufel</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelDiamond.name">Diamant-Schneeschaufel</entry>
+	
+    
+</properties>

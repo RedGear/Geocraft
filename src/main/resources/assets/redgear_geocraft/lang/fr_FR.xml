@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>French (France) (fr_FR) Localization File for Geocraft</comment>
+        
+	<entry key="tile.redgear.geocraft.limestone.limeCobble.name">Calcaire Pavées</entry>
+	<entry key="tile.redgear.geocraft.limestone.limeClean.name">Calcaire</entry>
+	<entry key="tile.redgear.geocraft.limestone.limeCracked.name">Briques De Calcaire Fissurés</entry>
+	<entry key="tile.redgear.geocraft.limestone.limeBrick.name">Briques De Calcaire</entry>
+	<entry key="tile.redgear.geocraft.limestone.limeCarved.name">Briques De Calcaire Sculptés</entry>
+	<entry key="tile.redgear.geocraft.limestone.limePaver.name">Calcaire Pavé</entry>
+
+	<entry key="tile.redgear.geocraft.basalt.basaltCobble.name">Basalte Pavées</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltClean.name">Basalte</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltCracked.name">Briques De Basalte Fissurés</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltBrick.name">Briques De Basalte</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltCarved.name">Briques De Basalte Sculptés</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltPaver.name">Basalte Pavé</entry>
+	
+	<entry key="tile.redgear.geocraft.marble.marbleCobble.name">Marbre Pavées</entry>
+	<entry key="tile.redgear.geocraft.marble.marbleClean.name">Marbre</entry>
+	<entry key="tile.redgear.geocraft.marble.marbleCracked.name">Briques De Marbre Fissurés</entry>
+	<entry key="tile.redgear.geocraft.marble.marbleBrick.name">Briques De Marbre</entry>
+	<entry key="tile.redgear.geocraft.marble.marbleCarved.name">Briques De Marbre Sculptés</entry>
+	<entry key="tile.redgear.geocraft.marble.marblePaver.name">Marbre Pavé</entry>
+</properties>

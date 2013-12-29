@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>Spanish (es_ES) Localization File for Snowfall.</comment>
+	
+	<entry key="item.redgear.snowfall.itemToolSnowshovelWood.name">Madera Pala de Nieve</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelStone.name">Nieve Paleta Piedra</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelBronze.name">Nieve Pala de Bronce</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelIron.name">Nieve Pala de Hierro</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelSteel.name">Nieve Pala de Acero</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelGold.name">Pala de Nieve de Oro</entry>
+	<entry key="item.redgear.snowfall.itemToolSnowshovelDiamond.name">Diamante Pala de Nieve</entry>
+	
+    
+</properties>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>French (France) (fr_FR) Localization File for Securecraft</comment>
+        
+	<entry key="tile.redgear.securecraft.renforcedobsidian.name">Renforcé Obsidian</entry>
+	<entry key="tile.redgear.securecraft.smartobsidian.name">Obsidian Intelligent</entry>
+	<entry key="tile.redgear.securecraft.obsidianppblock.name">Plaque De Pression Obsidian</entry>
+	<entry key="tile.redgear.securecraft.diamondppblock.name">Plaque De Pression De diamant</entry>
+	<entry key="tile.redgear.securecraft.renforcedobsidianppblock.name">Plaque De Pression Obsidian Renforcé</entry>
+	<entry key="tile.redgear.securecraft.smartobsidianppblock.name">Intelligent Plateau De Pression Obsidian</entry>
+	<entry key="tile.redgear.securecraft.mossyppblock.name">Plateau De Pression Pavé Moussu</entry>
+	<entry key="tile.redgear.securecraft.brickppblock.name">Brique Plateau De Pression</entry>
+	<entry key="tile.redgear.securecraft.emeraldppblock.name">Emeraude Plaque De Pression</entry>
+	<entry key="tile.redgear.securecraft.renforcedemeraldppblock.name">Renforcé Emeraude Plaque De Pression</entry>
+	<entry key="tile.redgear.securecraft.diamonddoorblock.name">Diamant Porte</entry>
+	<entry key="tile.redgear.securecraft.obsidiandoorblock.name">Obsidian Porte</entry>
+	<entry key="tile.redgear.securecraft.renforcedobsidiandoorblock.name">Renforcé Obsidian Porte</entry>
+	<entry key="tile.redgear.securecraft.smartobsidiandoorblock.name">Porte Intelligente</entry>
+	
+	<entry key="item.redgear.securecraft.chiseltool.name">Obsidian Ciseau</entry>
+	<entry key="item.redgear.securecraft.diamonddoor.name">Diamant Porte</entry>
+	<entry key="item.redgear.securecraft.obsidiandoor.name">Obsidian Porte</entry>
+	<entry key="item.redgear.securecraft.renforcedobsidiandoor.name">Renforcé Obsidian Porte</entry>
+	<entry key="item.redgear.securecraft.smartobsidiandoor.name">Porte Intelligente</entry>
+	
+</properties>

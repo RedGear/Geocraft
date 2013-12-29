@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>German (Germany) (de_DE) Localization File for Securecraft</comment>
+        
+	<entry key="tile.redgear.securecraft.renforcedobsidian.name">Verstärkte Obsidian</entry>
+	<entry key="tile.redgear.securecraft.smartobsidian.name">Intelligente-Obsidian</entry>
+	<entry key="tile.redgear.securecraft.obsidianppblock.name">Obsidian Druckplatte</entry>
+	<entry key="tile.redgear.securecraft.diamondppblock.name">Diamant-Druckplatte</entry>
+	<entry key="tile.redgear.securecraft.renforcedobsidianppblock.name">Verstärkte Obsidian Druckplatte</entry>
+	<entry key="tile.redgear.securecraft.smartobsidianppblock.name">Intelligente-Obsidian Druckplatte</entry>
+	<entry key="tile.redgear.securecraft.mossyppblock.name">Moosbedeckte Kopfsteindruckplatte</entry>
+	<entry key="tile.redgear.securecraft.brickppblock.name">Ziegel Druckplatte</entry>
+	<entry key="tile.redgear.securecraft.emeraldppblock.name">Smaragd Druckplatte</entry>
+	<entry key="tile.redgear.securecraft.renforcedemeraldppblock.name">Verstärkte Smaragd Druckplatte</entry>
+	<entry key="tile.redgear.securecraft.diamonddoorblock.name">Diamant-Tür</entry>
+	<entry key="tile.redgear.securecraft.obsidiandoorblock.name">Obsidian Tür</entry>
+	<entry key="tile.redgear.securecraft.renforcedobsidiandoorblock.name">Verstärkte Obsidian Tür</entry>
+	<entry key="tile.redgear.securecraft.smartobsidiandoorblock.name">Intelligente Tür</entry>
+	
+	<entry key="item.redgear.securecraft.chiseltool.name">Obsidian Meißel</entry>
+	<entry key="item.redgear.securecraft.diamonddoor.name">Diamant-Tür</entry>
+	<entry key="item.redgear.securecraft.obsidiandoor.name">Obsidian Tür</entry>
+	<entry key="item.redgear.securecraft.renforcedobsidiandoor.name">Verstärkte Obsidian Tür</entry>
+	<entry key="item.redgear.securecraft.smartobsidiandoor.name">Intelligente Tür</entry>
+	
+</properties>

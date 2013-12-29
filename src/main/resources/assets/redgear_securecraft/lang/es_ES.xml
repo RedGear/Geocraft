@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>Spanish (Spain) (es_ES) Localization File for Securecraft</comment>
+        
+	<entry key="tile.redgear.securecraft.renforcedobsidian.name">Reforzado Obsidiana</entry>
+	<entry key="tile.redgear.securecraft.smartobsidian.name">Inteligente Obsidiana</entry>
+	<entry key="tile.redgear.securecraft.obsidianppblock.name">Plato De Presión Obsidiana</entry>
+	<entry key="tile.redgear.securecraft.diamondppblock.name">Plato De Presión Del Diamante</entry>
+	<entry key="tile.redgear.securecraft.renforcedobsidianppblock.name">Reforzado Plato De Presión Obsidiana</entry>
+	<entry key="tile.redgear.securecraft.smartobsidianppblock.name">Plato De Presión Obsidiana Inteligente</entry>
+	<entry key="tile.redgear.securecraft.mossyppblock.name">Mossy Plato De Presión Del Adoquín</entry>
+	<entry key="tile.redgear.securecraft.brickppblock.name">Ladrillo Plato De Presión</entry>
+	<entry key="tile.redgear.securecraft.emeraldppblock.name">Emerald Plato De Presión</entry>
+	<entry key="tile.redgear.securecraft.renforcedemeraldppblock.name">Reforzado Emerald Plato De Presión</entry>
+	<entry key="tile.redgear.securecraft.diamonddoorblock.name">Diamante Puerta</entry>
+	<entry key="tile.redgear.securecraft.obsidiandoorblock.name">Obsidiana Puerta</entry>
+	<entry key="tile.redgear.securecraft.renforcedobsidiandoorblock.name">Reforzado Obsidiana Puerta</entry>
+	<entry key="tile.redgear.securecraft.smartobsidiandoorblock.name">Puerta Inteligente</entry>
+	
+	<entry key="item.redgear.securecraft.chiseltool.name">Obsidiana Cincel</entry>
+	<entry key="item.redgear.securecraft.diamonddoor.name">Diamante Puerta</entry>
+	<entry key="item.redgear.securecraft.obsidiandoor.name">Obsidiana Puerta</entry>
+	<entry key="item.redgear.securecraft.renforcedobsidiandoor.name">Reforzado Obsidiana Puerta</entry>
+	<entry key="item.redgear.securecraft.smartobsidiandoor.name">Puerta Inteligente</entry>
+	
+</properties>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>German Localization File for Brewcraft</comment>
+        
+	<entry key="item.redgear.brewcraft.holydust.name">Gesegnet Pulver</entry>
+	<entry key="item.redgear.brewcraft.applesauce.name">Äpfel Zerkleinert</entry>
+	<entry key="item.redgear.brewcraft.goldenfeather.name">Goldene Feder</entry>
+	<entry key="item.redgear.brewcraft.charredbone.name">Verkohlten Knochen</entry>
+	
+	<entry key="item.redgear.brewcraft.bottleFire.name">Flaschen Feuer</entry>
+	<entry key="item.redgear.brewcraft.bottleHolyWater.name">Trank des Heiligen Wassers</entry>
+	<entry key="item.redgear.brewcraft.bottleAppleCider.name">Apfel</entry>
+	<entry key="item.redgear.brewcraft.bottleFlying.name">Trank des Aufstiegs</entry>
+	<entry key="item.redgear.brewcraft.bottleWither.name">Trank der Widerrist</entry>
+	<entry key="item.redgear.brewcraft.bottleGhast.name">Flaschen Ghul</entry>
+	<entry key="item.redgear.brewcraft.bottleAntidote.name">Trank der Nacherfüllung</entry>
+	<entry key="item.redgear.brewcraft.bottleBoom.name">Trank der Verbrennung</entry>
+	
+	<entry key="tile.redgear.brewcraft.brewery.name">Brauerei</entry>
+	
+	<entry key="fluid.redgear.brewcraft.fluidHolyWater.name">Weihwasser</entry>
+	<entry key="fluid.redgear.brewcraft.fluidAppleCider.name">Apfel</entry>
+	<entry key="fluid.redgear.brewcraft.fluidFlying.name">Brause Aufstieg</entry>
+	<entry key="fluid.redgear.brewcraft.fluidWither.name">Eiternde Verdorren</entry>
+	<entry key="fluid.redgear.brewcraft.fluidAntidote.name">Flüssigkeit Gegengift</entry>
+	<entry key="fluid.redgear.brewcraft.fluidBoom.name">Instabile Verbindung Schießpulver</entry>
+	
+	<entry key="fluid.redgear.brewcraft.fluidAwkward.name">Umständlich Trank</entry>
+	<entry key="fluid.redgear.brewcraft.fluidVision.name">Trank von Nachtsicht</entry>
+	<entry key="fluid.redgear.brewcraft.fluidVisionLong.name">Lange Trank von Nachtsicht</entry>
+	<entry key="fluid.redgear.brewcraft.fluidInvisible.name">Trank der Unsichtbarkeit</entry>
+	<entry key="fluid.redgear.brewcraft.fluidInvisibleLong.name">Lange Trank der Unsichtbarkeit</entry>
+	<entry key="fluid.redgear.brewcraft.fluidRegen.name">Trank der Regeneration</entry>
+	<entry key="fluid.redgear.brewcraft.fluidRegenLong.name">Lange Regenerationstrank</entry>
+	<entry key="fluid.redgear.brewcraft.fluidFast.name">Trank der Schnelligkeit</entry>
+	<entry key="fluid.redgear.brewcraft.fluidFastLong.name">Lange Trank Schnelligkeit</entry>
+	<entry key="fluid.redgear.brewcraft.fluidFastII.name">Trank der Schnelligkeit II</entry>
+	<entry key="fluid.redgear.brewcraft.fluidWeakness.name">Trank der Schwäche</entry>
+	<entry key="fluid.redgear.brewcraft.fluidStrength.name">Trank der Stärke</entry>
+	<entry key="fluid.redgear.brewcraft.fluidStrengthLong.name">Lange Trank der Stärke</entry>
+	<entry key="fluid.redgear.brewcraft.fluidStrengthII.name">Trank der Stärke II</entry>
+	<entry key="fluid.redgear.brewcraft.fluidFireResist.name">Trank der Feuerwiderstands</entry>
+	<entry key="fluid.redgear.brewcraft.fluidFireResistLong.name">Lange Trank der Feuerwiderstands</entry>
+	<entry key="fluid.redgear.brewcraft.fluidSlowness.name">Trank der Langsamkeit</entry>
+	<entry key="fluid.redgear.brewcraft.fluidSlownessLong.name">Lange Trank der Langsamkeit</entry>
+	<entry key="fluid.redgear.brewcraft.fluidPoison.name">Gifttrank</entry>
+	<entry key="fluid.redgear.brewcraft.fluidPoisonII.name">Gifttrank II</entry>
+	<entry key="fluid.redgear.brewcraft.fluidPoisonLong.name">Lange Gifttrank</entry>
+	<entry key="fluid.redgear.brewcraft.fluidHarm.name">Trank zu Schaden</entry>
+	<entry key="fluid.redgear.brewcraft.fluidHarmII.name">Trank zu Schaden II</entry>
+	<entry key="fluid.redgear.brewcraft.fluidHealing.name">Trank der Heilung</entry>
+	<entry key="fluid.redgear.brewcraft.fluidHealingII.name">Trank der Heilung II</entry>
+
+</properties>

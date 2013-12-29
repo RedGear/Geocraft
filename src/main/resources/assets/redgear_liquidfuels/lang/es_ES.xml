@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>Spanish Localization File for Liquid Fuels.</comment>
+	
+	<entry key="item.redgear.liquidfuels.items.masherBlades.name">Cuchillas Masher</entry>
+	<entry key="item.redgear.liquidfuels.items.ptCoke.name">Coque de Petróleo</entry>
+	
+	<entry key="tile.redgear.liquidfuels.machines.masherBlock.name">Machacador</entry>
+	<entry key="tile.redgear.liquidfuels.machines.bioReactorBlock.name">Reactor Biológico</entry>
+	<entry key="tile.redgear.liquidfuels.machines.fermenterBlock.name">Fermentador</entry>
+	<entry key="tile.redgear.liquidfuels.machines.boilerBlock.name">Caldera</entry>
+	<entry key="tile.redgear.liquidfuels.machines.stillBlock.name">Todavía</entry>
+	<entry key="tile.redgear.liquidfuels.machines.waterGenBlock.name">Generación de Agua</entry>
+	<entry key="tile.redgear.liquidfuels.machines.crackingBaseBlock.name">Agrietamiento Base de la Torre</entry>
+	<entry key="tile.redgear.liquidfuels.machines.crackingTowerBlock.name">Torre de Craqueo</entry>
+	<entry key="tile.redgear.liquidfuels.machines.dryerBlock.name">Secadora</entry>
+	<entry key="tile.redgear.liquidfuels.blocks.bioReactorMulit.name">Bio Tanque Reactor</entry>
+	<entry key="tile.redgear.liquidfuels.blocks.asphaltBlock.name">Asfalto</entry>
+	
+	<entry key="tile.redgear.liquidfuels.buckets.bucketBiomass.name">Cubo de la Biomasa</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketMash.name">Cubo de Puré</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketStillage.name">Cubo de Vinaza</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketEthanol.name">Cubo de Etanol</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketOil.name">Balde de Aceite</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.asphaltBucket.name">Balde de Asfalto</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketPtCoke.name">Cubo de Fluido de Coque de Petróleo</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketDiesel.name">Cubo Diesel</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketKerosene.name">Cubo de Queroseno</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketGasoline.name">Cubo de Gasolina</entry>
+	
+	<entry key="fluid.redgear.liquidfuels.biomassFluid.name">Biomasa</entry>
+	<entry key="fluid.redgear.liquidfuels.mashFluid.name">Pasta</entry>
+	<entry key="fluid.redgear.liquidfuels.stillageFluid.name">Vinaza</entry>
+	<entry key="fluid.redgear.liquidfuels.steamFluid.name">Vapor</entry>
+	<entry key="fluid.redgear.liquidfuels.ethanolFluid.name">Etanol</entry>
+	<entry key="fluid.redgear.liquidfuels.oilFluid.name">Aceite</entry>
+	<entry key="fluid.redgear.liquidfuels.asphaltFluid.name">Asfalto</entry>
+	<entry key="fluid.redgear.liquidfuels.petroleumCokeFluid.name">Fluido de Coque de Petróleo</entry>
+	<entry key="fluid.redgear.liquidfuels.dieselFluid.name">Diesel</entry>
+	<entry key="fluid.redgear.liquidfuels.keroseneFluid.name">Queroseno</entry>
+	<entry key="fluid.redgear.liquidfuels.gasolineFluid.name">Gasolina</entry>
+	
+    
+</properties>

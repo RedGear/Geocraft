@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>English (United States) (en_US) Localization File for Securecraft</comment>
+        
+	<entry key="tile.redgear.securecraft.renforcedobsidian.name">Reinforced Obsidian</entry>
+	<entry key="tile.redgear.securecraft.smartobsidian.name">Smart Obsidian</entry>
+	<entry key="tile.redgear.securecraft.obsidianppblock.name">Obsidian Pressure Plate</entry>
+	<entry key="tile.redgear.securecraft.diamondppblock.name">Diamond Pressure Plate</entry>
+	<entry key="tile.redgear.securecraft.renforcedobsidianppblock.name">Reinforced Obsidian Pressure Plate</entry>
+	<entry key="tile.redgear.securecraft.smartobsidianppblock.name">Smart Obsidian Pressure Plate</entry>
+	<entry key="tile.redgear.securecraft.mossyppblock.name">Mossycobble Pressure Plate</entry>
+	<entry key="tile.redgear.securecraft.brickppblock.name">Brick Pressure Plate</entry>
+	<entry key="tile.redgear.securecraft.emeraldppblock.name">Emerald Pressure Plate</entry>
+	<entry key="tile.redgear.securecraft.renforcedemeraldppblock.name">Reinforced Emerald Pressure Plate</entry>
+	<entry key="tile.redgear.securecraft.diamonddoorblock.name">Diamond Door</entry>
+	<entry key="tile.redgear.securecraft.obsidiandoorblock.name">Obsidian Door</entry>
+	<entry key="tile.redgear.securecraft.renforcedobsidiandoorblock.name">Reinforced Obsidian Door</entry>
+	<entry key="tile.redgear.securecraft.smartobsidiandoorblock.name">Smart Door</entry>
+	
+	<entry key="item.redgear.securecraft.chiseltool.name">Obsidian Chisel</entry>
+	<entry key="item.redgear.securecraft.diamonddoor.name">Diamond Door</entry>
+	<entry key="item.redgear.securecraft.obsidiandoor.name">Obsidian Door</entry>
+	<entry key="item.redgear.securecraft.renforcedobsidiandoor.name">Reinforced Obsidian Door</entry>
+	<entry key="item.redgear.securecraft.smartobsidiandoor.name">Smart Door</entry>
+	
+</properties>

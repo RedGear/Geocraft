@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<comment>German (de_DE) Localization File for Liquid Fuels.</comment>
+	
+	<entry key="item.redgear.liquidfuels.items.masherBlades.name">Stampfer Klingen</entry>
+	<entry key="item.redgear.liquidfuels.items.ptCoke.name">Petrolkoks</entry>
+	
+	<entry key="tile.redgear.liquidfuels.machines.masherBlock.name">Stampfer</entry>
+	<entry key="tile.redgear.liquidfuels.machines.bioReactorBlock.name">Bioreaktor</entry>
+	<entry key="tile.redgear.liquidfuels.machines.fermenterBlock.name">Fermenter</entry>
+	<entry key="tile.redgear.liquidfuels.machines.boilerBlock.name">Kessel</entry>
+	<entry key="tile.redgear.liquidfuels.machines.stillBlock.name">Noch</entry>
+	<entry key="tile.redgear.liquidfuels.machines.waterGenBlock.name">Wassererzeugung</entry>
+	<entry key="tile.redgear.liquidfuels.machines.crackingBaseBlock.name">Turmgrundriss</entry>
+	<entry key="tile.redgear.liquidfuels.machines.crackingTowerBlock.name">Crackturm</entry>
+	<entry key="tile.redgear.liquidfuels.machines.dryerBlock.name">Trockner</entry>
+	<entry key="tile.redgear.liquidfuels.blocks.bioReactorMulit.name">Bioreaktor Tank</entry>
+	<entry key="tile.redgear.liquidfuels.blocks.asphaltBlock.name">Asphalt</entry>
+	
+	<entry key="tile.redgear.liquidfuels.buckets.bucketBiomass.name">Biomasse-Eimer</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketMash.name">Maische Eimer</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketStillage.name">Schlempe Eimer</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketEthanol.name">Ethanol Eimer</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketOil.name">Öl-Eimer</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.asphaltBucket.name">Asphalt Eimer</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketPtCoke.name">Petrolkoks Flüssigkeit Eimer</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketDiesel.name">Diesel-Eimer</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketKerosene.name">Kerosin Eimer</entry>
+	<entry key="tile.redgear.liquidfuels.buckets.bucketGasoline.name">Benzin-Eimer</entry>
+	
+	<entry key="fluid.redgear.liquidfuels.biomassFluid.name">Biomasse</entry>
+	<entry key="fluid.redgear.liquidfuels.mashFluid.name">Maische</entry>
+	<entry key="fluid.redgear.liquidfuels.stillageFluid.name">Schlempe</entry>
+	<entry key="fluid.redgear.liquidfuels.steamFluid.name">Dampf</entry>
+	<entry key="fluid.redgear.liquidfuels.ethanolFluid.name">Ethanol</entry>
+	<entry key="fluid.redgear.liquidfuels.oilFluid.name">Öl</entry>
+	<entry key="fluid.redgear.liquidfuels.asphaltFluid.name">Asphalt</entry>
+	<entry key="fluid.redgear.liquidfuels.petroleumCokeFluid.name">Petrolkoks Flüssigkeit</entry>
+	<entry key="fluid.redgear.liquidfuels.dieselFluid.name">Diesel</entry>
+	<entry key="fluid.redgear.liquidfuels.keroseneFluid.name">Kerosin</entry>
+	<entry key="fluid.redgear.liquidfuels.gasolineFluid.name">Benzin</entry>
+	
+    
+</properties>
