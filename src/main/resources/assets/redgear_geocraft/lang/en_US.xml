@@ -3,24 +3,24 @@
 <properties version="1.0">
 	<comment>English (United States)(en_US) Localization File for Geocraft</comment>
         
-	<entry key="tile.redgear.geocraft.limestone.limeCobble.name">Limestone Cobble</entry>
-	<entry key="tile.redgear.geocraft.limestone.limeClean.name">Limestone</entry>
-	<entry key="tile.redgear.geocraft.limestone.limeCracked.name">Cracked Limestone Bricks</entry>
-	<entry key="tile.redgear.geocraft.limestone.limeBrick.name">Limestone Bricks</entry>
-	<entry key="tile.redgear.geocraft.limestone.limeCarved.name">Carved Limestone Bricks</entry>
-	<entry key="tile.redgear.geocraft.limestone.limePaver.name">Limestone Pavingstone</entry>
+	<entry key="tile.redgear.geocraft.limestone.limecobble.name">Limestone Cobble</entry>
+	<entry key="tile.redgear.geocraft.limestone.limeclean.name">Limestone</entry>
+	<entry key="tile.redgear.geocraft.limestone.limecracked.name">Cracked Limestone Bricks</entry>
+	<entry key="tile.redgear.geocraft.limestone.limebrick.name">Limestone Bricks</entry>
+	<entry key="tile.redgear.geocraft.limestone.limecarved.name">Carved Limestone Bricks</entry>
+	<entry key="tile.redgear.geocraft.limestone.limepaver.name">Limestone Pavingstone</entry>
 
-	<entry key="tile.redgear.geocraft.basalt.basaltCobble.name">Basalt Cobble</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltClean.name">Basalt</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltCracked.name">Cracked Basalt Bricks</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltBrick.name">Basalt Bricks</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltCarved.name">Carved Basalt Bricks</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltPaver.name">Basalt Pavingstone</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltcobble.name">Basalt Cobble</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltclean.name">Basalt</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltcracked.name">Cracked Basalt Bricks</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltbrick.name">Basalt Bricks</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltcarved.name">Carved Basalt Bricks</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltpaver.name">Basalt Pavingstone</entry>
 	
-	<entry key="tile.redgear.geocraft.marble.marbleCobble.name">Marble Cobble</entry>
-	<entry key="tile.redgear.geocraft.marble.marbleClean.name">Marble</entry>
-	<entry key="tile.redgear.geocraft.marble.marbleCracked.name">Cracked Marble Bricks</entry>
-	<entry key="tile.redgear.geocraft.marble.marbleBrick.name">Marble Bricks</entry>
-	<entry key="tile.redgear.geocraft.marble.marbleCarved.name">Carved Marble Bricks</entry>
-	<entry key="tile.redgear.geocraft.marble.marblePaver.name">Marble Pavingstone</entry>
+	<entry key="tile.redgear.geocraft.marble.marblecobble.name">Marble Cobble</entry>
+	<entry key="tile.redgear.geocraft.marble.marbleclean.name">Marble</entry>
+	<entry key="tile.redgear.geocraft.marble.marblecracked.name">Cracked Marble Bricks</entry>
+	<entry key="tile.redgear.geocraft.marble.marblebrick.name">Marble Bricks</entry>
+	<entry key="tile.redgear.geocraft.marble.marblecarved.name">Carved Marble Bricks</entry>
+	<entry key="tile.redgear.geocraft.marble.marblepaver.name">Marble Pavingstone</entry>
 </properties>

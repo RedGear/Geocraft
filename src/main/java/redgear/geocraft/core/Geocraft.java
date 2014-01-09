@@ -8,7 +8,6 @@ import redgear.core.block.MetaBlock;
 import redgear.core.block.SubBlock;
 import redgear.core.block.SubBlockDifferentDrop;
 import redgear.core.mod.ModUtils;
-import redgear.core.mod.RedGear;
 import redgear.core.util.SimpleItem;
 import redgear.geocraft.api.MineManager;
 import redgear.geocraft.generation.MineGenerator;
@@ -27,14 +26,14 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = RedGear.GeocraftID, name= RedGear.GeocraftName, version= RedGear.GeocraftVersion, dependencies= RedGear.GeocraftDepend)
-public class Geocraft extends ModUtils{
+@Mod(modid = "RedGear|Geocraft", name= "Geocraft", version = "@ModVersion@", dependencies = "required-after:RedGear|Core;")
+public class Geocraft extends ModUtils {
 
 	public Geocraft() {
 		super(2650, 25500);
 	}
 	
-	@Instance(RedGear.GeocraftID)
+	@Instance("RedGear|Geocraft")
 	public static ModUtils inst;
 	
 	public static final SimpleItem stone = new SimpleItem(Block.stone);

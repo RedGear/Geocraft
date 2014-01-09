@@ -3,24 +3,24 @@
 <properties version="1.0">
 	<comment>Italian (Italy) (it_IT) Localization File for Geocraft</comment>
         
-	<entry key="tile.redgear.geocraft.limestone.limeCobble.name">Calcare Ciottoli</entry>
-	<entry key="tile.redgear.geocraft.limestone.limeClean.name">Calcare</entry>
-	<entry key="tile.redgear.geocraft.limestone.limeCracked.name">Rotture Di Mattoni Di Calcare</entry>
-	<entry key="tile.redgear.geocraft.limestone.limeBrick.name">Mattoni Di Pietra Calcarea</entry>
-	<entry key="tile.redgear.geocraft.limestone.limeCarved.name">Mattoni Pietra Calcarea Scolpita</entry>
-	<entry key="tile.redgear.geocraft.limestone.limePaver.name">Calcare Pavimentazione In Pietra</entry>
+	<entry key="tile.redgear.geocraft.limestone.limecobble.name">Calcare Ciottoli</entry>
+	<entry key="tile.redgear.geocraft.limestone.limeclean.name">Calcare</entry>
+	<entry key="tile.redgear.geocraft.limestone.limecracked.name">Rotture Di Mattoni Di Calcare</entry>
+	<entry key="tile.redgear.geocraft.limestone.limebrick.name">Mattoni Di Pietra Calcarea</entry>
+	<entry key="tile.redgear.geocraft.limestone.limecarved.name">Mattoni Pietra Calcarea Scolpita</entry>
+	<entry key="tile.redgear.geocraft.limestone.limepaver.name">Calcare Pavimentazione In Pietra</entry>
 
-	<entry key="tile.redgear.geocraft.basalt.basaltCobble.name">Basalto Ciottoli</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltClean.name">Basalto</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltCracked.name">Rotture Di Mattoni Di Basalto</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltBrick.name">Mattoni Di Pietra Basalto</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltCarved.name">Mattoni Pietra Basalto Scolpita</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltPaver.name">Basalto Pavimentazione In Pietra</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltcobble.name">Basalto Ciottoli</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltclean.name">Basalto</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltcracked.name">Rotture Di Mattoni Di Basalto</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltbrick.name">Mattoni Di Pietra Basalto</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltcarved.name">Mattoni Pietra Basalto Scolpita</entry>
+	<entry key="tile.redgear.geocraft.basalt.basaltpaver.name">Basalto Pavimentazione In Pietra</entry>
 	
-	<entry key="tile.redgear.geocraft.marble.marbleCobble.name">Marmo Ciottoli</entry>
-	<entry key="tile.redgear.geocraft.marble.marbleClean.name">Marmo</entry>
-	<entry key="tile.redgear.geocraft.marble.marbleCracked.name">Rotture Di Mattoni Di Marmo</entry>
-	<entry key="tile.redgear.geocraft.marble.marbleBrick.name">Mattoni Di Pietra Marmo</entry>
-	<entry key="tile.redgear.geocraft.marble.marbleCarved.name">Mattoni Pietra Marmo Scolpita</entry>
-	<entry key="tile.redgear.geocraft.marble.marblePaver.name">Marmo Pavimentazione In Pietra</entry>
+	<entry key="tile.redgear.geocraft.marble.marblecobble.name">Marmo Ciottoli</entry>
+	<entry key="tile.redgear.geocraft.marble.marbleclean.name">Marmo</entry>
+	<entry key="tile.redgear.geocraft.marble.marblecracked.name">Rotture Di Mattoni Di Marmo</entry>
+	<entry key="tile.redgear.geocraft.marble.marblebrick.name">Mattoni Di Pietra Marmo</entry>
+	<entry key="tile.redgear.geocraft.marble.marblecarved.name">Mattoni Pietra Marmo Scolpita</entry>
+	<entry key="tile.redgear.geocraft.marble.marblepaver.name">Marmo Pavimentazione In Pietra</entry>
 </properties>
