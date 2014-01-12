@@ -20,7 +20,7 @@ import redgear.geocraft.api.IMine;
 import redgear.geocraft.api.MineManager;
 import redgear.geocraft.core.Geocraft;
 
-import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
 
 import cpw.mods.fml.common.ITickHandler;
@@ -32,18 +32,15 @@ import cpw.mods.fml.relauncher.Side;
 
 public class MineGenerator implements IWorldGenerator, ITickHandler {
 
-	private int crashTimer = 0;
-	private final boolean crash;
 	private final double genRate;
 	private boolean canGen = true;
 	public static MineGenerator inst;
 	public static MineRegistry reg;
-	public ListMultimap<Integer, GenData> chunkMap = ArrayListMultimap.<Integer, GenData> create();
+	public ListMultimap<Integer, GenData> chunkMap = LinkedListMultimap.<Integer, GenData> create();
 
 	public MineGenerator(ModUtils util) {
 		reg = new MineRegistry(util);
 		MineManager.oreRegistry = reg;
-		crash = util.getBoolean("crash", false);
 		double temp = util.getDouble(Configuration.CATEGORY_GENERAL, "generationRate",
 				"The rate at which Geocraft generates ores. "
 						+ "Larger numbers will mean the generation happens faster, but this will cause more lag. "
@@ -99,8 +96,6 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 
 	public int generate(Random rand, int chunkX, int chunkZ, World world, NBTTagCompound tagData, GenData data,
 			int countDown) {
-		if (crash && crashTimer++ > 10)
-			throw new RuntimeException("Stop running!");
 
 		//Geocraft.util.logDebug("Generating chunk X: " + chunkX + " Z: " + chunkZ);
 		//long start = System.nanoTime();
@@ -150,9 +145,9 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 		GenData data = null;
 		ChunkCoordinate coord;
 
-		 do {
+		do {
 			do {
-				if (list.size() == 0)
+				if (list.isEmpty())
 					return;
 
 				data = list.remove(0);
@@ -166,8 +161,8 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 			countDown = generate(rand, coord.x, coord.z, world,
 					data.tagData == null ? null : data.tagData.getCompoundTag("Ores"), data, countDown);
 		} while (countDown > 0);
-		
-		if(data != null && data.it.hasNext())
+
+		if (data != null && data.it.hasNext())
 			list.add(0, data);
 	}
 

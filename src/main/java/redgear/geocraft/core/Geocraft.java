@@ -26,7 +26,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "RedGear|Geocraft", name= "Geocraft", version = "@ModVersion@", dependencies = "required-after:RedGear|Core;")
+@Mod(modid = "RedGear|Geocraft", name= "Geocraft", version = "@ModVersion@", dependencies = "required-after:RedGear|Core;after:ThermalExpansion;")
 public class Geocraft extends ModUtils {
 
 	public Geocraft() {

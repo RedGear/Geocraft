@@ -38,7 +38,7 @@ public class MineRegistry implements IMineRegistry {
 		volumeModifier = (float) util.getDouble(l1, "volumeModifier",
 				"Changes the number of veins in each mine for ALL ores. It is a multiplier. "
 						+ "Larger numbers mean more ore, smaller means less.", 1);
-		densityModifier = (float) util.getDouble(l1, "densityModifier", "Changes the rarities of ALL ores. "
+		densityModifier = (float) util.getDouble(l1, "rarityModifier", "Changes the rarities of ALL ores. "
 				+ "It is a multiplier. Larger numbers mean further apart , smaller means closer together.", 1);
 		//this.useDimensions =  util.getBoolean(l1, "useDimensions", "Setting this to true and running Minecraft will open up the option to change what dimensions mines can spawn in.", false);
 		//this.useBiomes =  util.getBoolean(l1, "useBiomes", "Setting this to true and running Minecraft will open up the option to change mine rarities based on biomes", false);

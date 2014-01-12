@@ -42,8 +42,6 @@ minecraft {
 }
 
 jar{
-	from sourceSets.main.allSource
-	
 	manifest{
 		attributes 'FMLCorePlugin': 'redgear.geocraft.core.MinableTransformer', 'FMLCorePluginContainsFMLMod': 'true'
 	}
