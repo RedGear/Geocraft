@@ -86,12 +86,12 @@ public class Geocraft extends ModUtils {
 	private void stone(){
 		MetaBlock limestone = new MetaBlock(getBlockId("Limestone"), Material.rock, "RedGear.Geocraft.Limestone");
 		limestone.setHardness(0.5F).setStepSound(Block.soundStoneFootstep);
-    	SimpleItem limeCobble 	= limestone.addMetaBlock(new SubBlock("limeCobble", "Limestone Cobble"));
-    	SimpleItem limeClean 	= limestone.addMetaBlock(new SubBlockDifferentDrop("limeClean", "Limestone", limeCobble.getStack()));
-    	SimpleItem limeCracked 	= limestone.addMetaBlock(new SubBlock("limeCracked", "Cracked Limestone Bricks"));
-    	SimpleItem limeBrick 	= limestone.addMetaBlock(new SubBlockDifferentDrop("limeBrick", "Limestone Bricks", limeCracked.getStack()));
-    	SimpleItem limeCarved 	= limestone.addMetaBlock(new SubBlock("limeCarved", "Carved Limestone Bricks"));
-    	SimpleItem limePaver 	= limestone.addMetaBlock(new SubBlock("limePaver", "Limestone Pavingstone"));
+    	SimpleItem limeCobble 	= limestone.addMetaBlock(new SubBlock("limeCobble"));
+    	SimpleItem limeClean 	= limestone.addMetaBlock(new SubBlockDifferentDrop("limeClean", limeCobble.getStack()));
+    	SimpleItem limeCracked 	= limestone.addMetaBlock(new SubBlock("limeCracked"));
+    	SimpleItem limeBrick 	= limestone.addMetaBlock(new SubBlockDifferentDrop("limeBrick", limeCracked.getStack()));
+    	SimpleItem limeCarved 	= limestone.addMetaBlock(new SubBlock("limeCarved"));
+    	SimpleItem limePaver 	= limestone.addMetaBlock(new SubBlock("limePaver"));
     	
     	GameRegistry.addRecipe(limeBrick.getStack(4), "XX", "XX", 'X', limeClean.getStack());
     	GameRegistry.addRecipe(limeCarved.getStack(4), " X ", "X X", " X ", 'X', limeBrick.getStack());
@@ -108,12 +108,12 @@ public class Geocraft extends ModUtils {
     	
     	MetaBlock basalt = new MetaBlock(getBlockId("Basalt"), Material.rock, "RedGear.Geocraft.Basalt");
     	basalt.setHardness(4.0F).setStepSound(Block.soundStoneFootstep);
-    	SimpleItem basaltCobble 	= basalt.addMetaBlock(new SubBlock("basaltCobble", "Basalt Cobble"));
-    	SimpleItem basaltClean 	= basalt.addMetaBlock(new SubBlockDifferentDrop("basaltClean", "Basalt", basaltCobble.getStack()));
-    	SimpleItem basaltCracked = basalt.addMetaBlock(new SubBlock("basaltCracked", "Cracked Basalt Bricks"));
-    	SimpleItem basaltBrick 	= basalt.addMetaBlock(new SubBlockDifferentDrop("basaltBrick", "Basalt Bricks", basaltCracked.getStack()));
-    	SimpleItem basaltCarved 	= basalt.addMetaBlock(new SubBlock("basaltCarved", "Carved Basalt Bricks"));
-    	SimpleItem basaltPaver 	= basalt.addMetaBlock(new SubBlock("basaltPaver", "Basalt Pavingstone"));
+    	SimpleItem basaltCobble 	= basalt.addMetaBlock(new SubBlock("basaltCobble"));
+    	SimpleItem basaltClean 	= basalt.addMetaBlock(new SubBlockDifferentDrop("basaltClean", basaltCobble.getStack()));
+    	SimpleItem basaltCracked = basalt.addMetaBlock(new SubBlock("basaltCracked"));
+    	SimpleItem basaltBrick 	= basalt.addMetaBlock(new SubBlockDifferentDrop("basaltBrick", basaltCracked.getStack()));
+    	SimpleItem basaltCarved 	= basalt.addMetaBlock(new SubBlock("basaltCarved"));
+    	SimpleItem basaltPaver 	= basalt.addMetaBlock(new SubBlock("basaltPaver"));
     	
     	GameRegistry.addRecipe(basaltBrick.getStack(4), "XX", "XX", 'X', basaltClean.getStack());
     	GameRegistry.addRecipe(basaltCarved.getStack(4), " X ", "X X", " X ", 'X', basaltBrick.getStack());
@@ -131,12 +131,12 @@ public class Geocraft extends ModUtils {
     	
     	MetaBlock marble = new MetaBlock(getBlockId("Marble"), Material.rock, "RedGear.Geocraft.Marble");
     	marble.setHardness(4.0F).setStepSound(Block.soundStoneFootstep);
-    	SimpleItem marbleCobble 	= marble.addMetaBlock(new SubBlock("marbleCobble", "Marble Cobble"));
-    	SimpleItem marbleClean 	= marble.addMetaBlock(new SubBlockDifferentDrop("marbleClean", "Marble", marbleCobble.getStack()));
-    	SimpleItem marbleCracked = marble.addMetaBlock(new SubBlock("marbleCracked", "Cracked Marble Bricks"));
-    	SimpleItem marbleBrick 	= marble.addMetaBlock(new SubBlockDifferentDrop("marbleBrick", "Marble Bricks", marbleCracked.getStack()));
-    	SimpleItem marbleCarved 	= marble.addMetaBlock(new SubBlock("marbleCarved", "Carved Marble Bricks"));
-    	SimpleItem marblePaver 	= marble.addMetaBlock(new SubBlock("marblePaver", "Marble Pavingstone"));
+    	SimpleItem marbleCobble 	= marble.addMetaBlock(new SubBlock("marbleCobble"));
+    	SimpleItem marbleClean 	= marble.addMetaBlock(new SubBlockDifferentDrop("marbleClean", marbleCobble.getStack()));
+    	SimpleItem marbleCracked = marble.addMetaBlock(new SubBlock("marbleCracked"));
+    	SimpleItem marbleBrick 	= marble.addMetaBlock(new SubBlockDifferentDrop("marbleBrick", marbleCracked.getStack()));
+    	SimpleItem marbleCarved 	= marble.addMetaBlock(new SubBlock("marbleCarved"));
+    	SimpleItem marblePaver 	= marble.addMetaBlock(new SubBlock("marblePaver"));
     	
     	GameRegistry.addRecipe(marbleBrick.getStack(4), "XX", "XX", 'X', marbleClean.getStack());
     	GameRegistry.addRecipe(marbleCarved.getStack(4), " X ", "X X", " X ", 'X', marbleBrick.getStack());

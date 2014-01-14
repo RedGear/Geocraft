@@ -15,6 +15,11 @@ public class ThermalExpansionPlugin implements IPlugin{
 
 	@Override
 	public void preInit(ModUtils inst) {
+		
+	}
+
+	@Override
+	public void Init(ModUtils inst) {
 		if(Mods.ThermalExpansion.isIn() && inst.getBoolean("plugins", "ThermalExpansion")){
 			try{
 				Class clazz = Class.forName("thermalexpansion.block.simple.BlockOre");
@@ -46,11 +51,6 @@ public class ThermalExpansionPlugin implements IPlugin{
 			}
 			
 		}
-	}
-
-	@Override
-	public void Init(ModUtils inst) {
-		
 		
 	}
 
