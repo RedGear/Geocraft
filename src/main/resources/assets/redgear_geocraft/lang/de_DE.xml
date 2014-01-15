@@ -3,24 +3,24 @@
 <properties version="1.0">
 	<comment>German (Germany) (de_DE) Localization File for Geocraft</comment>
         
-	<entry key="tile.redgear.geocraft.limestone.limecobble.name">Kalkstein Kopfsteinpflaster</entry>
-	<entry key="tile.redgear.geocraft.limestone.limeclean.name">Kalkstein</entry>
-	<entry key="tile.redgear.geocraft.limestone.limecracked.name">Gebrochener Kalkstein Ziegelsteine</entry>
-	<entry key="tile.redgear.geocraft.limestone.limebrick.name">Kalkstein Ziegelsteine</entry>
-	<entry key="tile.redgear.geocraft.limestone.limecarved.name">Geschnitzte Kalkstein Ziegelsteine</entry>
-	<entry key="tile.redgear.geocraft.limestone.limepaver.name">Kalkstein Pflasterstein</entry>
+	<entry key="tile.RedGear.Geocraft.Limestone.limeCobble.name">Kalkstein Kopfsteinpflaster</entry>
+	<entry key="tile.RedGear.Geocraft.Limestone.limeClean.name">Kalkstein</entry>
+	<entry key="tile.RedGear.Geocraft.Limestone.limeCracked.name">Gebrochener Kalkstein Ziegelsteine</entry>
+	<entry key="tile.RedGear.Geocraft.Limestone.limeBrick.name">Kalkstein Ziegelsteine</entry>
+	<entry key="tile.RedGear.Geocraft.Limestone.limeCarved.name">Geschnitzte Kalkstein Ziegelsteine</entry>
+	<entry key="tile.RedGear.Geocraft.Limestone.limePaver.name">Kalkstein Pflasterstein</entry>
 
-	<entry key="tile.redgear.geocraft.basalt.basaltcobble.name">Basalt Kopfsteinpflaster</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltclean.name">Basalt</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltcracked.name">Gebrochener Basalt Ziegelsteine</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltbrick.name">Basalt Ziegelsteine</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltcarved.name">Geschnitzte Basalt Ziegelsteine</entry>
-	<entry key="tile.redgear.geocraft.basalt.basaltpaver.name">Basalt Pflasterstein</entry>
+	<entry key="tile.RedGear.Geocraft.Basalt.basaltCobble.name">Basalt Kopfsteinpflaster</entry>
+	<entry key="tile.RedGear.Geocraft.Basalt.basaltClean.name">Basalt</entry>
+	<entry key="tile.RedGear.Geocraft.Basalt.basaltCracked.name">Gebrochener Basalt Ziegelsteine</entry>
+	<entry key="tile.RedGear.Geocraft.Basalt.basaltBrick.name">Basalt Ziegelsteine</entry>
+	<entry key="tile.RedGear.Geocraft.Basalt.basaltCarved.name">Geschnitzte Basalt Ziegelsteine</entry>
+	<entry key="tile.RedGear.Geocraft.Basalt.basaltPaver.name">Basalt Pflasterstein</entry>
 	
-	<entry key="tile.redgear.geocraft.marble.marblecobble.name">Marmor Kopfsteinpflaster</entry>
-	<entry key="tile.redgear.geocraft.marble.marbleclean.name">Marmor</entry>
-	<entry key="tile.redgear.geocraft.marble.marblecracked.name">Gebrochener Marmor Ziegelsteine</entry>
-	<entry key="tile.redgear.geocraft.marble.marblebrick.name">Marmor Ziegelsteine</entry>
-	<entry key="tile.redgear.geocraft.marble.marblecarved.name">Geschnitzte Marmor Ziegelsteine</entry>
-	<entry key="tile.redgear.geocraft.marble.marblepaver.name">Marmor Pflasterstein</entry>
+	<entry key="tile.RedGear.Geocraft.Marble.marbleCobble.name">Marmor Kopfsteinpflaster</entry>
+	<entry key="tile.RedGear.Geocraft.Marble.marbleClean.name">Marmor</entry>
+	<entry key="tile.RedGear.Geocraft.Marble.marbleCracked.name">Gebrochener Marmor Ziegelsteine</entry>
+	<entry key="tile.RedGear.Geocraft.Marble.marbleBrick.name">Marmor Ziegelsteine</entry>
+	<entry key="tile.RedGear.Geocraft.Marble.marbleCarved.name">Geschnitzte Marmor Ziegelsteine</entry>
+	<entry key="tile.RedGear.Geocraft.Marble.marblePaver.name">Marmor Pflasterstein</entry>
 </properties>
