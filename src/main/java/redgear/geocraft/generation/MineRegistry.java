@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
@@ -58,16 +59,16 @@ public class MineRegistry implements IMineRegistry {
 	 * @param y
 	 * @param z
 	 */
-	public boolean checkForNew(int blockId, int blockMeta, int numberOfBlocks, int targetId) {
-		SimpleItem block = new SimpleItem(blockId, blockMeta);
+	public boolean checkForNew(Block block, int blockMeta, int numberOfBlocks, Block target) {
+		SimpleItem item = new SimpleItem(block, blockMeta);
 
-		if (ignoreOres.containsKey(block))
-			return ignoreOres.get(block);
+		if (ignoreOres.containsKey(item))
+			return ignoreOres.get(item);
 		else {
-			NewOre newOre = getNewOre(block);
+			NewOre newOre = getNewOre(item);
 
 			if (newOre == null) {
-				newOre = new MineRegistry.NewOre(block, new SimpleItem(targetId), numberOfBlocks);
+				newOre = new MineRegistry.NewOre(item, new SimpleItem(target), numberOfBlocks);
 				newOres.add(newOre);
 			} else
 				newOre.addData(numberOfBlocks);
@@ -203,8 +204,8 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	@Override
-	public boolean registerTrace(String name, int blockId, int blockMeta, int targetId, int targetMeta, int size) {
-		return registerTrace(name, new SimpleItem(blockId, blockMeta), new SimpleItem(targetId, targetMeta), size);
+	public boolean registerTrace(String name, Block block, int blockMeta, Block target, int targetMeta, int size) {
+		return registerTrace(name, new SimpleItem(block, blockMeta), new SimpleItem(target, targetMeta), size);
 	}
 
 	public boolean registerTrace(String name, SimpleItem block, SimpleItem target, int size) {
@@ -216,7 +217,7 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	@Override
-	public boolean registerIgnore(int blockId, int blockMeta) {
+	public boolean registerIgnore(Block blockId, int blockMeta) {
 		return registerIgnore(new SimpleItem(blockId, blockMeta));
 	}
 
@@ -225,7 +226,7 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	@Override
-	public boolean registerNormalGen(int blockId, int blockMeta) {
+	public boolean registerNormalGen(Block blockId, int blockMeta) {
 		return registerNormalGen(new SimpleItem(blockId, blockMeta));
 	}
 

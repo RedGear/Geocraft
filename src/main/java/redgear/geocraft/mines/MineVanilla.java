@@ -19,7 +19,7 @@ public class MineVanilla extends MineSingleOre implements IEveryChunk {
 	public MineVanilla(String name, float mineRarity, float mineSize, SimpleItem block, SimpleItem target, int veinSize) {
 		super(name, mineRarity, mineSize, block, target);
 		this.veinSize = veinSize;
-		MineManager.oreRegistry.registerIgnore(block.id, block.meta);
+		MineManager.oreRegistry.registerIgnore(block.getBlock(), block.meta);
 	}
 
 	@Override

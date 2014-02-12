@@ -1,9 +1,9 @@
 package redgear.geocraft.plugins;
 
 import net.minecraft.block.Block;
-import redgear.core.compat.Mods;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
+import redgear.core.mod.Mods;
 import redgear.core.util.SimpleItem;
 import redgear.geocraft.generation.MineGenerator;
 
@@ -21,7 +21,7 @@ public class ForestryPlugin implements IPlugin{
 					
 					
 				}
-				
+				/*
 				clazz = Class.forName("forestry.core.config.ForestryBlock");
 				
 				if(clazz != null){
@@ -29,7 +29,7 @@ public class ForestryPlugin implements IPlugin{
 					
 					MineGenerator.generateCopper(new SimpleItem(ID, 1));
 					MineGenerator.generateTin(new SimpleItem(ID, 2));
-				}
+				}*/
 				
 			}
 			catch(Exception e){

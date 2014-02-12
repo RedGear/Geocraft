@@ -1,21 +1,3 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'git-dependencies'
-
-buildscript {
-        repositories {
-                mavenCentral()
-                maven {
-                        name = "forge"
-                        url = "http://files.minecraftforge.net/maven"
-                }
-        }
-        dependencies {
-                classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
-                classpath 'org.batcha.gradle.plugins:git-dependencies:0.1'
-        }
-}
-
 ext.configFile = file "build.properties"
 
 configFile.withReader {
@@ -24,19 +6,13 @@ configFile.withReader {
         ext.config = new ConfigSlurper().parse prop
 }
 
-dependencies {
-	compile('redgear.core:RedGearCore:' + config.core_version).ext.git = 'https://github.com/RedGear/RedGearCore.git'
-}
-
 version = config.mod_version
 group= config.mod_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = config.mod_name
 
-apply plugin: 'forge'
-
-minecraft {
-        version = config.minecraft_version + "-" + config.forge_version
-        
+minecraft{
+		assetDir = "eclipse/assets"
+		
         replaceIn config.mod_main + '.java'
         replace "@ModVersion@", project.version
 }

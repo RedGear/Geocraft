@@ -2,6 +2,7 @@ package redgear.geocraft.generation;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import redgear.core.util.SimpleItem;
@@ -10,7 +11,7 @@ import redgear.core.world.Location;
 public class VeinHelper  {
 	
 	private static boolean isInAir(World world, Location test){
-		return test.y >= world.getHeightValue(test.x, test.z);
+		return test.getY() >= world.getHeightValue(test.getX(), test.getZ());
 	}
 	
 	public static void generateSphere(World world, SimpleItem block, SimpleItem target, Location start, Random rand, int size){
@@ -18,12 +19,12 @@ public class VeinHelper  {
 			return;
 		
 		float f = rand.nextFloat() * (float)Math.PI;
-        double d0 = (double)((float)(start.x + 8) + MathHelper.sin(f) * (float)size / 8.0F);
-        double d1 = (double)((float)(start.x + 8) - MathHelper.sin(f) * (float)size / 8.0F);
-        double d2 = (double)((float)(start.z + 8) + MathHelper.cos(f) * (float)size / 8.0F);
-        double d3 = (double)((float)(start.z + 8) - MathHelper.cos(f) * (float)size / 8.0F);
-        double d4 = (double)(start.y + rand.nextInt(3) - 2);
-        double d5 = (double)(start.y + rand.nextInt(3) - 2);
+        double d0 = (double)((float)(start.getX() + 8) + MathHelper.sin(f) * (float)size / 8.0F);
+        double d1 = (double)((float)(start.getX() + 8) - MathHelper.sin(f) * (float)size / 8.0F);
+        double d2 = (double)((float)(start.getZ() + 8) + MathHelper.cos(f) * (float)size / 8.0F);
+        double d3 = (double)((float)(start.getZ() + 8) - MathHelper.cos(f) * (float)size / 8.0F);
+        double d4 = (double)(start.getY() + rand.nextInt(3) - 2);
+        double d5 = (double)(start.getY() + rand.nextInt(3) - 2);
 
         for (int l = 0; l <= size; ++l){
             double d6 = d0 + (d1 - d0) * (double)l / (double)size;

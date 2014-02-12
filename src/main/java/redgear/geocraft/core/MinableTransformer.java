@@ -9,6 +9,7 @@ import static org.objectweb.asm.Opcodes.IRETURN;
 
 import java.util.Map;
 
+import net.minecraft.block.Block;
 import net.minecraft.launchwrapper.IClassTransformer;
 
 import org.objectweb.asm.ClassReader;
@@ -45,14 +46,14 @@ public class MinableTransformer implements IClassTransformer, IFMLLoadingPlugin{
             String minable = "net/minecraft/world/gen/feature/WorldGenMinable";
 			
             generateHook.add(new VarInsnNode(ALOAD, 0));
-            generateHook.add(new FieldInsnNode(GETFIELD , minable, "field_76542_a", "I"));
+            generateHook.add(new FieldInsnNode(GETFIELD , minable, "field_150519_a", "Lnet/minecraft/block/Block;"));
             generateHook.add(new VarInsnNode(ALOAD, 0));
-            generateHook.add(new FieldInsnNode(GETFIELD , minable, "minableBlockMeta", "I"));
+            generateHook.add(new FieldInsnNode(GETFIELD , minable, "mineableBlockMeta", "I"));
             generateHook.add(new VarInsnNode(ALOAD, 0));
             generateHook.add(new FieldInsnNode(GETFIELD , minable, "field_76541_b", "I"));
             generateHook.add(new VarInsnNode(ALOAD, 0));
-            generateHook.add(new FieldInsnNode(GETFIELD , minable, "field_94523_c", "I"));
-            generateHook.add(new MethodInsnNode(INVOKESTATIC, MinableTransformer.class.getName().replace('.', '/'), "generateHook", "(IIII)Z"));
+            generateHook.add(new FieldInsnNode(GETFIELD , minable, "field_150518_c", "Lnet/minecraft/block/Block;"));
+            generateHook.add(new MethodInsnNode(INVOKESTATIC, MinableTransformer.class.getName().replace('.', '/'), "generateHook", "(Lnet/minecraft/block/Block;IILnet/minecraft/block/Block;)Z"));
             generateHook.add(new JumpInsnNode(IFNE, skip));
             generateHook.add(new InsnNode(ICONST_1));
             generateHook.add(new InsnNode(IRETURN));
@@ -70,9 +71,9 @@ public class MinableTransformer implements IClassTransformer, IFMLLoadingPlugin{
 		return bytes;
 	}
     
-    public static boolean generateHook(int blockId, int blockMeta, int numberOfBlocks, int targetId){
+    public static boolean generateHook(Block block, int blockMeta, int numberOfBlocks, Block target){
     	if(MineGenerator.reg != null)
-    		return MineGenerator.reg.checkForNew(blockId, blockMeta, numberOfBlocks, targetId);
+    		return MineGenerator.reg.checkForNew(block, blockMeta, numberOfBlocks, target);
     	else
     		return true;
     }
@@ -95,5 +96,10 @@ public class MinableTransformer implements IClassTransformer, IFMLLoadingPlugin{
 	@Override
 	public void injectData(Map<String, Object> data) {
 		
+	}
+
+	@Override
+	public String getAccessTransformerClass() {
+		return null;
 	}
 }

@@ -1,6 +1,6 @@
 package redgear.geocraft.generation;
 
-import java.util.EnumSet;
+import java.math.BigDecimal;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -8,9 +8,8 @@ import java.util.Random;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
@@ -23,14 +22,15 @@ import redgear.geocraft.core.Geocraft;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
 
-import cpw.mods.fml.common.ITickHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
+import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-public class MineGenerator implements IWorldGenerator, ITickHandler {
+public class MineGenerator implements IWorldGenerator {
 
 	private final double genRate;
 	private boolean canGen = true;
@@ -39,6 +39,8 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 	public ListMultimap<Integer, GenData> chunkMap = LinkedListMultimap.<Integer, GenData> create();
 
 	public MineGenerator(ModUtils util) {
+		Geocraft.inst.logDebug("Preinit ...");
+
 		reg = new MineRegistry(util);
 		MineManager.oreRegistry = reg;
 		double temp = util.getDouble(Configuration.CATEGORY_GENERAL, "generationRate",
@@ -50,16 +52,16 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 						+ "Adjust to suit your system and preference. " + "Can be any decimal number larger than 0. "
 						+ "Default is 1, that is, one chunk per world tick.", 1);
 		genRate = temp <= 0 ? 1.0 : temp; //if temp is 0 or negative, set genRate to 1, otherwise set it to temp.
-		GameRegistry.registerWorldGenerator(this);
-		TickRegistry.registerTickHandler(this, Side.SERVER);
+		GameRegistry.registerWorldGenerator(this, 10);
 		MinecraftForge.EVENT_BUS.register(this);
+		FMLCommonHandler.instance().bus().register(this);
 	}
 
 	public void addChunk(GenData data, World world) {
 		chunkMap.put(world.provider.dimensionId, data);
 	}
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void chunkSave(ChunkDataEvent.Save event) {
 		int dimId = event.world.provider.dimensionId;
 		List<GenData> chunks = chunkMap.get(dimId);
@@ -72,13 +74,13 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 			NBTTagCompound tag = new NBTTagCompound();
 
 			tag.setLong("GenHas", reg.genHash);
-			tag.setCompoundTag("Ores", MineRegistry.ores);
+			tag.setTag("Ores", MineRegistry.ores);
 
 			event.getData().setTag("RedGear.Geocraft", tag);
 		}
 	}
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void chunkLoad(ChunkDataEvent.Load event) {
 		NBTTagCompound tag = (NBTTagCompound) event.getData().getTag("RedGear.Geocraft");
 
@@ -97,13 +99,13 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 	public int generate(Random rand, int chunkX, int chunkZ, World world, NBTTagCompound tagData, GenData data,
 			int countDown) {
 
-		//Geocraft.util.logDebug("Generating chunk X: " + chunkX + " Z: " + chunkZ);
-		//long start = System.nanoTime();
+		Geocraft.inst.logDebug("Generating chunk X: " + chunkX + " Z: " + chunkZ);
+		long start = System.nanoTime();
 
 		if (data.it == null)
 			data.it = reg.mines.iterator();
 
-		IMine mine;
+		IMine mine = null;
 		while (data.it.hasNext() && countDown-- > 0) {
 			mine = data.it.next();
 
@@ -120,7 +122,8 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 			}
 		}
 		world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
-		//Geocraft.inst.logDebug("Retro: ", retro, " Time: ", new BigDecimal(System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000000).setScale(4)));
+		Geocraft.inst.logDebug("Retro: ", mine, " Time: ", new BigDecimal(System.nanoTime() - start).setScale(4)
+				.divide(new BigDecimal(1000000000).setScale(4)));
 
 		return countDown;
 	}
@@ -130,14 +133,12 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 			mine.generate(world, rand, chunkX, chunkZ);
 	}
 
-	@Override
-	public void tickStart(EnumSet<TickType> type, Object... tickData) {
+	@SubscribeEvent
+	public void tickEnd(WorldTickEvent event) {
+		if (event.side == Side.CLIENT || event.phase == Phase.START)
+			return;
 
-	}
-
-	@Override
-	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-		World world = (World) tickData[0];
+		World world = event.world;
 		int dimID = world.provider.dimensionId;
 		List<GenData> list = chunkMap.get(dimID);
 		int countDown = (int) (reg.mines.size() * genRate) + 1;
@@ -164,16 +165,6 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 
 		if (data != null && data.it.hasNext())
 			list.add(0, data);
-	}
-
-	@Override
-	public EnumSet<TickType> ticks() {
-		return EnumSet.of(TickType.WORLD);
-	}
-
-	@Override
-	public String getLabel() {
-		return "RedGear.Geocraft";
 	}
 
 	private class GenData {

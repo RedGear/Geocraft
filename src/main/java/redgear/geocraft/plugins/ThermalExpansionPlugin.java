@@ -3,9 +3,9 @@ package redgear.geocraft.plugins;
 import java.lang.reflect.Field;
 
 import net.minecraft.item.ItemStack;
-import redgear.core.compat.Mods;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
+import redgear.core.mod.Mods;
 import redgear.core.util.SimpleItem;
 import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.generation.MineGenerator;

@@ -1,8 +1,8 @@
 package redgear.geocraft.plugins;
 
-import redgear.core.compat.Mods;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
+import redgear.core.mod.Mods;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
 import redgear.geocraft.mines.MineThaumInfusedStone;
@@ -26,14 +26,14 @@ public class ThaumcraftPlugin implements IPlugin {
 					MineRegistry reg = MineGenerator.reg;
 					
 					reg.registerMine(new MineThaumInfusedStone(ID));
-					
+					/*
 					reg.registerIgnore(ID, 1);
 					reg.registerIgnore(ID, 2);
 					reg.registerIgnore(ID, 3);
 					reg.registerIgnore(ID, 4);
 					reg.registerIgnore(ID, 5);
 					reg.registerIgnore(ID, 6);
-					
+					*/
 				}
 			}
 			catch(Exception e){

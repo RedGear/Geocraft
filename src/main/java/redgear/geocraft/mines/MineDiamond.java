@@ -3,6 +3,7 @@ package redgear.geocraft.mines;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import redgear.core.util.SimpleItem;
@@ -11,7 +12,7 @@ import redgear.core.world.Location;
 public class MineDiamond extends MineSingleOre{
 
 	public MineDiamond(float mineRarity, float mineSize) {
-		super("Diamond", mineRarity, mineSize, new SimpleItem(Block.oreDiamond), new SimpleItem(Block.stone));
+		super("Diamond", mineRarity, mineSize, new SimpleItem(Blocks.diamond_ore), new SimpleItem(Blocks.stone));
 	}
 
 	@Override

@@ -40,7 +40,7 @@ public class MineThaumInfusedStone extends Mine{
 	              else if (tag == Aspect.ENTROPY) md = 6;
 	        }
 	        
-	        generateMine(world, rand, chunkX, chunkZ, new SimpleItem(blockId, md));
+	        //generateMine(world, rand, chunkX, chunkZ, new SimpleItem(blockId, md));
 		}
 		catch(Exception e){
 			
