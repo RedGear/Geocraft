@@ -1,2 +1,0 @@
-gradlew.bat build
-pause
