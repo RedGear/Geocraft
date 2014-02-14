@@ -24,10 +24,10 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "RedGear|Geocraft", name = "Geocraft", version = "@ModVersion@", dependencies = "required-after:RedGear|Core;after:ThermalExpansion;")
+@Mod(modid = "redgear_geocraft", name = "Geocraft", version = "@ModVersion@", dependencies = "required-after:redgear_core;after:ThermalExpansion;")
 public class Geocraft extends ModUtils {
 
-	@Instance("RedGear|Geocraft")
+	@Instance("redgear_geocraft")
 	public static ModUtils inst;
 
 	public static final SimpleItem stone = new SimpleItem(Blocks.stone);

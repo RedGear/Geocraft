@@ -1,0 +1,20 @@
+tile.RedGear.Geocraft.Limestone.limeCobble.name=Piedra Caliza Del Adoquín
+tile.RedGear.Geocraft.Limestone.limeClean.name=Caliza
+tile.RedGear.Geocraft.Limestone.limeCracked.name=Ladrillos De Piedra Caliza Agrietados
+tile.RedGear.Geocraft.Limestone.limeBrick.name=Ladrillos De Piedra Caliza
+tile.RedGear.Geocraft.Limestone.limeCarved.name=Ladrillos De Piedra Caliza Tallada
+tile.RedGear.Geocraft.Limestone.limePaver.name=Caliza Loseta
+
+tile.RedGear.Geocraft.Basalt.basaltCobble.name=Basalto Del Adoquín
+tile.RedGear.Geocraft.Basalt.basaltClean.name=Basalto
+tile.RedGear.Geocraft.Basalt.basaltCracked.name=Ladrillos De Basalto Agrietados
+tile.RedGear.Geocraft.Basalt.basaltBrick.name=Ladrillos De Basalto
+tile.RedGear.Geocraft.Basalt.basaltCarved.name=Ladrillos De Basalto Tallada
+tile.RedGear.Geocraft.Basalt.basaltPaver.name=Basalto Adoquín
+	
+tile.RedGear.Geocraft.Marble.marbleCobble.name=Mármol Del Adoquín
+tile.RedGear.Geocraft.Marble.marbleClean.name=Mármol
+tile.RedGear.Geocraft.Marble.marbleCracked.name=Ladrillos De Mármol Agrietados
+tile.RedGear.Geocraft.Marble.marbleBrick.name=Ladrillos De Mármol
+tile.RedGear.Geocraft.Marble.marbleCarved.name=Ladrillos De Mármol Tallada
+tile.RedGear.Geocraft.Marble.marblePaver.name=Mármol Adoquín

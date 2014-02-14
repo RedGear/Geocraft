@@ -1,0 +1,20 @@
+tile.RedGear.Geocraft.Limestone.limeCobble.name=Calcare Ciottoli
+tile.RedGear.Geocraft.Limestone.limeClean.name=Calcare
+tile.RedGear.Geocraft.Limestone.limeCracked.name=Rotture Di Mattoni Di Calcare
+tile.RedGear.Geocraft.Limestone.limeBrick.name=Mattoni Di Pietra Calcarea
+tile.RedGear.Geocraft.Limestone.limeCarved.name=Mattoni Pietra Calcarea Scolpita
+tile.RedGear.Geocraft.Limestone.limePaver.name=Calcare Pavimentazione In Pietra
+
+tile.RedGear.Geocraft.Basalt.basaltCobble.name=Basalto Ciottoli
+tile.RedGear.Geocraft.Basalt.basaltClean.name=Basalto
+tile.RedGear.Geocraft.Basalt.basaltCracked.name=Rotture Di Mattoni Di Basalto
+tile.RedGear.Geocraft.Basalt.basaltBrick.name=Mattoni Di Pietra Basalto
+tile.RedGear.Geocraft.Basalt.basaltCarved.name=Mattoni Pietra Basalto Scolpita
+tile.RedGear.Geocraft.Basalt.basaltPaver.name=Basalto Pavimentazione In Pietra
+	
+tile.RedGear.Geocraft.Marble.marbleCobble.name=Marmo Ciottoli
+tile.RedGear.Geocraft.Marble.marbleClean.name=Marmo
+tile.RedGear.Geocraft.Marble.marbleCracked.name=Rotture Di Mattoni Di Marmo
+tile.RedGear.Geocraft.Marble.marbleBrick.name=Mattoni Di Pietra Marmo
+tile.RedGear.Geocraft.Marble.marbleCarved.name=Mattoni Pietra Marmo Scolpita
+tile.RedGear.Geocraft.Marble.marblePaver.name=Marmo Pavimentazione In Pietra
