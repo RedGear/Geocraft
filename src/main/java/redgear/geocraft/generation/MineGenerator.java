@@ -39,8 +39,6 @@ public class MineGenerator implements IWorldGenerator {
 	public ListMultimap<Integer, GenData> chunkMap = LinkedListMultimap.<Integer, GenData> create();
 
 	public MineGenerator(ModUtils util) {
-		Geocraft.inst.logDebug("Preinit ...");
-
 		reg = new MineRegistry(util);
 		MineManager.oreRegistry = reg;
 		double temp = util.getDouble(Configuration.CATEGORY_GENERAL, "generationRate",
@@ -55,6 +53,7 @@ public class MineGenerator implements IWorldGenerator {
 		GameRegistry.registerWorldGenerator(this, 10);
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLCommonHandler.instance().bus().register(this);
+		inst = this;
 	}
 
 	public void addChunk(GenData data, World world) {
@@ -135,7 +134,7 @@ public class MineGenerator implements IWorldGenerator {
 
 	@SubscribeEvent
 	public void tickEnd(WorldTickEvent event) {
-		if (event.side == Side.CLIENT || event.phase == Phase.START)
+		if (event.side == Side.CLIENT || event.phase == Phase.END)
 			return;
 
 		World world = event.world;
