@@ -24,6 +24,12 @@ public class Geocraft extends ModUtils {
 
 	public static final SimpleItem stone = new SimpleItem(Blocks.stone);
 	
+	public static SimpleItem kimberlite;
+	public static SimpleItem diamondOre;
+	
+	public static SimpleItem coalOre;
+	public static SimpleItem coalDenseOre;
+	
 	public Geocraft(){
 		addPlugin(new StonePlugin());
 		addPlugin(new VanillaOresPlugin());
@@ -35,7 +41,7 @@ public class Geocraft extends ModUtils {
 
 	@Override
 	public void PreInit(FMLPreInitializationEvent event) {
-		MineGenerator.inst = new MineGenerator(this);
+		new MineGenerator(this);
 	}
 
 	@Override

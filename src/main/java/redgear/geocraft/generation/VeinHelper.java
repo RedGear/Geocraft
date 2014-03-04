@@ -2,7 +2,6 @@ package redgear.geocraft.generation;
 
 import java.util.Random;
 
-import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import redgear.core.util.SimpleItem;
@@ -10,7 +9,7 @@ import redgear.core.world.Location;
 
 public class VeinHelper  {
 	
-	private static boolean isInAir(World world, Location test){
+	public static boolean isInAir(World world, Location test){
 		return test.getY() >= world.getHeightValue(test.getX(), test.getZ());
 	}
 	
@@ -59,25 +58,13 @@ public class VeinHelper  {
         }
     }
 	
-	public static void generateFlat(World world, SimpleItem block, SimpleItem target, Location start, Random rand, int size) {
+	public static void generateBox(World world, SimpleItem block, SimpleItem target, Location start, Location relative, Random rand, int size) {
 		if(isInAir(world, start))
 			return;
 		
-		int height = 1 + rand.nextInt(3);
-		
-		double layer = size / height;//how much ore is in one layer
-		
-		int length = (int) (layer / (1 + rand.nextInt((int) Math.sqrt(layer))));
-		int width = (int) (layer / length);
-		
-		boolean direct = rand.nextBoolean();
-		
-		for(int h = 0; h < height; h++)
-			for(int l = 0; l < length; l++)
-				for(int w = 0; w < width; w++)
-					if(direct)
+		for(int h = 0; h < relative.getY(); h++)
+			for(int l = 0; l < relative.getX(); l++)
+				for(int w = 0; w < relative.getZ(); w++)
 						new Location(l, h, w).placeBlock(world, block, target, start);
-					else
-						new Location(w, h, l).placeBlock(world, block, target, start);
 	}
 }

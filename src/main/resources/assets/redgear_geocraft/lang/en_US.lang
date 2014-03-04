@@ -1,20 +1,29 @@
-tile.RedGear.Geocraft.Limestone.limeCobble.name=Limestone Cobble
-tile.RedGear.Geocraft.Limestone.limeClean.name=Limestone
-tile.RedGear.Geocraft.Limestone.limeCracked.name=Cracked Limestone Bricks
-tile.RedGear.Geocraft.Limestone.limeBrick.name=Limestone Bricks
-tile.RedGear.Geocraft.Limestone.limeCarved.name=Carved Limestone Bricks
-tile.RedGear.Geocraft.Limestone.limePaver.name=Limestone Pavingstone
+item.Drops.nuggetDiamond.name=Diamond Nugget
+item.Drops.nuggetCoal.name=Coal Nugget
 
-tile.RedGear.Geocraft.Basalt.basaltCobble.name=Basalt Cobble
-tile.RedGear.Geocraft.Basalt.basaltClean.name=Basalt
-tile.RedGear.Geocraft.Basalt.basaltCracked.name=Cracked Basalt Bricks
-tile.RedGear.Geocraft.Basalt.basaltBrick.name=Basalt Bricks
-tile.RedGear.Geocraft.Basalt.basaltCarved.name=Carved Basalt Bricks
-tile.RedGear.Geocraft.Basalt.basaltPaver.name=Basalt Pavingstone
+tile.Ore.kimberlite.name=Kimberlite
+tile.Ore.kimberliteDiamond.name=Kimberlite Diamond Ore
+
+tile.Ore.coalMid.name=Coal Ore
+tile.Ore.coalRich.name=Rich Coal Ore
+
+tile.Limestone.limeCobble.name=Limestone Cobble
+tile.Limestone.limeClean.name=Limestone
+tile.Limestone.limeCracked.name=Cracked Limestone Bricks
+tile.Limestone.limeBrick.name=Limestone Bricks
+tile.Limestone.limeCarved.name=Carved Limestone Bricks
+tile.Limestone.limePaver.name=Limestone Pavingstone
+
+tile.Basalt.basaltCobble.name=Basalt Cobble
+tile.Basalt.basaltClean.name=Basalt
+tile.Basalt.basaltCracked.name=Cracked Basalt Bricks
+tile.Basalt.basaltBrick.name=Basalt Bricks
+tile.Basalt.basaltCarved.name=Carved Basalt Bricks
+tile.Basalt.basaltPaver.name=Basalt Pavingstone
 	
-tile.RedGear.Geocraft.Marble.marbleCobble.name=Marble Cobble
-tile.RedGear.Geocraft.Marble.marbleClean.name=Marble
-tile.RedGear.Geocraft.Marble.marbleCracked.name=Cracked Marble Bricks
-tile.RedGear.Geocraft.Marble.marbleBrick.name=Marble Bricks
-tile.RedGear.Geocraft.Marble.marbleCarved.name=Carved Marble Bricks
-tile.RedGear.Geocraft.Marble.marblePaver.name=Marble Pavingstone
+tile.Marble.marbleCobble.name=Marble Cobble
+tile.Marble.marbleClean.name=Marble
+tile.Marble.marbleCracked.name=Cracked Marble Bricks
+tile.Marble.marbleBrick.name=Marble Bricks
+tile.Marble.marbleCarved.name=Carved Marble Bricks
+tile.Marble.marblePaver.name=Marble Pavingstone

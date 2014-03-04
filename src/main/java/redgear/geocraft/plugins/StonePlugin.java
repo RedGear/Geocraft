@@ -34,7 +34,7 @@ public class StonePlugin implements IPlugin{
 
 	@Override
 	public void preInit(ModUtils mod) {
-		MetaBlock limestone = new MetaBlock(Material.rock, "RedGear.Geocraft.Limestone");
+		MetaBlock limestone = new MetaBlock(Material.rock, "Limestone");
 		limestone.setHardness(0.5F).setStepSound(Block.soundTypeStone);
 		SimpleItem limeCobble = limestone.addMetaBlock(new SubBlock("limeCobble"));
 		SimpleItem limeClean = limestone.addMetaBlock(new SubBlockDifferentDrop("limeClean", limeCobble.getStack()));
@@ -56,7 +56,7 @@ public class StonePlugin implements IPlugin{
 		mod.registerOre("stone", limeClean);
 		mod.registerOre("cobblestone", limeCobble);
 
-		MetaBlock basalt = new MetaBlock(Material.rock, "RedGear.Geocraft.Basalt");
+		MetaBlock basalt = new MetaBlock(Material.rock, "Basalt");
 		basalt.setHardness(4.0F).setStepSound(Block.soundTypeStone);
 		SimpleItem basaltCobble = basalt.addMetaBlock(new SubBlock("basaltCobble"));
 		SimpleItem basaltClean = basalt.addMetaBlock(new SubBlockDifferentDrop("basaltClean", basaltCobble.getStack()));
@@ -79,7 +79,7 @@ public class StonePlugin implements IPlugin{
 		mod.registerOre("stone", basaltClean);
 		mod.registerOre("cobblestone", basaltCobble);
 
-		MetaBlock marble = new MetaBlock(Material.rock, "RedGear.Geocraft.Marble");
+		MetaBlock marble = new MetaBlock(Material.rock, "Marble");
 		marble.setHardness(4.0F).setStepSound(Block.soundTypeStone);
 		SimpleItem marbleCobble = marble.addMetaBlock(new SubBlock("marbleCobble"));
 		SimpleItem marbleClean = marble.addMetaBlock(new SubBlockDifferentDrop("marbleClean", marbleCobble.getStack()));

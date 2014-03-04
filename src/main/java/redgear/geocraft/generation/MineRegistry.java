@@ -68,7 +68,7 @@ public class MineRegistry implements IMineRegistry {
 			NewOre newOre = getNewOre(item);
 
 			if (newOre == null) {
-				newOre = new MineRegistry.NewOre(item, new SimpleItem(target), numberOfBlocks);
+				newOre = new NewOre(item, new SimpleItem(target), numberOfBlocks);
 				newOres.add(newOre);
 			} else
 				newOre.addData(numberOfBlocks);
@@ -115,7 +115,7 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	public void addNewOre(SimpleItem block, SimpleItem target, int veins, int cluster) {
-		String name = block.isInOreDict() ? block.oreName() : block.getName();
+		String name = block.isInOreDict() ? block.oreName() : block.getDisplayName();
 
 		registerMine(new MineCylinder(name, defaultDensityRate * defaultDensityRate, veins * defaultDensityRate, block,
 				target, cluster));
@@ -238,4 +238,6 @@ public class MineRegistry implements IMineRegistry {
 		Boolean value = ignoreOres.put(block, normal);
 		return value == null ? true : false;
 	}
+	
+	
 }

@@ -54,8 +54,8 @@ public class ThermalExpansionPlugin implements IPlugin {
 
 				MineGenerator.generateCopper(copper);
 				MineGenerator.generateTin(tin);
-				reg.addNewOre(silver, stone, 3, 16);
-				reg.addNewOre(lead, stone, 4, 16);
+				MineGenerator.generateSilver(silver);
+				MineGenerator.generateLead(lead);
 				reg.addNewOre(nickel, stone, 2, 8);
 			}
 
