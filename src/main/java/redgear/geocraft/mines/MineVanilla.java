@@ -4,9 +4,11 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import redgear.core.util.SimpleItem;
+import redgear.core.util.StringHelper;
 import redgear.core.world.Location;
 import redgear.geocraft.api.IEveryChunk;
 import redgear.geocraft.api.MineManager;
+import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.generation.VeinHelper;
 
 public class MineVanilla extends MineSingleOre implements IEveryChunk {
@@ -18,7 +20,7 @@ public class MineVanilla extends MineSingleOre implements IEveryChunk {
 	 */
 	public MineVanilla(String name, float mineRarity, float mineSize, SimpleItem block, SimpleItem target, int veinSize) {
 		super(name, mineRarity, mineSize, block, target);
-		this.veinSize = veinSize;
+		this.veinSize = Geocraft.inst.getInt("level2." + StringHelper.camelCase(name), "veinSize", veinSize);
 		MineManager.oreRegistry.registerIgnore(block.getBlock(), block.meta);
 	}
 

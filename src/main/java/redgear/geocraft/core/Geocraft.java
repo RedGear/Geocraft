@@ -4,11 +4,13 @@ import net.minecraft.init.Blocks;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
 import redgear.geocraft.generation.MineGenerator;
+import redgear.geocraft.generation.MineRegistry;
+import redgear.geocraft.mines.MineVanilla;
+import redgear.geocraft.plugins.ComplexOresPlugin;
 import redgear.geocraft.plugins.ForestryPlugin;
 import redgear.geocraft.plugins.StonePlugin;
 import redgear.geocraft.plugins.ThaumcraftPlugin;
 import redgear.geocraft.plugins.ThermalExpansionPlugin;
-import redgear.geocraft.plugins.VanillaOresPlugin;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -32,7 +34,7 @@ public class Geocraft extends ModUtils {
 	
 	public Geocraft(){
 		addPlugin(new StonePlugin());
-		addPlugin(new VanillaOresPlugin());
+		addPlugin(new ComplexOresPlugin());
 		
 		addPlugin(new ThermalExpansionPlugin());
 		addPlugin(new ForestryPlugin());
@@ -42,6 +44,15 @@ public class Geocraft extends ModUtils {
 	@Override
 	public void PreInit(FMLPreInitializationEvent event) {
 		new MineGenerator(this);
+		final MineRegistry reg = MineGenerator.reg;
+		reg.registerMine(new MineVanilla("Dirt", 1, 20, new SimpleItem(Blocks.dirt, 0), stone, 32));//dirt
+		reg.registerMine(new MineVanilla("Gravel", 1, 10, new SimpleItem(Blocks.gravel, 0), stone, 32));//gravel
+		reg.registerMine(new MineVanilla("Sand", 1, 10, new SimpleItem(Blocks.sand, 0), stone, 32));//sand
+		SimpleItem sandStone = new SimpleItem(Blocks.sandstone, 0);
+		
+		reg.registerMine(new MineVanilla("SandStone", 1, 10, sandStone, stone, 32));//sandstone
+		if (getBoolean("RegisterSandstoneAsStone"))
+			registerOre("stone", sandStone);
 	}
 
 	@Override

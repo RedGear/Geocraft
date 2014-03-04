@@ -41,16 +41,7 @@ public class MineGenerator implements IWorldGenerator {
 	public MineGenerator(ModUtils util) {
 		reg = new MineRegistry(util);
 		MineManager.oreRegistry = reg;
-		/*double temp = util.getDouble(Configuration.CATEGORY_GENERAL, "generationRate",
-				"The rate at which Geocraft generates ores. "
-						+ "Larger numbers will mean the generation happens faster, but this will cause more lag. "
-						+ "Smaller numbers mean that generation will take longer "
-						+ "IE: it will take longer for ores to pop into the world; "
-						+ "but it will cause less lag and be easier on weaker computers. "
-						+ "Adjust to suit your system and preference. " + "Can be any decimal number larger than 0. "
-						+ "Default is 1, that is, one chunk per world tick.", 1);
-		genRate = temp <= 0 ? 1.0 : temp; //if temp is 0 or negative, set genRate to 1, otherwise set it to temp.*/
-		GameRegistry.registerWorldGenerator(this, 10);
+		GameRegistry.registerWorldGenerator(this, 1);
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLCommonHandler.instance().bus().register(this);
 		inst = this;

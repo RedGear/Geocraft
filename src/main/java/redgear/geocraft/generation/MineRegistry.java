@@ -15,6 +15,7 @@ import redgear.geocraft.api.IMine;
 import redgear.geocraft.api.IMineRegistry;
 import redgear.geocraft.mines.MineCylinder;
 import redgear.geocraft.mines.MineTrace;
+import redgear.geocraft.mines.MineVanilla;
 
 public class MineRegistry implements IMineRegistry {
 	public Set<IMine> mines = Collections.newSetFromMap(new ConcurrentHashMap<IMine, Boolean>());
@@ -27,6 +28,7 @@ public class MineRegistry implements IMineRegistry {
 	public final int defaultDensityRate; //used for creating default values
 	public final boolean useDimensions = false;
 	public final boolean useBiomes = false;
+	public final GeoMode mode;
 
 	public long genHash = 0;
 	public static NBTTagCompound ores = new NBTTagCompound();
@@ -45,6 +47,8 @@ public class MineRegistry implements IMineRegistry {
 		//this.useBiomes =  util.getBoolean(l1, "useBiomes", "Setting this to true and running Minecraft will open up the option to change mine rarities based on biomes", false);
 
 		defaultDensityRate = 4;
+		
+		mode = GeoMode.values()[util.getInt("genMode", 2)];
 	}
 
 	/**
@@ -117,9 +121,13 @@ public class MineRegistry implements IMineRegistry {
 	public void addNewOre(SimpleItem block, SimpleItem target, int veins, int cluster) {
 		String name = block.isInOreDict() ? block.oreName() : block.getDisplayName();
 
-		registerMine(new MineCylinder(name, defaultDensityRate * defaultDensityRate, veins * defaultDensityRate, block,
+		if(mode == GeoMode.Vanilla)
+			registerMine(new MineVanilla(name, 1, veins, block, target, cluster));
+		else{
+			registerMine(new MineCylinder(name, defaultDensityRate * defaultDensityRate, veins * defaultDensityRate, block,
 				target, cluster));
-		registerTrace(name + "Trace", block, target, veins);
+			registerTrace(name + "Trace", block, target, veins);	
+		}
 	}
 
 	public NewOre getNewOre(SimpleItem block) {
