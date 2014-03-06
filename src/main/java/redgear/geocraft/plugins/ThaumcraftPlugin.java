@@ -21,7 +21,6 @@ public class ThaumcraftPlugin implements IPlugin {
 
 	@Override
 	public boolean isRequired() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

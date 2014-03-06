@@ -1,6 +1,8 @@
 package redgear.geocraft.core;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
 import redgear.geocraft.generation.MineGenerator;
@@ -17,6 +19,8 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @Mod(modid = "redgear_geocraft", name = "Geocraft", version = "@ModVersion@", dependencies = "required-after:redgear_core;after:ThermalExpansion;")
 public class Geocraft extends ModUtils {
@@ -24,13 +28,32 @@ public class Geocraft extends ModUtils {
 	@Instance("redgear_geocraft")
 	public static ModUtils inst;
 
-	public static final SimpleItem stone = new SimpleItem(Blocks.stone);
+	public static final SimpleItem stone = new SimpleItem(Blocks.stone, 0);
 	
 	public static SimpleItem kimberlite;
 	public static SimpleItem diamondOre;
 	
 	public static SimpleItem coalOre;
 	public static SimpleItem coalDenseOre;
+
+	public static SimpleItem terraQuartzOre;
+	public static SimpleItem goldOre;
+	
+	public static SimpleItem marble;
+	
+	public static CreativeTabs geoTab = new CreativeTabs("Geocraft"){
+
+		@SideOnly(Side.CLIENT)
+	    public int func_151243_f(){
+			return marble.meta;
+		}
+		
+		@Override
+		public Item getTabIconItem() {
+			return marble.getItem();
+		}
+		
+	};
 	
 	public Geocraft(){
 		addPlugin(new StonePlugin());

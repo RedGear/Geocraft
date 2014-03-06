@@ -2,9 +2,6 @@ package redgear.geocraft.plugins;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import cpw.mods.fml.common.LoaderState.ModState;
-import cpw.mods.fml.common.registry.GameRegistry;
 import redgear.core.block.MetaBlock;
 import redgear.core.block.SubBlock;
 import redgear.core.block.SubBlockDifferentDrop;
@@ -14,6 +11,8 @@ import redgear.core.util.SimpleItem;
 import redgear.geocraft.api.MineManager;
 import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.mines.MineVanilla;
+import cpw.mods.fml.common.LoaderState.ModState;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class StonePlugin implements IPlugin{
 
@@ -102,9 +101,11 @@ public class StonePlugin implements IPlugin{
 		mod.registerOre("stone", marbleClean);
 		mod.registerOre("cobblestone", marbleCobble);
 
-		limestone.setCreativeTab(CreativeTabs.tabDecorations);
-		basalt.setCreativeTab(CreativeTabs.tabDecorations);
-		marble.setCreativeTab(CreativeTabs.tabDecorations);
+		Geocraft.marble = marbleClean;
+		
+		limestone.setCreativeTab(Geocraft.geoTab);
+		basalt.setCreativeTab(Geocraft.geoTab);
+		marble.setCreativeTab(Geocraft.geoTab);
 		
 	}
 

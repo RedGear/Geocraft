@@ -6,11 +6,16 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import redgear.core.util.SimpleItem;
 import redgear.core.world.Location;
+import redgear.core.world.WorldLocation;
 
 public class VeinHelper  {
 	
 	public static boolean isInAir(World world, Location test){
 		return test.getY() >= world.getHeightValue(test.getX(), test.getZ());
+	}
+	
+	public static boolean isInAir(WorldLocation test){
+		return isInAir(test.world, test);
 	}
 	
 	public static void generateSphere(World world, SimpleItem block, SimpleItem target, Location start, Random rand, int size){

@@ -4,14 +4,13 @@ import java.util.Random;
 
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-import redgear.core.world.Location;
 import redgear.core.world.WorldLocation;
 import redgear.geocraft.core.Geocraft;
 
-public class MineDiamond extends Mine {
+public class MineDiamond extends MineSpecialStone {
 
 	public MineDiamond(float mineRarity, float mineSize) {
-		super("Diamond", mineRarity, mineSize);
+		super("Diamond", mineRarity, mineSize, Geocraft.kimberlite, Geocraft.diamondOre, Geocraft.stone);
 	}
 
 	@Override
@@ -35,15 +34,9 @@ public class MineDiamond extends Mine {
 				for (int z = 0; z < radius; z++)
 					if (x * x + z * z < radius * radius) {
 						for (int r = 0; r < 4; r++)
-							gen(new WorldLocation(x, 0, z, world).rotate(ForgeDirection.UP, r), new Location(xMin, y, zMin), rand, ratio);
+							gen(new WorldLocation(x, 0, z, world).rotate(ForgeDirection.UP, r).translate(xMin, y, zMin), rand, ratio);
 					}
 		}
 	}
 
-	private void gen(WorldLocation loc, Location relative, Random rand, int ratio) {
-		if (rand.nextInt(ratio) == 0)
-			loc.placeBlock(Geocraft.diamondOre, Geocraft.stone, relative);
-		else
-			loc.placeBlock(Geocraft.kimberlite, Geocraft.stone, relative);
-	}
 }

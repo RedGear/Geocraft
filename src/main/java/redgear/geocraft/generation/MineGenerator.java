@@ -31,7 +31,6 @@ import cpw.mods.fml.relauncher.Side;
 
 public class MineGenerator implements IWorldGenerator {
 
-	//private final double genRate;
 	private final long maxTime = 1000000 * 10;
 	private boolean canGen = true;
 	public static MineGenerator inst;
@@ -86,7 +85,8 @@ public class MineGenerator implements IWorldGenerator {
 		addChunk(new GenData(new ChunkCoordinate(chunkX, chunkZ), null), world);
 	}
 
-	public boolean generate(Random rand, int chunkX, int chunkZ, World world, NBTTagCompound tagData, GenData data, long start) {
+	public boolean generate(Random rand, int chunkX, int chunkZ, World world, NBTTagCompound tagData, GenData data,
+			long start) {
 		if (data.it == null)
 			data.it = reg.mines.iterator();
 
@@ -145,7 +145,9 @@ public class MineGenerator implements IWorldGenerator {
 
 			hasTime = generate(rand, coord.x, coord.z, world,
 					data.tagData == null ? null : data.tagData.getCompoundTag("Ores"), data, start);
-			Geocraft.inst.logDebug("Generating chunk X: ", coord.x, " Z: ", coord.z, " Time: ", new BigDecimal(System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000).setScale(4)), " Chunks left: ", list.size());
+			Geocraft.inst.logDebug("Generating chunk X: ", coord.x, " Z: ", coord.z, " Time: ",
+					new BigDecimal(System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000).setScale(4)),
+					" Chunks left: ", list.size());
 		} while (hasTime);
 
 		if (data != null && data.it.hasNext())
