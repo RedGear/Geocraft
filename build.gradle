@@ -1,64 +1,56 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'git-dependencies'
+apply plugin: 'forge'
 
-buildscript {
-        repositories {
-                mavenCentral()
-                maven {
-                        name = "forge"
-                        url = "http://files.minecraftforge.net/maven"
-                }
-        }
-        dependencies {
-                classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
-                classpath 'org.batcha.gradle.plugins:git-dependencies:0.1'
-        }
+minecraft {
+	version = rootProject.ext.mcversion
+}
+
+jar{
+	destinationDir rootProject.libsDir
+}
+
+dependencies {
+	compile rootProject
+	compile rootProject.sourceSets.main.output
 }
 
 ext.configFile = file "build.properties"
 
 configFile.withReader {
-        def prop = new Properties()
-        prop.load(it)
-        ext.config = new ConfigSlurper().parse prop
-}
-
-dependencies {
-	compile('redgear.core:RedGearCore:' + config.core_version).ext.git = 'https://github.com/RedGear/RedGearCore.git'
+		def prop = new Properties()
+		prop.load(it)
+		ext.config = new ConfigSlurper().parse prop
 }
 
 version = config.mod_version
 group= config.mod_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = config.mod_name
 
-apply plugin: 'forge'
-
-minecraft {
-        version = config.minecraft_version + "-" + config.forge_version
-        
-        replaceIn config.mod_main + '.java'
-        replace "@ModVersion@", project.version
+minecraft{
+		assetDir = "eclipse/assets"
+		
+		replaceIn config.mod_main + '.java'
+		replace "@ModVersion@", project.version
 }
+
+processResources
+{
+	// replace stuff in mcmod.info, nothing else
+	from(sourceSets.main.resources.srcDirs) {
+		include 'mcmod/info'
+				
+		// replace version and mcversion
+		expand 'version':project.version, 'mcversion':project.minecraft.version
+	}
+		
+	// copy everything else, thats not the mcmod.info
+	from(sourceSets.main.resources.srcDirs) {
+		exclude 'mcmod.info'
+	}
+}
+
 
 jar{
 	manifest{
 		attributes 'FMLCorePlugin': 'redgear.geocraft.core.MinableTransformer', 'FMLCorePluginContainsFMLMod': 'true'
 	}
-}
-
-processResources
-{
-    // replace stuff in mcmod.info, nothing else
-    from(sourceSets.main.resources.srcDirs) {
-        include 'mcmod/info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
-    }
-        
-    // copy everything else, thats not the mcmod.info
-    from(sourceSets.main.resources.srcDirs) {
-        exclude 'mcmod.info'
-    }
 }

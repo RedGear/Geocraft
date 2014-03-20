@@ -1,5 +1,6 @@
 package redgear.geocraft.generation;
 
+import java.math.BigDecimal;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +9,6 @@ import java.util.Random;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.ChunkDataEvent;
@@ -32,7 +32,7 @@ import cpw.mods.fml.relauncher.Side;
 
 public class MineGenerator implements IWorldGenerator, ITickHandler {
 
-	private final double genRate;
+	private final long maxTime = 1000000 * 10;
 	private boolean canGen = true;
 	public static MineGenerator inst;
 	public static MineRegistry reg;
@@ -41,15 +41,6 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 	public MineGenerator(ModUtils util) {
 		reg = new MineRegistry(util);
 		MineManager.oreRegistry = reg;
-		double temp = util.getDouble(Configuration.CATEGORY_GENERAL, "generationRate",
-				"The rate at which Geocraft generates ores. "
-						+ "Larger numbers will mean the generation happens faster, but this will cause more lag. "
-						+ "Smaller numbers mean that generation will take longer "
-						+ "IE: it will take longer for ores to pop into the world; "
-						+ "but it will cause less lag and be easier on weaker computers. "
-						+ "Adjust to suit your system and preference. " + "Can be any decimal number larger than 0. "
-						+ "Default is 1, that is, one chunk per world tick.", 1);
-		genRate = temp <= 0 ? 1.0 : temp; //if temp is 0 or negative, set genRate to 1, otherwise set it to temp.
 		GameRegistry.registerWorldGenerator(this);
 		TickRegistry.registerTickHandler(this, Side.SERVER);
 		MinecraftForge.EVENT_BUS.register(this);
@@ -94,17 +85,13 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 		addChunk(new GenData(new ChunkCoordinate(chunkX, chunkZ), null), world);
 	}
 
-	public int generate(Random rand, int chunkX, int chunkZ, World world, NBTTagCompound tagData, GenData data,
-			int countDown) {
-
-		//Geocraft.util.logDebug("Generating chunk X: " + chunkX + " Z: " + chunkZ);
-		//long start = System.nanoTime();
-
+	public boolean generate(Random rand, int chunkX, int chunkZ, World world, NBTTagCompound tagData, GenData data,
+			long start) {
 		if (data.it == null)
 			data.it = reg.mines.iterator();
 
-		IMine mine;
-		while (data.it.hasNext() && countDown-- > 0) {
+		IMine mine = null;
+		while (data.it.hasNext() && System.nanoTime() - start < maxTime) {
 			mine = data.it.next();
 
 			if (mine instanceof IEveryChunk)
@@ -120,9 +107,8 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 			}
 		}
 		world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
-		//Geocraft.inst.logDebug("Retro: ", retro, " Time: ", new BigDecimal(System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000000).setScale(4)));
 
-		return countDown;
+		return System.nanoTime() - start < maxTime;
 	}
 
 	private void checkAndGen(IMine mine, World world, Random rand, int chunkX, int chunkZ, NBTTagCompound tag) {
@@ -132,18 +118,14 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
-
-	}
-
-	@Override
-	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
 		World world = (World) tickData[0];
 		int dimID = world.provider.dimensionId;
 		List<GenData> list = chunkMap.get(dimID);
-		int countDown = (int) (reg.mines.size() * genRate) + 1;
 
 		GenData data = null;
 		ChunkCoordinate coord;
+		long start = System.nanoTime();
+		boolean hasTime = true;
 
 		do {
 			do {
@@ -158,12 +140,21 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 			Random rand = new Random(worldSeed);
 			rand.setSeed((rand.nextLong() >> 3) * coord.x + (rand.nextLong() >> 3) * coord.z ^ worldSeed);
 
-			countDown = generate(rand, coord.x, coord.z, world,
-					data.tagData == null ? null : data.tagData.getCompoundTag("Ores"), data, countDown);
-		} while (countDown > 0);
+			hasTime = generate(rand, coord.x, coord.z, world,
+					data.tagData == null ? null : data.tagData.getCompoundTag("Ores"), data, start);
+			if(Geocraft.inst.isDebugMode)
+				Geocraft.inst.logDebug("Generating chunk X: ", coord.x, " Z: ", coord.z, " Time: ",
+						new BigDecimal(System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000).setScale(4)),
+						" Chunks left: ", list.size());
+		} while (hasTime);
 
 		if (data != null && data.it.hasNext())
 			list.add(0, data);
+	}
+
+	@Override
+	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
+		
 	}
 
 	@Override

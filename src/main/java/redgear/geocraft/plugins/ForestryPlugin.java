@@ -11,9 +11,14 @@ public class ForestryPlugin implements IPlugin{
 
 	@Override
 	public void preInit(ModUtils inst) {
+		
+	}
+
+	@Override
+	public void Init(ModUtils inst) {
 		if(Mods.Forestry.isIn() && inst.getBoolean("plugins", "Forestry")){
 			try{
-				Class clazz = Class.forName("forestry.core.config.Config");
+				Class<?> clazz = Class.forName("forestry.core.config.Config");
 				if(clazz != null){
 					clazz.getField("generateCopperOre").setBoolean(null, false);
 					clazz.getField("generateTinOre").setBoolean(null, false);
@@ -39,11 +44,6 @@ public class ForestryPlugin implements IPlugin{
 			
 			
 		}
-	}
-
-	@Override
-	public void Init(ModUtils inst) {
-		
 	}
 
 	@Override
