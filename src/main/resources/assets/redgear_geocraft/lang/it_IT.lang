@@ -1,0 +1,20 @@
+tile.Limestone.limeCobble.name=Calcare Ciottoli
+tile.Limestone.limeClean.name=Calcare
+tile.Limestone.limeCracked.name=Rotture Di Mattoni Di Calcare
+tile.Limestone.limeBrick.name=Mattoni Di Pietra Calcarea
+tile.Limestone.limeCarved.name=Mattoni Pietra Calcarea Scolpita
+tile.Limestone.limePaver.name=Calcare Pavimentazione In Pietra
+
+tile.Basalt.basaltCobble.name=Basalto Ciottoli
+tile.Basalt.basaltClean.name=Basalto
+tile.Basalt.basaltCracked.name=Rotture Di Mattoni Di Basalto
+tile.Basalt.basaltBrick.name=Mattoni Di Pietra Basalto
+tile.Basalt.basaltCarved.name=Mattoni Pietra Basalto Scolpita
+tile.Basalt.basaltPaver.name=Basalto Pavimentazione In Pietra
+	
+tile.Marble.marbleCobble.name=Marmo Ciottoli
+tile.Marble.marbleClean.name=Marmo
+tile.Marble.marbleCracked.name=Rotture Di Mattoni Di Marmo
+tile.Marble.marbleBrick.name=Mattoni Di Pietra Marmo
+tile.Marble.marbleCarved.name=Mattoni Pietra Marmo Scolpita
+tile.Marble.marblePaver.name=Marmo Pavimentazione In Pietra

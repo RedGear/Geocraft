@@ -1,0 +1,20 @@
+tile.Limestone.limeCobble.name=Piedra Caliza Del Adoquín
+tile.Limestone.limeClean.name=Caliza
+tile.Limestone.limeCracked.name=Ladrillos De Piedra Caliza Agrietados
+tile.Limestone.limeBrick.name=Ladrillos De Piedra Caliza
+tile.Limestone.limeCarved.name=Ladrillos De Piedra Caliza Tallada
+tile.Limestone.limePaver.name=Caliza Loseta
+
+tile.Basalt.basaltCobble.name=Basalto Del Adoquín
+tile.Basalt.basaltClean.name=Basalto
+tile.Basalt.basaltCracked.name=Ladrillos De Basalto Agrietados
+tile.Basalt.basaltBrick.name=Ladrillos De Basalto
+tile.Basalt.basaltCarved.name=Ladrillos De Basalto Tallada
+tile.Basalt.basaltPaver.name=Basalto Adoquín
+	
+tile.Marble.marbleCobble.name=Mármol Del Adoquín
+tile.Marble.marbleClean.name=Mármol
+tile.Marble.marbleCracked.name=Ladrillos De Mármol Agrietados
+tile.Marble.marbleBrick.name=Ladrillos De Mármol
+tile.Marble.marbleCarved.name=Ladrillos De Mármol Tallada
+tile.Marble.marblePaver.name=Mármol Adoquín

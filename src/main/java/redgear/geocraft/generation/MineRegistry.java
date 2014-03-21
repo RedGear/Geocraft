@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
@@ -14,6 +15,7 @@ import redgear.geocraft.api.IMine;
 import redgear.geocraft.api.IMineRegistry;
 import redgear.geocraft.mines.MineCylinder;
 import redgear.geocraft.mines.MineTrace;
+import redgear.geocraft.mines.MineVanilla;
 
 public class MineRegistry implements IMineRegistry {
 	public Set<IMine> mines = Collections.newSetFromMap(new ConcurrentHashMap<IMine, Boolean>());
@@ -26,6 +28,7 @@ public class MineRegistry implements IMineRegistry {
 	public final int defaultDensityRate; //used for creating default values
 	public final boolean useDimensions = false;
 	public final boolean useBiomes = false;
+	public final GeoMode mode;
 
 	public long genHash = 0;
 	public static NBTTagCompound ores = new NBTTagCompound();
@@ -44,6 +47,8 @@ public class MineRegistry implements IMineRegistry {
 		//this.useBiomes =  util.getBoolean(l1, "useBiomes", "Setting this to true and running Minecraft will open up the option to change mine rarities based on biomes", false);
 
 		defaultDensityRate = 4;
+		
+		mode = GeoMode.values()[util.getInt("genMode", 2)];
 	}
 
 	/**
@@ -58,16 +63,16 @@ public class MineRegistry implements IMineRegistry {
 	 * @param y
 	 * @param z
 	 */
-	public boolean checkForNew(int blockId, int blockMeta, int numberOfBlocks, int targetId) {
-		SimpleItem block = new SimpleItem(blockId, blockMeta);
+	public boolean checkForNew(Block block, int blockMeta, int numberOfBlocks, Block target) {
+		SimpleItem item = new SimpleItem(block, blockMeta);
 
-		if (ignoreOres.containsKey(block))
-			return ignoreOres.get(block);
+		if (ignoreOres.containsKey(item))
+			return ignoreOres.get(item);
 		else {
-			NewOre newOre = getNewOre(block);
+			NewOre newOre = getNewOre(item);
 
 			if (newOre == null) {
-				newOre = new MineRegistry.NewOre(block, new SimpleItem(targetId), numberOfBlocks);
+				newOre = new NewOre(item, new SimpleItem(target), numberOfBlocks);
 				newOres.add(newOre);
 			} else
 				newOre.addData(numberOfBlocks);
@@ -114,11 +119,15 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	public void addNewOre(SimpleItem block, SimpleItem target, int veins, int cluster) {
-		String name = block.isInOreDict() ? block.oreName() : block.getName();
+		String name = block.isInOreDict() ? block.oreName() : block.getDisplayName();
 
-		registerMine(new MineCylinder(name, defaultDensityRate * defaultDensityRate, veins * defaultDensityRate, block,
+		if(mode == GeoMode.Vanilla)
+			registerMine(new MineVanilla(name, 1, veins, block, target, cluster));
+		else{
+			registerMine(new MineCylinder(name, defaultDensityRate * defaultDensityRate, veins * defaultDensityRate, block,
 				target, cluster));
-		registerTrace(name + "Trace", block, target, veins);
+			registerTrace(name + "Trace", block, target, veins);	
+		}
 	}
 
 	public NewOre getNewOre(SimpleItem block) {
@@ -203,8 +212,8 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	@Override
-	public boolean registerTrace(String name, int blockId, int blockMeta, int targetId, int targetMeta, int size) {
-		return registerTrace(name, new SimpleItem(blockId, blockMeta), new SimpleItem(targetId, targetMeta), size);
+	public boolean registerTrace(String name, Block block, int blockMeta, Block target, int targetMeta, int size) {
+		return registerTrace(name, new SimpleItem(block, blockMeta), new SimpleItem(target, targetMeta), size);
 	}
 
 	public boolean registerTrace(String name, SimpleItem block, SimpleItem target, int size) {
@@ -216,7 +225,7 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	@Override
-	public boolean registerIgnore(int blockId, int blockMeta) {
+	public boolean registerIgnore(Block blockId, int blockMeta) {
 		return registerIgnore(new SimpleItem(blockId, blockMeta));
 	}
 
@@ -225,7 +234,7 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	@Override
-	public boolean registerNormalGen(int blockId, int blockMeta) {
+	public boolean registerNormalGen(Block blockId, int blockMeta) {
 		return registerNormalGen(new SimpleItem(blockId, blockMeta));
 	}
 
@@ -237,4 +246,6 @@ public class MineRegistry implements IMineRegistry {
 		Boolean value = ignoreOres.put(block, normal);
 		return value == null ? true : false;
 	}
+	
+	
 }

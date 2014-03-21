@@ -1,7 +1,6 @@
 package redgear.geocraft.generation;
 
 import java.math.BigDecimal;
-import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
@@ -23,14 +21,15 @@ import redgear.geocraft.core.Geocraft;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
 
-import cpw.mods.fml.common.ITickHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
+import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-public class MineGenerator implements IWorldGenerator, ITickHandler {
+public class MineGenerator implements IWorldGenerator {
 
 	private final long maxTime = 1000000 * 10;
 	private boolean canGen = true;
@@ -41,16 +40,17 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 	public MineGenerator(ModUtils util) {
 		reg = new MineRegistry(util);
 		MineManager.oreRegistry = reg;
-		GameRegistry.registerWorldGenerator(this);
-		TickRegistry.registerTickHandler(this, Side.SERVER);
+		GameRegistry.registerWorldGenerator(this, 1);
 		MinecraftForge.EVENT_BUS.register(this);
+		FMLCommonHandler.instance().bus().register(this);
+		inst = this;
 	}
 
 	public void addChunk(GenData data, World world) {
 		chunkMap.put(world.provider.dimensionId, data);
 	}
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void chunkSave(ChunkDataEvent.Save event) {
 		int dimId = event.world.provider.dimensionId;
 		List<GenData> chunks = chunkMap.get(dimId);
@@ -63,13 +63,13 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 			NBTTagCompound tag = new NBTTagCompound();
 
 			tag.setLong("GenHas", reg.genHash);
-			tag.setCompoundTag("Ores", MineRegistry.ores);
+			tag.setTag("Ores", MineRegistry.ores);
 
 			event.getData().setTag("RedGear.Geocraft", tag);
 		}
 	}
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void chunkLoad(ChunkDataEvent.Load event) {
 		NBTTagCompound tag = (NBTTagCompound) event.getData().getTag("RedGear.Geocraft");
 
@@ -116,9 +116,12 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 			mine.generate(world, rand, chunkX, chunkZ);
 	}
 
-	@Override
-	public void tickStart(EnumSet<TickType> type, Object... tickData) {
-		World world = (World) tickData[0];
+	@SubscribeEvent
+	public void tickEnd(WorldTickEvent event) {
+		if (event.side == Side.CLIENT || event.phase == Phase.END)
+			return;
+
+		World world = event.world;
 		int dimID = world.provider.dimensionId;
 		List<GenData> list = chunkMap.get(dimID);
 
@@ -142,29 +145,13 @@ public class MineGenerator implements IWorldGenerator, ITickHandler {
 
 			hasTime = generate(rand, coord.x, coord.z, world,
 					data.tagData == null ? null : data.tagData.getCompoundTag("Ores"), data, start);
-			if(Geocraft.inst.isDebugMode)
-				Geocraft.inst.logDebug("Generating chunk X: ", coord.x, " Z: ", coord.z, " Time: ",
-						new BigDecimal(System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000).setScale(4)),
-						" Chunks left: ", list.size());
+			Geocraft.inst.logDebug("Generating chunk X: ", coord.x, " Z: ", coord.z, " Time: ",
+					new BigDecimal(System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000).setScale(4)),
+					" Chunks left: ", list.size());
 		} while (hasTime);
 
 		if (data != null && data.it.hasNext())
 			list.add(0, data);
-	}
-
-	@Override
-	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-		
-	}
-
-	@Override
-	public EnumSet<TickType> ticks() {
-		return EnumSet.of(TickType.WORLD);
-	}
-
-	@Override
-	public String getLabel() {
-		return "RedGear.Geocraft";
 	}
 
 	private class GenData {

@@ -1,0 +1,20 @@
+tile.Limestone.limeCobble.name=Calcaire Pavées
+tile.Limestone.limeClean.name=Calcaire
+tile.Limestone.limeCracked.name=Briques De Calcaire Fissurés
+tile.Limestone.limeBrick.name=Briques De Calcaire
+tile.Limestone.limeCarved.name=Briques De Calcaire Sculptés
+tile.Limestone.limePaver.name=Calcaire Pavé
+
+tile.Basalt.basaltCobble.name=Basalte Pavées
+tile.Basalt.basaltClean.name=Basalte
+tile.Basalt.basaltCracked.name=Briques De Basalte Fissurés
+tile.Basalt.basaltBrick.name=Briques De Basalte
+tile.Basalt.basaltCarved.name=Briques De Basalte Sculptés
+tile.Basalt.basaltPaver.name=Basalte Pavé
+	
+tile.Marble.marbleCobble.name=Marbre Pavées
+tile.Marble.marbleClean.name=Marbre
+tile.Marble.marbleCracked.name=Briques De Marbre Fissurés
+tile.Marble.marbleBrick.name=Briques De Marbre
+tile.Marble.marbleCarved.name=Briques De Marbre Sculptés
+tile.Marble.marblePaver.name=Marbre Pavé
