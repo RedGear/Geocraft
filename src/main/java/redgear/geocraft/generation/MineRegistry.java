@@ -13,6 +13,7 @@ import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
 import redgear.geocraft.api.IMine;
 import redgear.geocraft.api.IMineRegistry;
+import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.mines.MineCylinder;
 import redgear.geocraft.mines.MineTrace;
 import redgear.geocraft.mines.MineVanilla;
@@ -22,33 +23,26 @@ public class MineRegistry implements IMineRegistry {
 	public Set<NewOre> newOres = new HashSet<NewOre>();
 	public Map<SimpleItem, Boolean> ignoreOres = new HashMap<SimpleItem, Boolean>(); //If that boolean is true, gen it like normal, false means do nothing.
 
-	public final boolean genTrace; //Generate trace veins for ANY ores
 	public final float volumeModifier; //more or less ore in a mine
-	public final float densityModifier; //rarity of mines
-	public final int defaultDensityRate; //used for creating default values
+	public final float rarityModifier; //rarity of mines
+	
 	public final boolean useDimensions = false;
 	public final boolean useBiomes = false;
-	public final GeoMode mode;
 
 	public long genHash = 0;
-	public static NBTTagCompound ores = new NBTTagCompound();
+	public NBTTagCompound ores = new NBTTagCompound();
 
 	public MineRegistry(ModUtils util) {
+		final int defaultDensityRate = 4; //used for creating default values
+		
 		final String l1 = "Level1";
-
-		genTrace = util.getBoolean(l1, "genTrace",
-				"Setting this to false will disable all trace ore generation, overriding the individual ore settings");
 		volumeModifier = (float) util.getDouble(l1, "volumeModifier",
 				"Changes the number of veins in each mine for ALL ores. It is a multiplier. "
-						+ "Larger numbers mean more ore, smaller means less.", 1);
-		densityModifier = (float) util.getDouble(l1, "rarityModifier", "Changes the rarities of ALL ores. "
-				+ "It is a multiplier. Larger numbers mean further apart , smaller means closer together.", 1);
+						+ "Larger numbers mean more ore, smaller means less.", defaultDensityRate);
+		rarityModifier = (float) util.getDouble(l1, "rarityModifier", "Changes the rarities of ALL ores. "
+				+ "It is a multiplier. Larger numbers mean further apart , smaller means closer together.", defaultDensityRate * defaultDensityRate);
 		//this.useDimensions =  util.getBoolean(l1, "useDimensions", "Setting this to true and running Minecraft will open up the option to change what dimensions mines can spawn in.", false);
 		//this.useBiomes =  util.getBoolean(l1, "useBiomes", "Setting this to true and running Minecraft will open up the option to change mine rarities based on biomes", false);
-
-		defaultDensityRate = 4;
-		
-		mode = GeoMode.values()[util.getInt("genMode", 2)];
 	}
 
 	/**
@@ -58,10 +52,7 @@ public class MineRegistry implements IMineRegistry {
 	 * @param blockId
 	 * @param blockMeta
 	 * @param numberOfBlocks
-	 * @param targetId
-	 * @param x
-	 * @param y
-	 * @param z
+	 * @param target
 	 */
 	public boolean checkForNew(Block block, int blockMeta, int numberOfBlocks, Block target) {
 		SimpleItem item = new SimpleItem(block, blockMeta);
@@ -121,13 +112,13 @@ public class MineRegistry implements IMineRegistry {
 	public void addNewOre(SimpleItem block, SimpleItem target, int veins, int cluster) {
 		String name = block.isInOreDict() ? block.oreName() : block.getDisplayName();
 
-		if(mode == GeoMode.Vanilla)
-			registerMine(new MineVanilla(name, 1, veins, block, target, cluster));
-		else{
-			registerMine(new MineCylinder(name, defaultDensityRate * defaultDensityRate, veins * defaultDensityRate, block,
+		if(GeocraftConfig.cylinderMode){
+			registerMine(new MineCylinder(name, 1, veins, block,
 				target, cluster));
 			registerTrace(name + "Trace", block, target, veins);	
 		}
+		else
+			registerMine(new MineVanilla(name, 1, veins, block, target, cluster));
 	}
 
 	public NewOre getNewOre(SimpleItem block) {
@@ -173,18 +164,13 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	@Override
-	public int defaultDensityRate() {
-		return defaultDensityRate;
-	}
-
-	@Override
 	public float volumeModifier() {
 		return volumeModifier;
 	}
 
 	@Override
-	public float densityModifier() {
-		return densityModifier;
+	public float rarityModifier() {
+		return rarityModifier;
 	}
 
 	@Override
@@ -219,7 +205,7 @@ public class MineRegistry implements IMineRegistry {
 	public boolean registerTrace(String name, SimpleItem block, SimpleItem target, int size) {
 		registerIgnore(block);
 
-		if (genTrace)
+		if (GeocraftConfig.genTrace)
 			return registerMine(new MineTrace(name, 1, size, block, target));
 		return false;
 	}

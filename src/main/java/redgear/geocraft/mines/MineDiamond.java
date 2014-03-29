@@ -2,15 +2,19 @@ package redgear.geocraft.mines;
 
 import java.util.Random;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import redgear.core.util.SimpleItem;
 import redgear.core.world.WorldLocation;
 import redgear.geocraft.core.Geocraft;
+import redgear.geocraft.core.GeocraftConfig;
 
 public class MineDiamond extends MineSpecialStone {
 
 	public MineDiamond(float mineRarity, float mineSize) {
-		super("Diamond", mineRarity, mineSize, Geocraft.kimberlite, Geocraft.diamondOre, Geocraft.stone);
+		super("Diamond", mineRarity, mineSize, GeocraftConfig.complexOres ? Geocraft.kimberlite : Geocraft.stone,
+				GeocraftConfig.complexMines ? Geocraft.diamondOre : new SimpleItem(Blocks.diamond_ore, 0), Geocraft.stone);
 	}
 
 	@Override

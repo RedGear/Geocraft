@@ -25,7 +25,7 @@ public abstract class Mine implements IMine {
 	
 	@Override
 	public final float getMineSize(){
-		return mineSize * MineManager.oreRegistry.densityModifier();
+		return mineSize * MineManager.oreRegistry.volumeModifier();
 	}
 	
 	public final float reletiveSize(World world, int chunkX, int chunkZ){

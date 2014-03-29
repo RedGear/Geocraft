@@ -63,7 +63,7 @@ public class MineGenerator implements IWorldGenerator {
 			NBTTagCompound tag = new NBTTagCompound();
 
 			tag.setLong("GenHas", reg.genHash);
-			tag.setTag("Ores", MineRegistry.ores);
+			tag.setTag("Ores", reg.ores);
 
 			event.getData().setTag("RedGear.Geocraft", tag);
 		}
@@ -97,7 +97,7 @@ public class MineGenerator implements IWorldGenerator {
 			if (mine instanceof IEveryChunk)
 				checkAndGen(mine, world, rand, chunkX, chunkZ, tagData);
 			else if (canGen) {
-				int rare = (int) (mine.getMineRarity() * reg.densityModifier);
+				int rare = (int) (mine.getMineRarity() * reg.rarityModifier);
 
 				if (rare > 0 && rand.nextInt(rare) == 0) {
 					canGen = false;

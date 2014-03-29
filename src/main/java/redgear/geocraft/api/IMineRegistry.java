@@ -26,22 +26,19 @@ public interface IMineRegistry {
 	public boolean registerNormalGen(Block block, int blockMeta);
 	
 	/**
-	 * Use this in your mines to adjust the number of veins based on the global values supplied by users. Default is 1.0, no change. 
-	 * Larger numbers mean more ore. 
+	 * Use this in your mines to adjust the number of veins based on the global values supplied by users.
+	 * Larger numbers mean more ore, smaller means less, 1.0 means no change. 
 	 */
 	public float volumeModifier();
 	
 	/**
-	 * Use this in your mines to adjust rarity of mines based on the global values supplied by users. Default is 1.0, no change. 
-	 * Larger numbers mean ores mines are further apart. 
+	 * Use this in your mines to adjust rarity of mines based on the global values supplied by users.  
+	 * Larger numbers mean ores mines are further apart, smaller means closer together, 1.0 means no change.
 	 */
-	public float densityModifier();
+	public float rarityModifier();
 	
 	
 	//These are used internally. You can use them if you'd like, but not needed. CURRENTLY NOT USED AT ALL
 	public boolean useDimensions();
 	public boolean useBiomes();
-	
-	//Default rate is applied to new ores.
-	public int defaultDensityRate();
 }

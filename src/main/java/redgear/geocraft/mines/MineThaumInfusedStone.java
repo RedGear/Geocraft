@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import redgear.core.util.SimpleItem;
-import redgear.core.world.Location;
+import redgear.core.world.WorldLocation;
 import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.VeinHelper;
@@ -16,7 +16,7 @@ public class MineThaumInfusedStone extends Mine{
 	private int blockId;
 	
 	public MineThaumInfusedStone(int blockId) {
-		super("ThaumInfusedStone", MineGenerator.reg.defaultDensityRate * MineGenerator.reg.defaultDensityRate, 8 * MineGenerator.reg.defaultDensityRate);
+		super("ThaumInfusedStone", 1, 8);
 		this.blockId = blockId;
 	}
 
@@ -83,7 +83,7 @@ public class MineThaumInfusedStone extends Mine{
 			z = (int) (MathHelper.cos(angle) * radius);
 			
 			
-			VeinHelper.generateSphere(world, block, target, new Location(x + centerX, y, z + centerZ), rand, veinSize);
+			VeinHelper.generateSphere(new WorldLocation(x + centerX, y, z + centerZ, world), block, target, rand, veinSize);
 		}
 	}
 

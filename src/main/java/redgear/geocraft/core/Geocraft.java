@@ -56,6 +56,7 @@ public class Geocraft extends ModUtils {
 	};
 	
 	public Geocraft(){
+		addPlugin(new GeocraftConfig());
 		addPlugin(new StonePlugin());
 		addPlugin(new ComplexOresPlugin());
 		

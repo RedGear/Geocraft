@@ -3,6 +3,9 @@ itemGroup.Geocraft=Geocraft
 item.Drops.nuggetDiamond.name=Diamond Nugget
 item.Drops.nuggetCoal.name=Coal Nugget
 
+item.Drops.terraQuartz.name=Diamond Nugget
+item.Drops.goldLump.name=Coal Nugget
+
 tile.Ore.kimberlite.name=Kimberlite
 tile.Ore.kimberliteDiamond.name=Kimberlite Diamond Ore
 

@@ -2,12 +2,17 @@ package redgear.geocraft.mines;
 
 import java.util.Random;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import redgear.core.util.SimpleItem;
 import redgear.core.world.Location;
 import redgear.geocraft.core.Geocraft;
+import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.VeinHelper;
 
 public class MineCoal extends Mine {
+	
+	private final SimpleItem vanillaCoal = new SimpleItem(Blocks.coal_ore, 0);
 
 	public MineCoal(float mineRarity, float mineSize) {
 		super("Coal", mineRarity, mineSize);
@@ -31,10 +36,16 @@ public class MineCoal extends Mine {
 		Location start = new Location(xMin + rand.nextInt(16), rand.nextInt(yMax), zMin + rand.nextInt(16));
 		Location end = rand.nextBoolean() ? new Location(length, height, width) : new Location(width, height, length);
 
+		if(GeocraftConfig.complexOres){
 		VeinHelper.generateBox(world, Geocraft.coalDenseOre, Geocraft.stone, start, end, rand, veinSize);
 		VeinHelper.generateBox(world, Geocraft.coalOre, Geocraft.stone, start.translate(-1, -1, -1),
 				end.translate(2, 2, 2), rand, veinSize);
 
+		}
+		else{
+			VeinHelper.generateBox(world, vanillaCoal, Geocraft.stone, start.translate(-1, -1, -1),
+					end.translate(2, 2, 2), rand, veinSize);
+		}
 	}
 
 }
