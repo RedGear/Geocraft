@@ -15,6 +15,11 @@ tile.Ore.coalRich.name=Rich Coal Ore
 tile.Ore.terraQuartzOre.name=Terra Quartz
 tile.Ore.goldOre.name=Gold Ore
 
+tile.Ore.ironOre.name=Hematite
+tile.Ore.copperOre.name=Chalcopyrite
+tile.Ore.tinOre.name=Cassiterite
+tile.Ore.galenaOre.name=Galena Ore
+
 tile.Limestone.limeCobble.name=Limestone Cobble
 tile.Limestone.limeClean.name=Limestone
 tile.Limestone.limeCracked.name=Cracked Limestone Bricks

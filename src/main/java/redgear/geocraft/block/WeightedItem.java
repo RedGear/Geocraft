@@ -10,9 +10,9 @@ public class WeightedItem {
 	final ISimpleItem item;
 	final int min;
 	final int max;
-	final int weight;
+	final float weight;
 
-	public WeightedItem(ISimpleItem item, int min, int max, int weight) {
+	public WeightedItem(ISimpleItem item, int min, int max, float weight) {
 		this.item = item;
 		this.min = min;
 		this.max = max;
@@ -20,7 +20,7 @@ public class WeightedItem {
 	}
 
 	public ItemStack getStack(int fortune, Random rand) {
-		return item.getStack(min + rand.nextInt(fortune * weight + max));
+		return item.getStack(min + rand.nextInt((int) (fortune * weight + max)));
 	}
 
 }

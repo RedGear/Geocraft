@@ -6,8 +6,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import redgear.core.util.SimpleItem;
 import redgear.core.world.WorldLocation;
-import redgear.geocraft.core.Geocraft;
-import redgear.geocraft.generation.MineGenerator;
+import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.VeinHelper;
 import thaumcraft.api.aspects.Aspect;
 
@@ -49,7 +48,7 @@ public class MineThaumInfusedStone extends Mine{
 	}
 	
 	private void generateMine(World world, Random rand, int chunkX, int chunkZ, SimpleItem block){
-		SimpleItem target = Geocraft.stone;
+		SimpleItem target = GeocraftConfig.stone;
 		final int desity = 8;
 		final int veinSize = 6;
 		

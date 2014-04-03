@@ -17,6 +17,8 @@ import redgear.geocraft.api.IEveryChunk;
 import redgear.geocraft.api.IMine;
 import redgear.geocraft.api.MineManager;
 import redgear.geocraft.core.Geocraft;
+import redgear.geocraft.core.GeocraftConfig;
+import redgear.geocraft.mines.MineMetal;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
@@ -177,18 +179,52 @@ public class MineGenerator implements IWorldGenerator {
 	}
 
 	public static void generateCopper(SimpleItem copperOre) {
-		reg.addNewOre(copperOre, Geocraft.stone, 16, 10);
+		if (GeocraftConfig.complexMines) {
+			reg.registerMine(new MineMetal("Copper", 1, 16, GeocraftConfig.complexOres ? GeocraftConfig.copperOre
+					: copperOre, GeocraftConfig.stone, 10));
+			reg.registerTrace("CopperTrace", copperOre, GeocraftConfig.stone, 20);
+		} else
+			reg.addNewOre(copperOre, GeocraftConfig.stone, 16, 10);
 	}
 
 	public static void generateTin(SimpleItem tinOre) {
-		reg.addNewOre(tinOre, Geocraft.stone, 32, 6);
+		if (GeocraftConfig.complexMines) {
+			reg.registerMine(new MineMetal("Tin", 1, 32, GeocraftConfig.complexOres ? GeocraftConfig.tinOre : tinOre,
+					GeocraftConfig.stone, 6));
+			reg.registerTrace("TinTrace", tinOre, GeocraftConfig.stone, 20);
+		} else
+			reg.addNewOre(tinOre, GeocraftConfig.stone, 32, 6);
 	}
 
 	public static void generateSilver(SimpleItem silverOre) {
-		reg.addNewOre(silverOre, Geocraft.stone, 3, 16);
+		if (GeocraftConfig.complexMines) {
+			if (!GeocraftConfig.hasSilver) {
+				if (GeocraftConfig.complexOres) {
+					if (!GeocraftConfig.hasLead)
+						reg.registerMine(new MineMetal("Galena", 1, 4, GeocraftConfig.galenaOre, GeocraftConfig.stone,
+								16));
+				} else
+					reg.registerMine(new MineMetal("Silver", 1, 3, silverOre, GeocraftConfig.stone, 16));
+				reg.registerTrace("SilverTrace", silverOre, GeocraftConfig.stone, 3);
+			}
+		} else
+			reg.addNewOre(silverOre, GeocraftConfig.stone, 3, 16);
+		GeocraftConfig.hasSilver = true;
 	}
 
 	public static void generateLead(SimpleItem leadOre) {
-		reg.addNewOre(leadOre, Geocraft.stone, 4, 16);
+		if (GeocraftConfig.complexMines) {
+			if (!GeocraftConfig.hasLead) {
+				if (GeocraftConfig.complexOres) {
+					if (!GeocraftConfig.hasSilver)
+						reg.registerMine(new MineMetal("Galena", 1, 4, GeocraftConfig.galenaOre, GeocraftConfig.stone,
+								16));
+				} else
+					reg.registerMine(new MineMetal("Lead", 1, 4, leadOre, GeocraftConfig.stone, 16));
+				reg.registerTrace("LeadTrace", leadOre, GeocraftConfig.stone, 4);
+			}
+		} else
+			reg.addNewOre(leadOre, GeocraftConfig.stone, 4, 16);
+		GeocraftConfig.hasLead = true;
 	}
 }

@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
-import redgear.geocraft.core.Geocraft;
+import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
 import cpw.mods.fml.common.LoaderState.ModState;
@@ -50,7 +50,7 @@ public class ThermalExpansionPlugin implements IPlugin {
 				SimpleItem nickel = new SimpleItem((ItemStack) clazz.getField("oreNickel").get(null));
 
 				MineRegistry reg = MineGenerator.reg;
-				SimpleItem stone = Geocraft.stone;
+				SimpleItem stone = GeocraftConfig.stone;
 
 				MineGenerator.generateCopper(copper);
 				MineGenerator.generateTin(tin);

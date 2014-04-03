@@ -7,7 +7,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import redgear.core.util.SimpleItem;
 import redgear.core.world.WorldLocation;
-import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.core.GeocraftConfig;
 
 //Thars gold in them thar hills!
@@ -16,8 +15,8 @@ public class MineGold extends MineSpecialStone{
 	private static final int ratio = 5;// times more quartz than gold. 
 
 	public MineGold(float mineRarity, float mineSize) {
-		super("Gold", mineRarity, mineSize, GeocraftConfig.complexOres ? Geocraft.terraQuartzOre : Geocraft.stone, 
-				GeocraftConfig.complexOres ? Geocraft.goldOre : new SimpleItem(Blocks.gold_ore, 0), Geocraft.stone);
+		super("Gold", mineRarity, mineSize, GeocraftConfig.complexOres ? GeocraftConfig.terraQuartzOre : GeocraftConfig.stone, 
+				GeocraftConfig.complexOres ? GeocraftConfig.goldOre : new SimpleItem(Blocks.gold_ore, 0), GeocraftConfig.stone);
 	}
 
 	@Override

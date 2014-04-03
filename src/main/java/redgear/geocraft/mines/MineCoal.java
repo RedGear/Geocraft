@@ -6,7 +6,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import redgear.core.util.SimpleItem;
 import redgear.core.world.Location;
-import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.VeinHelper;
 
@@ -37,13 +36,13 @@ public class MineCoal extends Mine {
 		Location end = rand.nextBoolean() ? new Location(length, height, width) : new Location(width, height, length);
 
 		if(GeocraftConfig.complexOres){
-		VeinHelper.generateBox(world, Geocraft.coalDenseOre, Geocraft.stone, start, end, rand, veinSize);
-		VeinHelper.generateBox(world, Geocraft.coalOre, Geocraft.stone, start.translate(-1, -1, -1),
+		VeinHelper.generateBox(world, GeocraftConfig.coalDenseOre, GeocraftConfig.stone, start, end, rand, veinSize);
+		VeinHelper.generateBox(world, GeocraftConfig.coalOre, GeocraftConfig.stone, start.translate(-1, -1, -1),
 				end.translate(2, 2, 2), rand, veinSize);
 
 		}
 		else{
-			VeinHelper.generateBox(world, vanillaCoal, Geocraft.stone, start.translate(-1, -1, -1),
+			VeinHelper.generateBox(world, vanillaCoal, GeocraftConfig.stone, start.translate(-1, -1, -1),
 					end.translate(2, 2, 2), rand, veinSize);
 		}
 	}
