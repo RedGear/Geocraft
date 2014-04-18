@@ -89,7 +89,7 @@ public static final SimpleItem stone = new SimpleItem(Blocks.stone, 0);
 		genTrace = mod.getBoolean(cat, "genTrace", "Generates trace veins for cylinder mines and complex ores that allow it. Only applies to these if those mode are active.", genTrace);
 		complexOres = mod.getBoolean(cat, "complexOres", "Known ores will get their complex block and item types activated. False will use vanilla blocks.", complexOres);
 		//toughMode isn't ready yet.
-		//toughMode = mod.getBoolean(cat, "toughMode", "Changes the hardness of complex ores to require stronger tools. Defalts to off since it requires other mods to work. ", toughMode);
+		toughMode = mod.getBoolean(cat, "toughMode", "Changes the hardness of complex ores to require stronger tools. Defalts to off since it requires other mods to work. ", toughMode);
 		
 		spiderVeins = mod.getBoolean(cat, "spiderVeins", "Uses a new spidery vein type for cyliderMode veins.", spiderVeins);
 		spiderMetals = mod.getBoolean(cat, "spiderMetals", "Uses a new spidery vein type for iron, copper, tin, lead and silver. Only valid if complexMines is turned on.", spiderMetals);

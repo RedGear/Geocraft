@@ -99,6 +99,7 @@ public class ComplexOresPlugin implements IPlugin {
 		GeocraftConfig.goldOre = oreBlock.addMetaBlock(new SubBlockGeoOre("goldOre", new WeightedItem(terraQuartz, 1,
 				4, 1), new WeightedItem(goldLump, 1, 3, 1), new WeightedItem(new SimpleItem(Items.gold_nugget, 0), 0,
 				1, 1)));
+		
 
 		ironOreBlock = new SubBlockGeoOre("ironOre", new WeightedItem(ironLump, 1, 2, 1));
 		SimpleItem ironOre = oreBlock.addMetaBlock(ironOreBlock);
@@ -111,6 +112,55 @@ public class ComplexOresPlugin implements IPlugin {
 
 		GeocraftConfig.galenaOreBlock = new SubBlockGeoOre("galenaOre");
 		GeocraftConfig.galenaOre = oreBlock.addMetaBlock(GeocraftConfig.galenaOreBlock);
+		
+		
+		
+		
+		final String pick = "pickaxe";
+		
+		
+		if(GeocraftConfig.toughMode){
+			/* wood: 0
+			 * stone: 1
+			 * copper: 2
+			 * bronze: 3
+			 * iron: 4
+			 * steel: 5
+			 * ?
+			 */
+			
+			
+			oreBlock.setHarvestLevel(pick, 5, GeocraftConfig.kimberlite.meta);
+			oreBlock.setHarvestLevel(pick, 5, GeocraftConfig.diamondOre.meta);
+			
+			oreBlock.setHarvestLevel(pick, 1, GeocraftConfig.coalOre.meta);
+			oreBlock.setHarvestLevel(pick, 1, GeocraftConfig.coalDenseOre.meta);
+			
+			oreBlock.setHarvestLevel(pick, 5, GeocraftConfig.terraQuartzOre.meta);
+			oreBlock.setHarvestLevel(pick, 5, GeocraftConfig.goldOre.meta);
+			
+			oreBlock.setHarvestLevel(pick, 3, ironOre.meta);
+			
+			oreBlock.setHarvestLevel(pick, 1, GeocraftConfig.copperOre.meta);
+			oreBlock.setHarvestLevel(pick, 2, GeocraftConfig.tinOre.meta);
+			oreBlock.setHarvestLevel(pick, 4, GeocraftConfig.galenaOre.meta);
+		}
+		else{
+			oreBlock.setHarvestLevel(pick, 2, GeocraftConfig.kimberlite.meta);
+			oreBlock.setHarvestLevel(pick, 2, GeocraftConfig.diamondOre.meta);
+			
+			oreBlock.setHarvestLevel(pick, 1, GeocraftConfig.coalOre.meta);
+			oreBlock.setHarvestLevel(pick, 1, GeocraftConfig.coalDenseOre.meta);
+			
+			oreBlock.setHarvestLevel(pick, 2, GeocraftConfig.terraQuartzOre.meta);
+			oreBlock.setHarvestLevel(pick, 2, GeocraftConfig.goldOre.meta);
+			
+			oreBlock.setHarvestLevel(pick, 1, ironOre.meta);
+			
+			oreBlock.setHarvestLevel(pick, 1, GeocraftConfig.copperOre.meta);
+			oreBlock.setHarvestLevel(pick, 1, GeocraftConfig.tinOre.meta);
+			oreBlock.setHarvestLevel(pick, 2, GeocraftConfig.galenaOre.meta);
+		}
 
 		LeveledRecipe nugs = new LeveledRecipe("XXX", "XXX", "XXX");
 
