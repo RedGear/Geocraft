@@ -3,8 +3,13 @@ itemGroup.Geocraft=Geocraft
 item.Drops.nuggetDiamond.name=Diamond Nugget
 item.Drops.nuggetCoal.name=Coal Nugget
 
-item.Drops.terraQuartz.name=Diamond Nugget
-item.Drops.goldLump.name=Coal Nugget
+item.Drops.terraQuartz.name=Terra Quartz
+item.Drops.goldLump.name=Gold Lump
+item.Drops.ironLump.name=Iron Lump
+item.Drops.tinLump.name=Tin Lump
+item.Drops.copperLump.name=Copper Lump
+item.Drops.leadLump.name=Lead Lump
+item.Drops.silverLump.name=Silver Lump
 
 tile.Ore.kimberlite.name=Kimberlite
 tile.Ore.kimberliteDiamond.name=Kimberlite Diamond Ore
@@ -18,7 +23,7 @@ tile.Ore.goldOre.name=Gold Ore
 tile.Ore.ironOre.name=Hematite
 tile.Ore.copperOre.name=Chalcopyrite
 tile.Ore.tinOre.name=Cassiterite
-tile.Ore.galenaOre.name=Galena Ore
+tile.Ore.galenaOre.name=Galena
 
 tile.Limestone.limeCobble.name=Limestone Cobble
 tile.Limestone.limeClean.name=Limestone

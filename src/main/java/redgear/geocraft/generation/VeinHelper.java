@@ -86,7 +86,7 @@ public final class VeinHelper {
 
 		for (int i = 0; i < size; i++) {
 			do
-				next = start.translate(rand.nextInt(), 1);
+				next = start.translate(rand.nextInt(6), 1);
 			while (next.equals(previous));
 
 			next.placeBlock(block, target);

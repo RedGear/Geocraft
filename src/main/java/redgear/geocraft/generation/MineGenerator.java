@@ -115,11 +115,11 @@ public class MineGenerator implements IWorldGenerator {
 
 	private void checkAndGen(IMine mine, World world, Random rand, int chunkX, int chunkZ, NBTTagCompound tag) {
 		if (tag == null || !tag.getBoolean(mine.getName()))
-			mine.generate(world, rand, chunkX, chunkZ);
+			mine.generate(world, rand, chunkX, chunkZ);	
 	}
 
 	@SubscribeEvent
-	public void tickEnd(WorldTickEvent event) {
+	public void tickStart(WorldTickEvent event) {
 		if (event.side == Side.CLIENT || event.phase == Phase.END)
 			return;
 
@@ -147,6 +147,7 @@ public class MineGenerator implements IWorldGenerator {
 
 			hasTime = generate(rand, coord.x, coord.z, world,
 					data.tagData == null ? null : data.tagData.getCompoundTag("Ores"), data, start);
+			if(Geocraft.inst.isDebugMode)
 			Geocraft.inst.logDebug("Generating chunk X: ", coord.x, " Z: ", coord.z, " Time: ",
 					new BigDecimal(System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000).setScale(4)),
 					" Chunks left: ", list.size());
