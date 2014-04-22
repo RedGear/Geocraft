@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
@@ -196,6 +197,18 @@ public class MineRegistry implements IMineRegistry {
 	private boolean mineAllowed(IMine mine) {
 		return mines.add(mine);
 	}
+	
+	@Override
+	public boolean registerCylinder(String name, float mineRarity, float mineSize, ItemStack block, ItemStack target, int veinSize, boolean trace) {
+		return registerCylinder(name, mineRarity, mineSize, new SimpleItem(block), new SimpleItem(target), veinSize, trace);
+	}
+	
+	public boolean registerCylinder(String name, float mineRarity, float mineSize, SimpleItem block, SimpleItem target, int veinSize, boolean trace) {
+		boolean ans = registerMine(new MineCylinder(name, mineRarity, mineSize, block, target, veinSize));
+		if(trace)
+			registerTrace("name + Trace ", block, target, (int) mineSize);
+		return ans;
+	}
 
 	@Override
 	public boolean registerTrace(String name, Block block, int blockMeta, Block target, int targetMeta, int size) {
@@ -232,6 +245,4 @@ public class MineRegistry implements IMineRegistry {
 		Boolean value = ignoreOres.put(block, normal);
 		return value == null ? true : false;
 	}
-	
-	
 }

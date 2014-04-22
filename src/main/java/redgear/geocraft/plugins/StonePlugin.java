@@ -9,7 +9,6 @@ import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
 import redgear.geocraft.api.MineManager;
-import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.mines.MineVanilla;
 import cpw.mods.fml.common.LoaderState.ModState;
@@ -34,7 +33,7 @@ public class StonePlugin implements IPlugin{
 
 	@Override
 	public void preInit(ModUtils mod) {
-		MetaBlock limestone = new MetaBlock(Material.rock, "Limestone");
+		MetaBlock<SubBlock> limestone = new MetaBlock<SubBlock>(Material.rock, "Limestone");
 		limestone.setHardness(0.5F).setStepSound(Block.soundTypeStone).setCreativeTab(GeocraftConfig.geoTab);
 		SimpleItem limeCobble = limestone.addMetaBlock(new SubBlock("limeCobble"));
 		SimpleItem limeClean = limestone.addMetaBlock(new SubBlockDifferentDrop("limeClean", limeCobble.getStack()));
@@ -56,7 +55,7 @@ public class StonePlugin implements IPlugin{
 		mod.registerOre("stone", limeClean);
 		mod.registerOre("cobblestone", limeCobble);
 
-		MetaBlock basalt = new MetaBlock(Material.rock, "Basalt");
+		MetaBlock<SubBlock> basalt = new MetaBlock<SubBlock>(Material.rock, "Basalt");
 		basalt.setHardness(4.0F).setStepSound(Block.soundTypeStone).setCreativeTab(GeocraftConfig.geoTab);
 		SimpleItem basaltCobble = basalt.addMetaBlock(new SubBlock("basaltCobble"));
 		SimpleItem basaltClean = basalt.addMetaBlock(new SubBlockDifferentDrop("basaltClean", basaltCobble.getStack()));
@@ -79,7 +78,7 @@ public class StonePlugin implements IPlugin{
 		mod.registerOre("stone", basaltClean);
 		mod.registerOre("cobblestone", basaltCobble);
 
-		MetaBlock marble = new MetaBlock(Material.rock, "Marble");
+		MetaBlock<SubBlock> marble = new MetaBlock<SubBlock>(Material.rock, "Marble");
 		marble.setHardness(4.0F).setStepSound(Block.soundTypeStone).setCreativeTab(GeocraftConfig.geoTab);
 		SimpleItem marbleCobble = marble.addMetaBlock(new SubBlock("marbleCobble"));
 		SimpleItem marbleClean = marble.addMetaBlock(new SubBlockDifferentDrop("marbleClean", marbleCobble.getStack()));

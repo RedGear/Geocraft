@@ -84,7 +84,7 @@ public class ComplexOresPlugin implements IPlugin {
 		GeocraftConfig.leadLump = drops.addMetaItem(new SubItem("leadLump"));
 		mod.registerOre("oreLead", GeocraftConfig.leadLump);
 
-		MetaBlock oreBlock = new MetaBlock(Material.rock, "Ore");
+		MetaBlock<SubBlock> oreBlock = new MetaBlock<SubBlock>(Material.rock, "Ore");
 		oreBlock.setCreativeTab(GeocraftConfig.geoTab);
 		oreBlock.setHardness(3f).setStepSound(Block.soundTypeStone);
 		GeocraftConfig.kimberlite = oreBlock.addMetaBlock(new SubBlock("kimberlite"));

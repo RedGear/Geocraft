@@ -1,6 +1,7 @@
 package redgear.geocraft.api;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 
 
 public interface IMineRegistry {
@@ -9,6 +10,8 @@ public interface IMineRegistry {
 	 * Use this to add your mines.
 	 */
 	public boolean registerMine(IMine mine);
+	
+	public boolean registerCylinder(String name, float mineRarity, float mineSize, ItemStack block, ItemStack target, int veinSize, boolean trace);
 	
 	/**
 	 * Use this to add ore to the gen as trace veins. (Calls registerIgnore automatically)
