@@ -24,7 +24,6 @@ import org.objectweb.asm.tree.MethodInsnNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.tree.VarInsnNode;
 
-import redgear.core.asm.CoreLoadingPlugin;
 import redgear.geocraft.generation.MineGenerator;
 import cpw.mods.fml.common.asm.transformers.deobf.FMLDeobfuscatingRemapper;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
@@ -36,7 +35,7 @@ public class MinableTransformer implements IClassTransformer, IFMLLoadingPlugin{
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] bytes) {
 		
-		if(transformedName.equals("net.minecraft.world.gen.feature.WorldGenMinable") && CoreLoadingPlugin.util.getBoolean("GeocraftMinableHook")){
+		if(transformedName.equals("net.minecraft.world.gen.feature.WorldGenMinable") /*&& CoreLoadingPlugin.util.getBoolean("GeocraftMinableHook")*/){
 			ClassReader reader = new ClassReader(bytes);
             ClassNode node = new ClassNode();
             reader.accept(node, 0);

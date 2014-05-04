@@ -46,11 +46,18 @@ processResources
 	from(sourceSets.main.resources.srcDirs) {
 		exclude 'mcmod.info'
 	}
+	
+	
 }
 
 
 jar{
 	manifest{
 		attributes 'FMLCorePlugin': 'redgear.geocraft.core.MinableTransformer', 'FMLCorePluginContainsFMLMod': 'true'
+		attributes 'FMLCorePlugin': 'codechicken.core.launch.DepLoader'
+	}
+	
+	from (rootProject.sourceSets.main){
+		include "codechicken/*"
 	}
 }

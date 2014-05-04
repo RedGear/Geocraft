@@ -1,0 +1,8 @@
+{
+	"repo": "https://dl.dropboxusercontent.com/s/106biqbrutaa2n2/",
+	"file": "RedGearCore-2.1.1.jar",
+	"class": "redgear.core.mod.FileHelper",
+	"version": "2.1.1",
+	"coreLib": false
+
+}
