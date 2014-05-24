@@ -1,5 +1,5 @@
 
-package codechicken.core.launch;
+package redgear.codechicken;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

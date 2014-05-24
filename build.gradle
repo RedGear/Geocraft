@@ -1,35 +1,105 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven {
+			name = "forge"
+			url = "http://files.minecraftforge.net/maven"
+		}
+
+		maven {
+			name = "sonatype"
+			url = "https://oss.sonatype.org/content/repositories/snapshots/"
+		}
+	}
+	dependencies { classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT' }
+}
+
+repositories {
+	mavenLocal()
+	maven {
+		name = "bintray"
+		url = "http://dl.bintray.com/lordblackhole/RedGear"
+	}
+}
+
 apply plugin: 'forge'
 
-minecraft {
-	version = rootProject.ext.mcversion
+dependencies {
+	compile "redgear.core:RedGearCore:${minecraft_version}-${core_version}:dev"
+	compile "redgear.core:RedGearCore:${minecraft_version}-${core_version}:sources"
+
+	def ccc = "CodeChickenCore-1.7.2-1.0.0-dev.jar"
+	def nei = "NotEnoughItems-1.7.2-1.0.1-dev.jar"
+
+	def f = new File('dep/')
+	if(!f.exists())
+		f.mkdir()
+
+
+	println 'Checking for CodeChickenCore.'
+	def cccFile = new File(f, ccc)
+	if(!cccFile.exists()){
+		println 'Downloading CodeChickenCore...'
+		ant.get(src:"http://www.chickenbones.craftsaddle.org/Files/New_Versions/1.7.2/${ccc}", dest: 'dep')
+		println 'Sucessfully downloaded CodeChickenCore.'
+	}
+	else
+		println 'CodeChickenCore found.'
+
+	println 'Checking for NotEnoughItems.'
+	def neiFile = new File(f, nei)
+	if(!neiFile.exists()){
+		println 'Downloading NotEnoughItems...'
+		ant.get(src: "http://www.chickenbones.craftsaddle.org/Files/New_Versions/1.7.2/${nei}", dest: "dep")
+		println 'Sucessfully downloaded NotEnoughItems.'
+	}
+	else
+		println 'NotEnoughItems found.'
+
+
+	compile files(cccFile)
+	compile files(neiFile)
+}
+
+eclipse {
+	classpath {
+		file {
+			whenMerged { classpath ->
+				def fileFactory = new org.gradle.plugins.ide.eclipse.model.internal.FileReferenceFactory()
+				def src = classpath.entries.find{it.path.contains("RedGearCore-${minecraft_version}-${core_version}-sources.jar")}
+				def dev = classpath.entries.find { it.path.contains("RedGearCore-${minecraft_version}-${core_version}-dev.jar")}
+
+				if(src != null && dev != null)
+					dev.sourcePath = fileFactory.fromPath(src.path)
+
+				classpath.entries.removeAll { it.path.contains("RedGearCore-${minecraft_version}-${core_version}-sources.jar") }
+			}
+		}
+	}
+}
+
+
+
+version = mod_version
+group= mod_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = mod_name
+
+minecraft{
+	version = "${minecraft_version}-${forge_version}"
+
+	assetDir = "run/assets"
+
+	replace "@ModVersion@", project.version
 }
 
 jar{
-	destinationDir rootProject.libsDir
-}
+	version = "${minecraft_version}-${project.version}"
 
-dependencies {
-	compile rootProject
-	compile rootProject.sourceSets.main.output
-}
-
-ext.configFile = file "build.properties"
-
-configFile.withReader {
-		def prop = new Properties()
-		prop.load(it)
-		ext.config = new ConfigSlurper().parse prop
-}
-
-version = config.mod_version
-group= config.mod_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = config.mod_name
-
-minecraft{
-		assetDir = "eclipse/assets"
-		
-		replaceIn config.mod_main + '.java'
-		replace "@ModVersion@", project.version
+	manifest {
+		attributes 'FMLCorePlugin': 'redgear.geocraft.core.MinableTransformer'
+		attributes 'FMLCorePlugin': "${group}.codechicken.DepLoader"
+		attributes 'FMLCorePluginContainsFMLMod': 'true'
+	}
 }
 
 processResources
@@ -37,27 +107,13 @@ processResources
 	// replace stuff in mcmod.info, nothing else
 	from(sourceSets.main.resources.srcDirs) {
 		include 'mcmod/info'
-				
+
 		// replace version and mcversion
 		expand 'version':project.version, 'mcversion':project.minecraft.version
 	}
-		
+
 	// copy everything else, thats not the mcmod.info
-	from(sourceSets.main.resources.srcDirs) {
-		exclude 'mcmod.info'
-	}
-	
-	
+	from(sourceSets.main.resources.srcDirs) { exclude 'mcmod.info' }
 }
 
-
-jar{
-	manifest{
-		attributes 'FMLCorePlugin': 'redgear.geocraft.core.MinableTransformer', 'FMLCorePluginContainsFMLMod': 'true'
-		attributes 'FMLCorePlugin': 'codechicken.core.launch.DepLoader'
-	}
-	
-	from (rootProject.sourceSets.main){
-		include "codechicken/*"
-	}
-}
+tasks.reobf.dependsOn(repackMinecraft)
