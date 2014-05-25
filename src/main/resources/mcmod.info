@@ -1,0 +1,17 @@
+[
+{
+  "modid": "redgear_geocraft",
+  "name": "Geocraft",
+  "description": "Ores and rocks!",
+  "version": "${version}",
+  "credits": "Created by Team Red Gear",
+  "logoFile": "",
+  "mcversion": "${minecraft_version}",
+  "url": "http://curse.com/project/61488",
+  "updateUrl": "",
+  "authors": [ "LordBlackHole"],
+  "parent":"",
+  "screenshots": [],
+  "dependencies": ["redgear_core"]
+}
+]

@@ -93,11 +93,10 @@ minecraft{
 }
 
 jar{
-	version = "${minecraft_version}-${project.version}"
+	version = "${project.minecraft.version}-${project.version}"
 
 	manifest {
-		attributes 'FMLCorePlugin': 'redgear.geocraft.core.MinableTransformer'
-		attributes 'FMLCorePlugin': "${group}.codechicken.DepLoader"
+		attributes 'FMLCorePlugin': "${mod_group}.codechicken.DepLoader"
 		attributes 'FMLCorePluginContainsFMLMod': 'true'
 	}
 	
@@ -108,14 +107,14 @@ processResources
 {
 	// replace stuff in mcmod.info, nothing else
 	from(sourceSets.main.resources.srcDirs) {
-		include 'mcmod/info'
+		include '*.info'
 
 		// replace version and mcversion
-		expand 'version':project.version, 'mcversion':project.minecraft.version
+		expand 'version':project.version, 'minecraft_version':project.minecraft.version, 'core_version': "${core_version}"
 	}
 
 	// copy everything else, thats not the mcmod.info
-	from(sourceSets.main.resources.srcDirs) { exclude 'mcmod.info' }
+	from(sourceSets.main.resources.srcDirs) { exclude '*.info' }
 }
 
 tasks.reobf.dependsOn(repackMinecraft)

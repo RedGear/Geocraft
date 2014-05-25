@@ -1,8 +1,7 @@
 {
-	"repo": "https://dl.dropboxusercontent.com/s/106biqbrutaa2n2/",
-	"file": "RedGearCore-2.1.1.jar",
+	"repo": "http://dl.bintray.com/lordblackhole/RedGear/redgear/core/RedGearCore/${minecraft_version}-${core_version}/",
+	"file": "RedGearCore-${minecraft_version}-${core_version}.jar",
+	"dev": "RedGearCore-${minecraft_version}-${core_version}-dev.jar",
 	"class": "redgear.core.mod.FileHelper",
-	"version": "2.1.1",
-	"coreLib": false
-
+	"version": "${core_version}"
 }
