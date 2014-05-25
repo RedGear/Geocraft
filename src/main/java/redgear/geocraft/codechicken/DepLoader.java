@@ -1,5 +1,5 @@
 
-package redgear.codechicken;
+package redgear.geocraft.codechicken;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
