@@ -68,16 +68,20 @@ public class StonePlugin implements IPlugin{
 		SimpleItem basaltCracked = basalt.addMetaBlock(new SubBlock("basaltCracked"));
 		SimpleItem basaltBrick = basalt.addMetaBlock(new SubBlockDifferentDrop("basaltBrick", basaltCracked.getStack()));
 		SimpleItem basaltCarved = basalt.addMetaBlock(new SubBlock("basaltCarved"));
-		SimpleItem basaltPaver = basalt.addMetaBlock(new SubBlock("basaltPaver"));
+		SimpleItem basaltPaver = basalt.addMetaBlock(new SubBlockConnected("basaltPaver"));
+		SimpleItem basaltAntiPaver = basalt.addMetaBlock(new SubBlockAntiConnected("basaltAntiPaver", "basaltPaver"));
 
 		GameRegistry.addRecipe(basaltBrick.getStack(4), "XX", "XX", 'X', basaltClean.getStack());
 		GameRegistry.addRecipe(basaltCarved.getStack(4), " X ", "X X", " X ", 'X', basaltBrick.getStack());
 		GameRegistry.addRecipe(basaltPaver.getStack(9), "XXX", "XXX", "XXX", 'X', basaltClean.getStack());
+		GameRegistry.addShapelessRecipe(basaltAntiPaver.getStack(), basaltPaver.getStack());
+		GameRegistry.addShapelessRecipe(basaltPaver.getStack(), basaltAntiPaver.getStack());
 
 		mod.addSmelting(basaltCobble, basaltClean);
 		mod.addSmelting(basaltCracked, basaltClean);
 		mod.addSmelting(basaltCarved, basaltClean);
 		mod.addSmelting(basaltPaver, basaltClean);
+		mod.addSmelting(basaltAntiPaver, basaltClean);
 
 		
 		mod.registerOre("stone", basaltClean);

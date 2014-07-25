@@ -39,6 +39,7 @@ tile.Basalt.basaltCracked.name=Cracked Basalt Bricks
 tile.Basalt.basaltBrick.name=Basalt Bricks
 tile.Basalt.basaltCarved.name=Carved Basalt Bricks
 tile.Basalt.basaltPaver.name=Basalt Pavingstone
+tile.Basalt.basaltAntiPaver.name=Basalt Anti-Pavingstone
 	
 tile.Marble.marbleCobble.name=Marble Cobble
 tile.Marble.marbleClean.name=Marble
