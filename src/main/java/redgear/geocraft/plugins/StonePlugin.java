@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import redgear.core.block.MetaBlock;
 import redgear.core.block.SubBlock;
+import redgear.core.block.SubBlockAntiConnected;
+import redgear.core.block.SubBlockConnected;
 import redgear.core.block.SubBlockDifferentDrop;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
@@ -40,16 +42,20 @@ public class StonePlugin implements IPlugin{
 		SimpleItem limeCracked = limestone.addMetaBlock(new SubBlock("limeCracked"));
 		SimpleItem limeBrick = limestone.addMetaBlock(new SubBlockDifferentDrop("limeBrick", limeCracked.getStack()));
 		SimpleItem limeCarved = limestone.addMetaBlock(new SubBlock("limeCarved"));
-		SimpleItem limePaver = limestone.addMetaBlock(new SubBlock("limePaver"));
+		SimpleItem limePaver = limestone.addMetaBlock(new SubBlockConnected("limePaver"));
+		SimpleItem limeAntiPaver = limestone.addMetaBlock(new SubBlockAntiConnected("limeAntiPaver", "limePaver"));
 
 		GameRegistry.addRecipe(limeBrick.getStack(4), "XX", "XX", 'X', limeClean.getStack());
 		GameRegistry.addRecipe(limeCarved.getStack(4), " X ", "X X", " X ", 'X', limeBrick.getStack());
 		GameRegistry.addRecipe(limePaver.getStack(9), "XXX", "XXX", "XXX", 'X', limeClean.getStack());
+		GameRegistry.addShapelessRecipe(limeAntiPaver.getStack(), limePaver.getStack());
+		GameRegistry.addShapelessRecipe(limePaver.getStack(), limeAntiPaver.getStack());
 
 		mod.addSmelting(limeCobble, limeClean);
 		mod.addSmelting(limeCracked, limeClean);
 		mod.addSmelting(limeCarved, limeClean);
 		mod.addSmelting(limePaver, limeClean);
+		mod.addSmelting(limeAntiPaver, limeClean);
 
 		
 		mod.registerOre("stone", limeClean);
@@ -60,8 +66,7 @@ public class StonePlugin implements IPlugin{
 		SimpleItem basaltCobble = basalt.addMetaBlock(new SubBlock("basaltCobble"));
 		SimpleItem basaltClean = basalt.addMetaBlock(new SubBlockDifferentDrop("basaltClean", basaltCobble.getStack()));
 		SimpleItem basaltCracked = basalt.addMetaBlock(new SubBlock("basaltCracked"));
-		SimpleItem basaltBrick = basalt
-				.addMetaBlock(new SubBlockDifferentDrop("basaltBrick", basaltCracked.getStack()));
+		SimpleItem basaltBrick = basalt.addMetaBlock(new SubBlockDifferentDrop("basaltBrick", basaltCracked.getStack()));
 		SimpleItem basaltCarved = basalt.addMetaBlock(new SubBlock("basaltCarved"));
 		SimpleItem basaltPaver = basalt.addMetaBlock(new SubBlock("basaltPaver"));
 
@@ -83,19 +88,22 @@ public class StonePlugin implements IPlugin{
 		SimpleItem marbleCobble = marble.addMetaBlock(new SubBlock("marbleCobble"));
 		SimpleItem marbleClean = marble.addMetaBlock(new SubBlockDifferentDrop("marbleClean", marbleCobble.getStack()));
 		SimpleItem marbleCracked = marble.addMetaBlock(new SubBlock("marbleCracked"));
-		SimpleItem marbleBrick = marble
-				.addMetaBlock(new SubBlockDifferentDrop("marbleBrick", marbleCracked.getStack()));
+		SimpleItem marbleBrick = marble.addMetaBlock(new SubBlockDifferentDrop("marbleBrick", marbleCracked.getStack()));
 		SimpleItem marbleCarved = marble.addMetaBlock(new SubBlock("marbleCarved"));
-		SimpleItem marblePaver = marble.addMetaBlock(new SubBlock("marblePaver"));
+		SimpleItem marblePaver = marble.addMetaBlock(new SubBlockConnected("marblePaver"));
+		SimpleItem marbleAntiPaver = marble.addMetaBlock(new SubBlockAntiConnected("marbleAntiPaver", "marblePaver"));
 
 		GameRegistry.addRecipe(marbleBrick.getStack(4), "XX", "XX", 'X', marbleClean.getStack());
 		GameRegistry.addRecipe(marbleCarved.getStack(4), " X ", "X X", " X ", 'X', marbleBrick.getStack());
 		GameRegistry.addRecipe(marblePaver.getStack(9), "XXX", "XXX", "XXX", 'X', marbleClean.getStack());
+		GameRegistry.addShapelessRecipe(marbleAntiPaver.getStack(), marblePaver.getStack());
+		GameRegistry.addShapelessRecipe(marblePaver.getStack(), marbleAntiPaver.getStack());
 
 		mod.addSmelting(marbleCobble, marbleClean);
 		mod.addSmelting(marbleCracked, marbleClean);
 		mod.addSmelting(marbleCarved, marbleClean);
 		mod.addSmelting(marblePaver, marbleClean);
+		mod.addSmelting(marbleAntiPaver, marbleClean);
 
 		
 		mod.registerOre("stone", marbleClean);

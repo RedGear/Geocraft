@@ -31,6 +31,7 @@ tile.Limestone.limeCracked.name=Cracked Limestone Bricks
 tile.Limestone.limeBrick.name=Limestone Bricks
 tile.Limestone.limeCarved.name=Carved Limestone Bricks
 tile.Limestone.limePaver.name=Limestone Pavingstone
+tile.Limestone.limeAntiPaver.name=Limestone Anti-Pavingstone
 
 tile.Basalt.basaltCobble.name=Basalt Cobble
 tile.Basalt.basaltClean.name=Basalt
@@ -45,3 +46,4 @@ tile.Marble.marbleCracked.name=Cracked Marble Bricks
 tile.Marble.marbleBrick.name=Marble Bricks
 tile.Marble.marbleCarved.name=Carved Marble Bricks
 tile.Marble.marblePaver.name=Marble Pavingstone
+tile.Marble.marbleAntiPaver.name=Marble Anti-Pavingstone
