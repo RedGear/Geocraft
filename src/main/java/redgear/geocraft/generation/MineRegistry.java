@@ -10,6 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.oredict.OreDictionary;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
 import redgear.geocraft.api.IMine;
@@ -84,7 +85,8 @@ public class MineRegistry implements IMineRegistry {
 
 	private boolean checkForDefaults(SimpleItem block) {
 		if (block.isInOreDict()) {
-			String name = block.oreName().toLowerCase();
+			
+			String name = OreDictionary.getOreName(OreDictionary.getOreID(block.getStack())).toLowerCase();
 
 			if (name.equals("orecopper")) {
 				MineGenerator.generateCopper(block);
@@ -111,7 +113,7 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	public void addNewOre(SimpleItem block, SimpleItem target, int veins, int cluster) {
-		String name = block.isInOreDict() ? block.oreName() : block.getDisplayName();
+		String name = block.isInOreDict() ? OreDictionary.getOreName(OreDictionary.getOreID(block.getStack())) : block.getDisplayName();
 
 		if(GeocraftConfig.cylinderMode){
 			registerMine(new MineCylinder(name, 1, veins, block,
