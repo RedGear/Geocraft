@@ -3,17 +3,20 @@ package redgear.geocraft.core;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import cpw.mods.fml.common.LoaderState.ModState;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import redgear.core.api.item.ISimpleItem;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
+import redgear.core.util.SimpleOre;
 import redgear.geocraft.block.SubBlockGeoOre;
+import cpw.mods.fml.common.LoaderState.ModState;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class GeocraftConfig implements IPlugin{
 	
-public static final SimpleItem stone = new SimpleItem(Blocks.stone, 0);
+	public static final ISimpleItem stone = new SimpleItem(Blocks.stone);
+	public static final ISimpleItem stoneOre = new SimpleOre("stone", stone);
 	
 	public static SimpleItem kimberlite;
 	public static SimpleItem diamondOre;
@@ -36,6 +39,8 @@ public static final SimpleItem stone = new SimpleItem(Blocks.stone, 0);
 	public static SubBlockGeoOre galenaOreBlock;
 	
 	public static SimpleItem marble;
+	
+	
 	
 	public static CreativeTabs geoTab = new CreativeTabs("Geocraft"){
 

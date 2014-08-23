@@ -1,6 +1,7 @@
 package redgear.geocraft.plugins;
 
 import net.minecraft.item.Item;
+import redgear.core.api.item.ISimpleItem;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
 import redgear.core.mod.Mods;
@@ -48,7 +49,7 @@ public class ThaumcraftPlugin implements IPlugin {
 					
 
 					MineRegistry reg = MineGenerator.reg;
-					SimpleItem stone = GeocraftConfig.stone;
+					ISimpleItem stone = GeocraftConfig.stone;
 
 					
 					SimpleItem cinnibar = new SimpleItem(block, 0);
@@ -74,8 +75,8 @@ public class ThaumcraftPlugin implements IPlugin {
 
 
 
-					reg.registerMine(new MineCylinder("Amber", 4, 8, amber, stone, 4));
-					reg.registerMine(new MineCylinder("Cinnibar", 4, 8, cinnibar, stone, 4));
+					reg.registerMine(new MineCylinder("Amber", amber, stone, 4, 8, 4));
+					reg.registerMine(new MineCylinder("Cinnibar", cinnibar, stone, 4, 8, 4));
 					
 					
 				}

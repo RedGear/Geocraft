@@ -24,11 +24,13 @@ public class Geocraft extends ModUtils {
 	@Instance("redgear_geocraft")
 	public static ModUtils inst;
 
-	public Geocraft(){
+	public static boolean init = false;
+
+	public Geocraft() {
 		addPlugin(new GeocraftConfig());
 		addPlugin(new StonePlugin());
 		addPlugin(new ComplexOresPlugin());
-		
+
 		addPlugin(new ThermalExpansionPlugin());
 		addPlugin(new ForestryPlugin());
 		addPlugin(new ThaumcraftPlugin());
@@ -37,25 +39,22 @@ public class Geocraft extends ModUtils {
 	@Override
 	public void PreInit(FMLPreInitializationEvent event) {
 		new MineGenerator(this);
-		final MineRegistry reg = MineGenerator.reg;
-		reg.registerMine(new MineVanilla("Dirt", 1, 20, new SimpleItem(Blocks.dirt, 0), GeocraftConfig.stone, 32));//dirt
-		reg.registerMine(new MineVanilla("Gravel", 1, 10, new SimpleItem(Blocks.gravel, 0), GeocraftConfig.stone, 32));//gravel
-		reg.registerMine(new MineVanilla("Sand", 1, 10, new SimpleItem(Blocks.sand, 0), GeocraftConfig.stone, 32));//sand
-		SimpleItem sandStone = new SimpleItem(Blocks.sandstone, 0);
-		
-		reg.registerMine(new MineVanilla("SandStone", 1, 10, sandStone, GeocraftConfig.stone, 32));//sandstone
-		if (getBoolean("RegisterSandstoneAsStone"))
-			registerOre("stone", sandStone);
+		MineGenerator.reg.load();
 	}
 
 	@Override
 	protected void Init(FMLInitializationEvent event) {
-
+		final MineRegistry reg = MineGenerator.reg;
+		reg.registerMine(new MineVanilla("Dirt", new SimpleItem(Blocks.dirt), GeocraftConfig.stone, 20, 32));//dirt
+		reg.registerMine(new MineVanilla("Gravel", new SimpleItem(Blocks.gravel), GeocraftConfig.stone, 10, 32));//gravel
+		reg.registerMine(new MineVanilla("Sand", new SimpleItem(Blocks.sand), GeocraftConfig.stone, 10, 32));//sand
+		reg.registerMine(new MineVanilla("SandStone", new SimpleItem(Blocks.sandstone), GeocraftConfig.stone, 10, 32));//sandstone
 	}
 
 	@Override
 	protected void PostInit(FMLPostInitializationEvent event) {
-
+		init = true;
+		MineGenerator.reg.save();
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import redgear.core.api.item.ISimpleItem;
 import redgear.core.util.SimpleItem;
 import redgear.core.world.Location;
 import redgear.core.world.WorldLocation;
@@ -21,7 +22,7 @@ public final class VeinHelper {
 		return isInAir(test.world, test);
 	}
 
-	public static void generateSphere(WorldLocation start, SimpleItem block, SimpleItem target, Random rand, int size) {
+	public static void generateSphere(WorldLocation start, ISimpleItem block, ISimpleItem target, Random rand, int size) {
 		if (isInAir(start))
 			return;
 
@@ -66,7 +67,7 @@ public final class VeinHelper {
 		}
 	}
 
-	public static void generateBox(World world, SimpleItem block, SimpleItem target, Location start, Location relative,
+	public static void generateBox(World world, ISimpleItem block, ISimpleItem target, Location start, Location relative,
 			Random rand, int size) {
 		if (isInAir(world, start))
 			return;
@@ -77,7 +78,7 @@ public final class VeinHelper {
 					new Location(l, h, w).placeBlock(world, block, target, start);
 	}
 
-	public static void generateMetal(WorldLocation start, SimpleItem block, SimpleItem target, Random rand, int size) {
+	public static void generateMetal(WorldLocation start, ISimpleItem block, ISimpleItem target, Random rand, int size) {
 		if (isInAir(start))
 			return;
 

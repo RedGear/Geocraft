@@ -1,14 +1,14 @@
 package redgear.geocraft.plugins;
 
-import java.lang.reflect.Field;
+import java.io.File;
 
-import net.minecraft.item.ItemStack;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
-import redgear.core.util.SimpleItem;
+import redgear.core.mod.Mods;
+import redgear.core.util.SimpleOre;
+import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.MineGenerator;
-import redgear.geocraft.generation.MineRegistry;
 import cpw.mods.fml.common.LoaderState.ModState;
 
 public class ThermalExpansionPlugin implements IPlugin {
@@ -20,7 +20,7 @@ public class ThermalExpansionPlugin implements IPlugin {
 
 	@Override
 	public boolean shouldRun(ModUtils mod, ModState state) {
-		return false; //Mods.ThermalExpansion.isIn() && inst.getBoolean("plugins", "ThermalExpansion")
+		return Mods.ThermalExpansion.isIn() && mod.getBoolean("plugins", "ThermalExpansion");
 	}
 
 	@Override
@@ -30,40 +30,26 @@ public class ThermalExpansionPlugin implements IPlugin {
 
 	@Override
 	public void preInit(ModUtils inst) {
+		try {
+			Object config = Class.forName("thermalexpansion.ThermalExpansion").getField("config").get(null);
 
+			config.getClass().getMethod("set", String.class, String.class, boolean.class).invoke(config, "world", "GenerateDefaultFiles", false);
+
+			File configDir = (File) Class.forName("cofh.core.CoFHProps").getField("configDir").get(null);
+			File configFile = new File(configDir, "/cofh/world/ThermalExpansion-Ores.json");
+
+			if (configFile.exists())
+				configFile.delete();
+
+		} catch (Throwable t) {
+			Geocraft.inst.myLogger.warn("Thermal Expansion reflection failed!");
+			Geocraft.inst.logDebug("Thermal Expansion reflection failed!", t);
+		}
 	}
 
 	@Override
 	public void Init(ModUtils inst) {
-		try {
-			Class clazz = Class.forName("thermalexpansion.block.simple.BlockOre");
-			if (clazz != null) {
-				Field boolArray = clazz.getField("enable");
-
-				//                                copper, tin, silver, lead, nickel
-				boolArray.set(null, new boolean[] {false, false, false, false, false });
-
-				SimpleItem copper = new SimpleItem((ItemStack) clazz.getField("oreCopper").get(null));
-				SimpleItem tin = new SimpleItem((ItemStack) clazz.getField("oreTin").get(null));
-				SimpleItem silver = new SimpleItem((ItemStack) clazz.getField("oreSilver").get(null));
-				SimpleItem lead = new SimpleItem((ItemStack) clazz.getField("oreLead").get(null));
-				SimpleItem nickel = new SimpleItem((ItemStack) clazz.getField("oreNickel").get(null));
-
-				MineRegistry reg = MineGenerator.reg;
-				SimpleItem stone = GeocraftConfig.stone;
-
-				MineGenerator.generateCopper(copper);
-				MineGenerator.generateTin(tin);
-				MineGenerator.generateSilver(silver);
-				MineGenerator.generateLead(lead);
-				reg.addNewOre(nickel, stone, 2, 8);
-			}
-
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-			//inst.logDebug("Thermal Expansion config reflection failed", e);
-		}
-
+		MineGenerator.reg.addNewOre(new SimpleOre("oreNickel"), GeocraftConfig.stone, 2, 8);
 	}
 
 	@Override

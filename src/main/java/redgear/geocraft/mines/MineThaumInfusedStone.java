@@ -2,6 +2,7 @@ package redgear.geocraft.mines;
 
 import java.util.Random;
 
+import redgear.core.api.item.ISimpleItem;
 import redgear.core.util.SimpleItem;
 import redgear.core.world.WorldLocation;
 import redgear.geocraft.core.GeocraftConfig;
@@ -9,9 +10,13 @@ import redgear.geocraft.generation.VeinHelper;
 import thaumcraft.api.aspects.Aspect;
 
 public class MineThaumInfusedStone extends MineCylinder {
+	
+	public MineThaumInfusedStone(){
+		
+	}
 
-	public MineThaumInfusedStone(SimpleItem block) {
-		super("ThaumInfusedStone", 1, 8, block, GeocraftConfig.stone, 6);
+	public MineThaumInfusedStone(ISimpleItem block) {
+		super("ThaumInfusedStone", block,GeocraftConfig.stoneOre, 4, 16, 6);
 	}
 
 	private int nextMeta(Aspect tag, Random rand) {
@@ -49,8 +54,8 @@ public class MineThaumInfusedStone extends MineCylinder {
 	}
 
 	@Override
-	protected void generateVein(WorldLocation start, SimpleItem block, SimpleItem target, Random rand, int size) {
-		VeinHelper.generateSphere(start, new SimpleItem(block.item, nextMeta(biomeTag(start, rand), rand)), target,
+	protected void generateVein(WorldLocation start, ISimpleItem block, ISimpleItem target, Random rand, int size) {
+		VeinHelper.generateSphere(start, new SimpleItem(block.getItem(), nextMeta(biomeTag(start, rand), rand)), target,
 				rand, size);
 
 	}

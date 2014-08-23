@@ -1,67 +1,87 @@
 package redgear.geocraft.generation;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Pattern;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
+import redgear.core.api.item.ISimpleItem;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
-import redgear.geocraft.api.IMine;
+import redgear.core.util.SimpleOre;
+import redgear.core.util.StringHelper;
 import redgear.geocraft.api.IMineRegistry;
+import redgear.geocraft.api.gen.Mine;
+import redgear.geocraft.config.ConfigHandler;
+import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.mines.MineCylinder;
 import redgear.geocraft.mines.MineTrace;
 import redgear.geocraft.mines.MineVanilla;
 
 public class MineRegistry implements IMineRegistry {
-	public Set<IMine> mines = Collections.newSetFromMap(new ConcurrentHashMap<IMine, Boolean>());
+	public Set<Mine> mines = Collections.newSetFromMap(new ConcurrentHashMap<Mine, Boolean>());
 	public Set<NewOre> newOres = new HashSet<NewOre>();
-	public Map<SimpleItem, Boolean> ignoreOres = new HashMap<SimpleItem, Boolean>(); //If that boolean is true, gen it like normal, false means do nothing.
+	public List<ISimpleItem> ignoreOres = new LinkedList<ISimpleItem>();
+	public List<ISimpleItem> normalOres = new LinkedList<ISimpleItem>();
 
 	public final float volumeModifier; //more or less ore in a mine
 	public final float rarityModifier; //rarity of mines
-	
-	public final boolean useDimensions = false;
-	public final boolean useBiomes = false;
 
 	public long genHash = 0;
 	public NBTTagCompound ores = new NBTTagCompound();
 
+	private final ISimpleItem netherrack = new SimpleItem(Blocks.netherrack);
+	private final ISimpleItem endStone = new SimpleItem(Blocks.end_stone);
+
+	private final Pattern orePattern = Pattern.compile("^ore.*", Pattern.CASE_INSENSITIVE);
+
 	public MineRegistry(ModUtils util) {
 		final int defaultDensityRate = 4; //used for creating default values
-		
+
 		final String l1 = "Level1";
 		volumeModifier = (float) util.getDouble(l1, "volumeModifier",
 				"Changes the number of veins in each mine for ALL ores. It is a multiplier. "
 						+ "Larger numbers mean more ore, smaller means less.", defaultDensityRate);
 		rarityModifier = (float) util.getDouble(l1, "rarityModifier", "Changes the rarities of ALL ores. "
-				+ "It is a multiplier. Larger numbers mean further apart , smaller means closer together.", defaultDensityRate * defaultDensityRate);
-		//this.useDimensions =  util.getBoolean(l1, "useDimensions", "Setting this to true and running Minecraft will open up the option to change what dimensions mines can spawn in.", false);
-		//this.useBiomes =  util.getBoolean(l1, "useBiomes", "Setting this to true and running Minecraft will open up the option to change mine rarities based on biomes", false);
+				+ "It is a multiplier. Larger numbers mean further apart , smaller means closer together.",
+				defaultDensityRate * defaultDensityRate);
 	}
 
 	/**
 	 * Checks for new ores, adds up new ores, generates trace and normal veins
 	 * if needed
-	 * 
+	 *
 	 * @param blockId
 	 * @param blockMeta
 	 * @param numberOfBlocks
 	 * @param target
 	 */
 	public boolean checkForNew(Block block, int blockMeta, int numberOfBlocks, Block target) {
-		SimpleItem item = new SimpleItem(block, blockMeta);
+		ISimpleItem item = new SimpleItem(block, blockMeta);
 
-		if (ignoreOres.containsKey(item))
-			return ignoreOres.get(item);
+		if (listCheck(item, ignoreOres))
+			return false;
+		else if (listCheck(item, normalOres))
+			return true;
 		else {
+			ItemStack stack = item.getStack();
+
+			for (Mine m : mines)
+				if (m.overrides(stack)) {
+					ignoreOres.add(item);
+					return false;
+				}
+
 			NewOre newOre = getNewOre(item);
 
 			if (newOre == null) {
@@ -77,54 +97,21 @@ public class MineRegistry implements IMineRegistry {
 		if (newOres.size() > 0)
 			for (NewOre newOre : newOres)
 				if (newOre.numberOfVeins > 0 && newOre.numberOfOres > 0)
-					if (!checkForDefaults(newOre.block))
-						addNewOre(newOre.block, newOre.target, newOre.numberOfVeins, newOre.numberOfOres
-								/ newOre.numberOfVeins);
+					addNewOre(newOre.block, newOre.target, newOre.numberOfVeins, newOre.numberOfOres
+							/ newOre.numberOfVeins);
 		newOres.clear();
 	}
 
-	private boolean checkForDefaults(SimpleItem block) {
-		if (block.isInOreDict()) {
-			
-			String name = OreDictionary.getOreName(OreDictionary.getOreID(block.getStack())).toLowerCase();
+	public void addNewOre(ISimpleItem block, ISimpleItem target, int veins, int cluster) {
+		String name = StringHelper.camelCase(block.getDisplayName());
 
-			if (name.equals("orecopper")) {
-				MineGenerator.generateCopper(block);
-				return true;
-			}
-
-			if (name.equals("oretin")) {
-				MineGenerator.generateTin(block);
-				return true;
-			}
-
-			if (name.equals("oresilver")) {
-				MineGenerator.generateSilver(block);
-				return true;
-			}
-
-			if (name.equals("orelead")) {
-				MineGenerator.generateLead(block);
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	public void addNewOre(SimpleItem block, SimpleItem target, int veins, int cluster) {
-		String name = block.isInOreDict() ? OreDictionary.getOreName(OreDictionary.getOreID(block.getStack())) : block.getDisplayName();
-
-		if(GeocraftConfig.cylinderMode){
-			registerMine(new MineCylinder(name, 1, veins, block,
-				target, cluster));
-			registerTrace(name + "Trace", block, target, veins);	
-		}
+		if (GeocraftConfig.cylinderMode)
+			registerCylinder(name, block, target, 4, veins, cluster, true);
 		else
-			registerMine(new MineVanilla(name, 1, veins, block, target, cluster));
+			registerMine(new MineVanilla(name, block, target, veins, cluster));
 	}
 
-	public NewOre getNewOre(SimpleItem block) {
+	public NewOre getNewOre(ISimpleItem block) {
 		for (NewOre other : newOres)
 			if (other.equals(block))
 				return other;
@@ -132,14 +119,14 @@ public class MineRegistry implements IMineRegistry {
 	}
 
 	private class NewOre {
-		private final SimpleItem block;
-		private final SimpleItem target;
+		private final ISimpleItem block;
+		private final ISimpleItem target;
 		private int numberOfOres;
 		private int numberOfVeins;
 
-		public NewOre(SimpleItem block, SimpleItem target, int numberOfOres) {
-			this.block = block;
-			this.target = target;
+		public NewOre(ISimpleItem block, ISimpleItem target, int numberOfOres) {
+			this.block = oreCheck(block);
+			this.target = stoneCheck(target);
 			this.numberOfOres = numberOfOres;
 			numberOfVeins = 1;
 		}
@@ -176,75 +163,118 @@ public class MineRegistry implements IMineRegistry {
 		return rarityModifier;
 	}
 
-	@Override
-	public boolean useDimensions() {
-		return useDimensions;
+	public ISimpleItem oreCheck(ISimpleItem item) {
+		if (item instanceof SimpleOre)
+			return item;
+
+		for (int id : OreDictionary.getOreIDs(item.getStack()))
+			if (orePattern.matcher(OreDictionary.getOreName(id)).matches())
+				return new SimpleOre(OreDictionary.getOreName(id), item);
+
+		return item;
 	}
 
-	@Override
-	public boolean useBiomes() {
-		return useBiomes;
+	public ISimpleItem stoneCheck(ISimpleItem item) {
+		if (GeocraftConfig.stoneOre.equals(item))
+			return GeocraftConfig.stoneOre;
+
+		else if (netherrack.equals(item))
+			return netherrack;
+		else if (endStone.equals(item))
+			return endStone;
+		else
+			return item;
+	}
+	
+	public boolean listCheck(ISimpleItem item, Collection<ISimpleItem> list){
+		for(ISimpleItem check : list)
+			if(check.isItemEqual(item, false))
+				return true;
+		
+		return false;
 	}
 
-	@Override
-	public boolean registerMine(IMine mine) {
-		boolean test = mineAllowed(mine);
-		if (test) {
-			genHash += mine.getName().hashCode();
-			ores.setBoolean(mine.getName(), true);
+	public void load() {
+		ConfigHandler.inst.loadAll(this);
+	}
+
+	public void save() {
+		for (Mine m : mines) {
+			m.init();
+			ConfigHandler.inst.saveJson(m);
+
 		}
-		return test;
 	}
 
-	private boolean mineAllowed(IMine mine) {
-		return mines.add(mine);
-	}
-	
 	@Override
-	public boolean registerCylinder(String name, float mineRarity, float mineSize, ItemStack block, ItemStack target, int veinSize, boolean trace) {
-		return registerCylinder(name, mineRarity, mineSize, new SimpleItem(block), new SimpleItem(target), veinSize, trace);
+	public Mine registerMine(Mine mine) {
+		if (mineAllowed(mine)) {
+			if (Geocraft.init) {
+				mine.init();
+				ConfigHandler.inst.saveJson(mine);
+			}
+			genHash += mine.hashCode();
+			ores.setBoolean(mine.name, true);
+		}
+		return mine;
 	}
-	
-	public boolean registerCylinder(String name, float mineRarity, float mineSize, SimpleItem block, SimpleItem target, int veinSize, boolean trace) {
-		boolean ans = registerMine(new MineCylinder(name, mineRarity, mineSize, block, target, veinSize));
-		if(trace)
-			registerTrace("name + Trace ", block, target, (int) mineSize);
+
+	private boolean mineAllowed(Mine mine) {
+		if(mine.name == null || mine.name.length() <= 0)
+			return false;
+		
+		boolean value = mines.add(mine);
+		
+		Geocraft.inst.logDebug("Registering mine: ", mine.name, " : ", value);
+		
+		return value;
+	}
+
+	@Override
+	public Mine registerCylinder(String name, ItemStack block, ItemStack target, float mineRarity, float mineSize,
+			int veinSize, boolean trace) {
+		return registerCylinder(name, new SimpleItem(block), new SimpleItem(target), mineRarity, mineSize, veinSize,
+				trace);
+	}
+
+	public Mine registerCylinder(String name, ISimpleItem block, ISimpleItem target, float mineRarity, float mineSize,
+			int veinSize, boolean trace) {
+		Mine ans = registerMine(new MineCylinder(name, block, target, mineRarity, mineSize, veinSize));
+		if (trace)
+			registerTrace(name + "Trace", block, target, (int) mineSize);
 		return ans;
 	}
 
 	@Override
-	public boolean registerTrace(String name, Block block, int blockMeta, Block target, int targetMeta, int size) {
+	public Mine registerTrace(String name, Block block, int blockMeta, Block target, int targetMeta, int size) {
 		return registerTrace(name, new SimpleItem(block, blockMeta), new SimpleItem(target, targetMeta), size);
 	}
 
-	public boolean registerTrace(String name, SimpleItem block, SimpleItem target, int size) {
+	public Mine registerTrace(String name, ISimpleItem block, ISimpleItem target, int size) {
 		registerIgnore(block);
 
-		if (GeocraftConfig.genTrace)
-			return registerMine(new MineTrace(name, 1, size, block, target));
-		return false;
+		Mine mine = new MineTrace(name, block, target, size);
+		mine.isActive = GeocraftConfig.genTrace;
+		registerMine(mine);
+
+		return mine;
 	}
 
 	@Override
-	public boolean registerIgnore(Block blockId, int blockMeta) {
-		return registerIgnore(new SimpleItem(blockId, blockMeta));
+	public void registerIgnore(Block blockId, int blockMeta) {
+		registerIgnore(new SimpleItem(blockId, blockMeta));
 	}
 
-	public boolean registerIgnore(SimpleItem block) {
-		return ignore(block, false);
+	public void registerIgnore(ISimpleItem block) {
+		ignoreOres.add(block);
 	}
 
 	@Override
-	public boolean registerNormalGen(Block blockId, int blockMeta) {
-		return registerNormalGen(new SimpleItem(blockId, blockMeta));
+	public void registerNormalGen(Block blockId, int blockMeta) {
+		registerNormalGen(new SimpleItem(blockId, blockMeta));
 	}
 
-	public boolean registerNormalGen(SimpleItem block) {
-		return ignore(block, true);
-	}
-
-	private boolean ignore(SimpleItem block, boolean normal) {
-		Boolean value = ignoreOres.put(block, normal);
-		return value == null ? true : false;
+	public void registerNormalGen(SimpleItem block) {
+		normalOres.add(block);
 	}
 }

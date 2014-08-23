@@ -3,25 +3,23 @@ package redgear.geocraft.mines;
 import java.util.Random;
 
 import net.minecraft.world.World;
-import redgear.core.util.SimpleItem;
-import redgear.core.util.StringHelper;
+import redgear.core.api.item.ISimpleItem;
 import redgear.core.world.WorldLocation;
-import redgear.geocraft.api.IEveryChunk;
-import redgear.geocraft.api.MineManager;
-import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.generation.VeinHelper;
 
-public class MineVanilla extends MineSingleOre implements IEveryChunk {
+public class MineVanilla extends MineSingleOre {
 
-	protected final int veinSize;
+	protected int veinsPerChunk;
+	protected int veinSize;
+	
+	public MineVanilla(){
+		
+	}
 
-	/**
-	 * MineVanilla automatically calls registerIgnore for it's ore.
-	 */
-	public MineVanilla(String name, float mineRarity, float mineSize, SimpleItem block, SimpleItem target, int veinSize) {
-		super(name, mineRarity, mineSize, block, target);
-		this.veinSize = Geocraft.inst.getInt("level2." + StringHelper.camelCase(name), "veinSize", veinSize);
-		MineManager.oreRegistry.registerIgnore(block.getBlock(), block.meta);
+	public MineVanilla(String name, ISimpleItem block, ISimpleItem target, int veinsPerChunk, int veinSize) {
+		super(name, block, target);
+		this.veinsPerChunk = veinsPerChunk;
+		this.veinSize = veinSize;
 	}
 
 	@Override
@@ -30,13 +28,17 @@ public class MineVanilla extends MineSingleOre implements IEveryChunk {
 		int zMin = chunkZ * 16;
 
 		int yMax = world.getHeightValue(chunkX * 16, chunkZ * 16);
-		int size = Math.round(reletiveSize(world, chunkX, chunkZ, mineSize));
+		int size = Math.round(reletiveSize(world, chunkX, chunkZ, veinsPerChunk));
 
 		for (int i = 0; i < size; ++i)
 			VeinHelper.generateSphere(
 					new WorldLocation(xMin + rand.nextInt(16), rand.nextInt(yMax), zMin + rand.nextInt(16), world),
 					block, target, rand, veinSize);
 
+	}
+	
+	public static final float reletiveSize(World world, int chunkX, int chunkZ, float size){
+		return (((float)world.getHeightValue(chunkX * 16, chunkZ * 16)) / ((float)world.getHeight())) * size;
 	}
 
 }

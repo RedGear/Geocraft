@@ -13,12 +13,11 @@ import net.minecraftforge.event.world.ChunkDataEvent;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
 import redgear.core.world.ChunkCoordinate;
-import redgear.geocraft.api.IEveryChunk;
-import redgear.geocraft.api.IMine;
 import redgear.geocraft.api.MineManager;
+import redgear.geocraft.api.gen.Mine;
 import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.core.GeocraftConfig;
-import redgear.geocraft.mines.MineMetal;
+import redgear.geocraft.mines.MineCylinderComplex;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
@@ -92,30 +91,20 @@ public class MineGenerator implements IWorldGenerator {
 		if (data.it == null)
 			data.it = reg.mines.iterator();
 
-		IMine mine = null;
+		Mine mine = null;
 		while (data.it.hasNext() && System.nanoTime() - start < maxTime) {
 			mine = data.it.next();
 
-			if (mine instanceof IEveryChunk)
-				checkAndGen(mine, world, rand, chunkX, chunkZ, tagData);
-			else if (canGen) {
-				int rare = (int) (mine.getMineRarity() * reg.rarityModifier);
-
-				if (rare > 0 && rand.nextInt(rare) == 0) {
-					canGen = false;
-					checkAndGen(mine, world, rand, chunkX, chunkZ, tagData);
-					canGen = true;
-				}
+			if (mine.isActive) {
+				canGen = false;
+				if (tagData == null || !tagData.getBoolean(mine.name))
+					mine.generate(world, rand, chunkX, chunkZ);
+				canGen = true;
 			}
 		}
 		world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
 
 		return System.nanoTime() - start < maxTime;
-	}
-
-	private void checkAndGen(IMine mine, World world, Random rand, int chunkX, int chunkZ, NBTTagCompound tag) {
-		if (tag == null || !tag.getBoolean(mine.getName()))
-			mine.generate(world, rand, chunkX, chunkZ);	
 	}
 
 	@SubscribeEvent
@@ -139,7 +128,7 @@ public class MineGenerator implements IWorldGenerator {
 
 				data = list.remove(0);
 				coord = data.coord;
-			} while (!coord.checkExists(world));// keep removing chunks until you find one that IS loaded. 
+			} while (!coord.checkExists(world));// keep removing chunks until you find one that IS loaded.
 
 			long worldSeed = world.getSeed();
 			Random rand = new Random(worldSeed);
@@ -147,10 +136,10 @@ public class MineGenerator implements IWorldGenerator {
 
 			hasTime = generate(rand, coord.x, coord.z, world,
 					data.tagData == null ? null : data.tagData.getCompoundTag("Ores"), data, start);
-			if(Geocraft.inst.isDebugMode)
-			Geocraft.inst.logDebug("Generating chunk X: ", coord.x, " Z: ", coord.z, " Time: ",
-					new BigDecimal(System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000).setScale(4)),
-					" Chunks left: ", list.size());
+			if (Geocraft.inst.isDebugMode)
+				Geocraft.inst.logDebug("Generating chunk X: ", coord.x, " Z: ", coord.z, " Time: ", new BigDecimal(
+						System.nanoTime() - start).setScale(4).divide(new BigDecimal(1000000).setScale(4)),
+						" Chunks left: ", list.size());
 		} while (hasTime);
 
 		if (data != null && data.it.hasNext())
@@ -160,7 +149,7 @@ public class MineGenerator implements IWorldGenerator {
 	private class GenData {
 		public final ChunkCoordinate coord;
 		public final NBTTagCompound tagData;
-		public Iterator<IMine> it;
+		public Iterator<Mine> it;
 
 		public GenData(ChunkCoordinate coord, NBTTagCompound tagData) {
 			this.coord = coord;
@@ -177,55 +166,5 @@ public class MineGenerator implements IWorldGenerator {
 		public boolean equals(Object obj) {
 			return coord.equals(obj);
 		}
-	}
-
-	public static void generateCopper(SimpleItem copperOre) {
-		if (GeocraftConfig.complexMines) {
-			reg.registerMine(new MineMetal("Copper", 1, 16, GeocraftConfig.complexOres ? GeocraftConfig.copperOre
-					: copperOre, GeocraftConfig.stone, 10));
-			reg.registerTrace("CopperTrace", copperOre, GeocraftConfig.stone, 20);
-		} else
-			reg.addNewOre(copperOre, GeocraftConfig.stone, 16, 10);
-	}
-
-	public static void generateTin(SimpleItem tinOre) {
-		if (GeocraftConfig.complexMines) {
-			reg.registerMine(new MineMetal("Tin", 1, 32, GeocraftConfig.complexOres ? GeocraftConfig.tinOre : tinOre,
-					GeocraftConfig.stone, 6));
-			reg.registerTrace("TinTrace", tinOre, GeocraftConfig.stone, 20);
-		} else
-			reg.addNewOre(tinOre, GeocraftConfig.stone, 32, 6);
-	}
-
-	public static void generateSilver(SimpleItem silverOre) {
-		if (GeocraftConfig.complexMines) {
-			if (!GeocraftConfig.hasSilver) {
-				if (GeocraftConfig.complexOres) {
-					if (!GeocraftConfig.hasLead)
-						reg.registerMine(new MineMetal("Galena", 1, 4, GeocraftConfig.galenaOre, GeocraftConfig.stone,
-								16));
-				} else
-					reg.registerMine(new MineMetal("Silver", 1, 3, silverOre, GeocraftConfig.stone, 16));
-				reg.registerTrace("SilverTrace", silverOre, GeocraftConfig.stone, 3);
-			}
-		} else
-			reg.addNewOre(silverOre, GeocraftConfig.stone, 3, 16);
-		GeocraftConfig.hasSilver = true;
-	}
-
-	public static void generateLead(SimpleItem leadOre) {
-		if (GeocraftConfig.complexMines) {
-			if (!GeocraftConfig.hasLead) {
-				if (GeocraftConfig.complexOres) {
-					if (!GeocraftConfig.hasSilver)
-						reg.registerMine(new MineMetal("Galena", 1, 4, GeocraftConfig.galenaOre, GeocraftConfig.stone,
-								16));
-				} else
-					reg.registerMine(new MineMetal("Lead", 1, 4, leadOre, GeocraftConfig.stone, 16));
-				reg.registerTrace("LeadTrace", leadOre, GeocraftConfig.stone, 4);
-			}
-		} else
-			reg.addNewOre(leadOre, GeocraftConfig.stone, 4, 16);
-		GeocraftConfig.hasLead = true;
 	}
 }
