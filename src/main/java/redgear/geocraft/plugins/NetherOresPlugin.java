@@ -24,7 +24,7 @@ public class NetherOresPlugin implements IPlugin {
 
 	@Override
 	public boolean shouldRun(ModUtils mod, ModState state) {
-		return Mods.NetherOres.isIn();
+		return mod.getBoolean("plugins", "NetherOres") && Mods.NetherOres.isIn();
 	}
 
 	@Override
