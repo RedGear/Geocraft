@@ -18,13 +18,13 @@ import redgear.core.util.ItemRegUtil;
 import redgear.core.util.ItemStackUtil;
 import redgear.core.util.SimpleItem;
 import redgear.core.util.SimpleOre;
+import redgear.geocraft.api.mine.MineCylinder;
 import redgear.geocraft.block.SubBlockGeoOre;
 import redgear.geocraft.block.WeightedItem;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
 import redgear.geocraft.mines.MineCoal;
-import redgear.geocraft.mines.MineCylinder;
 import redgear.geocraft.mines.MineCylinderComplex;
 import redgear.geocraft.mines.MineDiamond;
 import redgear.geocraft.mines.MineGold;
@@ -175,23 +175,23 @@ public class ComplexOresPlugin implements IPlugin {
 		final ISimpleItem leadOre = new SimpleOre("oreLead");
 
 		reg.registerMine(new MineCoal());//Coal
-		reg.registerMine(new MineCylinder("CoalCylinder", vanillaCoal, stone, 2, 20, 16)
+		reg.registerMine(new MineCylinderComplex("CoalCylinder", vanillaCoal, stone, 2, 20, 16, false)
 				.setActive(!GeocraftConfig.complexMines));
 		reg.registerTrace("CoalTrace", GeocraftConfig.complexOres ? GeocraftConfig.coalOre : vanillaCoal, stone, 60);
 
 		reg.registerMine(new MineDiamond()); //Diamond
-		reg.registerMine(new MineCylinder("CylinderDiamonds", vanillaDiamond, stone, 8, 2, 7)
+		reg.registerMine(new MineCylinderComplex("CylinderDiamonds", vanillaDiamond, stone, 8, 2, 7, false)
 				.setActive(!GeocraftConfig.complexMines));
 		reg.registerTrace("DiamondTrace", vanillaDiamond, stone, 2);
 
 		reg.registerMine(new MineGold());//Gold
-		reg.registerMine(new MineCylinder("GoldCylinder", vanillaGold, stone, 6, 4, 8)
+		reg.registerMine(new MineCylinderComplex("GoldCylinder", vanillaGold, stone, 6, 4, 8, false)
 		.setActive(!GeocraftConfig.complexMines));
 		reg.registerTrace("GoldTrace", vanillaGold, stone, 4);
 
 		reg.registerMine(new MineCylinderComplex("IronComplex", ironOre, stone, 4, 20, 8, true)
 				.setActive(GeocraftConfig.complexMines));
-		reg.registerMine(new MineCylinder("IronCylinder", vanillaIron, stone, 1, 20, 8)
+		reg.registerMine(new MineCylinderComplex("IronCylinder", vanillaIron, stone, 1, 20, 8, false)
 				.setActive(!GeocraftConfig.complexMines));
 		reg.registerMine(new MineTrace("IronComplexTrace", ironOre, stone, 20).setActive(GeocraftConfig.complexMines));
 		reg.registerMine(new MineTrace("IronTrace", vanillaIron, stone, 20).setActive(!GeocraftConfig.complexMines));

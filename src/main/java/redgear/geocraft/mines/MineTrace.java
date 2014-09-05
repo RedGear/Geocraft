@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.world.Location;
+import redgear.geocraft.api.mine.MineSingleOre;
 
 public class MineTrace extends MineSingleOre {
 

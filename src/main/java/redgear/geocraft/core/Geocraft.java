@@ -8,6 +8,7 @@ import redgear.geocraft.generation.MineRegistry;
 import redgear.geocraft.mines.MineVanilla;
 import redgear.geocraft.plugins.ComplexOresPlugin;
 import redgear.geocraft.plugins.ForestryPlugin;
+import redgear.geocraft.plugins.NetherOresPlugin;
 import redgear.geocraft.plugins.StonePlugin;
 import redgear.geocraft.plugins.ThaumcraftPlugin;
 import redgear.geocraft.plugins.ThermalExpansionPlugin;
@@ -34,6 +35,7 @@ public class Geocraft extends ModUtils {
 		addPlugin(new ThermalExpansionPlugin());
 		addPlugin(new ForestryPlugin());
 		addPlugin(new ThaumcraftPlugin());
+		addPlugin(new NetherOresPlugin());
 	}
 
 	@Override

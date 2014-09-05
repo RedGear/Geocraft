@@ -4,6 +4,7 @@ import java.util.Random;
 
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.world.WorldLocation;
+import redgear.geocraft.api.mine.MineCylinder;
 import redgear.geocraft.generation.VeinHelper;
 
 public class MineCylinderComplex extends MineCylinder {

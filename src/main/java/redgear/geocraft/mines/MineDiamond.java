@@ -9,6 +9,7 @@ import redgear.core.api.item.ISimpleItem;
 import redgear.core.util.SimpleItem;
 import redgear.core.util.SimpleOre;
 import redgear.core.world.WorldLocation;
+import redgear.geocraft.api.mine.MineSpecialStone;
 import redgear.geocraft.core.GeocraftConfig;
 
 public class MineDiamond extends MineSpecialStone {

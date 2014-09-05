@@ -11,13 +11,10 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import redgear.core.mod.ModUtils;
-import redgear.core.util.SimpleItem;
 import redgear.core.world.ChunkCoordinate;
 import redgear.geocraft.api.MineManager;
-import redgear.geocraft.api.gen.Mine;
+import redgear.geocraft.api.mine.Mine;
 import redgear.geocraft.core.Geocraft;
-import redgear.geocraft.core.GeocraftConfig;
-import redgear.geocraft.mines.MineCylinderComplex;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.ListMultimap;
@@ -48,7 +45,10 @@ public class MineGenerator implements IWorldGenerator {
 	}
 
 	public void addChunk(GenData data, World world) {
-		chunkMap.put(world.provider.dimensionId, data);
+		int dim = world.provider.dimensionId;
+		
+		if(!chunkMap.get(dim).contains(data))
+			chunkMap.put(dim, data);
 	}
 
 	@SubscribeEvent
@@ -109,7 +109,10 @@ public class MineGenerator implements IWorldGenerator {
 
 	@SubscribeEvent
 	public void tickStart(WorldTickEvent event) {
-		if (event.side == Side.CLIENT || event.phase == Phase.END)
+		if (event.side != Side.SERVER || event.phase == Phase.END)
+			return;
+		
+		if(chunkMap.size() == 0)
 			return;
 
 		World world = event.world;
@@ -123,9 +126,10 @@ public class MineGenerator implements IWorldGenerator {
 
 		do {
 			do {
-				if (list.isEmpty())
+				if (list.isEmpty()){
+					chunkMap.removeAll(dimID);
 					return;
-
+				}
 				data = list.remove(0);
 				coord = data.coord;
 			} while (!coord.checkExists(world));// keep removing chunks until you find one that IS loaded.
@@ -146,7 +150,7 @@ public class MineGenerator implements IWorldGenerator {
 			list.add(0, data);
 	}
 
-	private class GenData {
+	private class GenData{
 		public final ChunkCoordinate coord;
 		public final NBTTagCompound tagData;
 		public Iterator<Mine> it;

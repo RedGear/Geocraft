@@ -9,7 +9,7 @@ import redgear.core.api.item.ISimpleItem;
 import redgear.core.util.SimpleItem;
 import redgear.core.util.SimpleOre;
 import redgear.core.world.Location;
-import redgear.geocraft.api.gen.Mine;
+import redgear.geocraft.api.mine.Mine;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.VeinHelper;
 

@@ -2,7 +2,7 @@ package redgear.geocraft.config;
 
 import java.lang.reflect.Type;
 
-import redgear.geocraft.api.gen.Mine;
+import redgear.geocraft.api.mine.Mine;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

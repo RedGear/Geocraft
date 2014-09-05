@@ -7,24 +7,21 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.regex.Pattern;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.oredict.OreDictionary;
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
-import redgear.core.util.SimpleOre;
 import redgear.core.util.StringHelper;
 import redgear.geocraft.api.IMineRegistry;
-import redgear.geocraft.api.gen.Mine;
+import redgear.geocraft.api.MineManager;
+import redgear.geocraft.api.mine.Mine;
 import redgear.geocraft.config.ConfigHandler;
 import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.core.GeocraftConfig;
-import redgear.geocraft.mines.MineCylinder;
+import redgear.geocraft.mines.MineCylinderComplex;
 import redgear.geocraft.mines.MineTrace;
 import redgear.geocraft.mines.MineVanilla;
 
@@ -40,10 +37,7 @@ public class MineRegistry implements IMineRegistry {
 	public long genHash = 0;
 	public NBTTagCompound ores = new NBTTagCompound();
 
-	private final ISimpleItem netherrack = new SimpleItem(Blocks.netherrack);
-	private final ISimpleItem endStone = new SimpleItem(Blocks.end_stone);
-
-	private final Pattern orePattern = Pattern.compile("^ore.*", Pattern.CASE_INSENSITIVE);
+	
 
 	public MineRegistry(ModUtils util) {
 		final int defaultDensityRate = 4; //used for creating default values
@@ -102,13 +96,13 @@ public class MineRegistry implements IMineRegistry {
 		newOres.clear();
 	}
 
-	public void addNewOre(ISimpleItem block, ISimpleItem target, int veins, int cluster) {
+	public Mine addNewOre(ISimpleItem block, ISimpleItem target, int veins, int cluster) {
 		String name = StringHelper.camelCase(block.getDisplayName());
 
 		if (GeocraftConfig.cylinderMode)
-			registerCylinder(name, block, target, 4, veins, cluster, true);
+			return registerCylinder(name, block, target, 4, veins, cluster, true);
 		else
-			registerMine(new MineVanilla(name, block, target, veins, cluster));
+			return registerMine(new MineVanilla(name, block, target, veins, cluster));
 	}
 
 	public NewOre getNewOre(ISimpleItem block) {
@@ -125,8 +119,8 @@ public class MineRegistry implements IMineRegistry {
 		private int numberOfVeins;
 
 		public NewOre(ISimpleItem block, ISimpleItem target, int numberOfOres) {
-			this.block = oreCheck(block);
-			this.target = stoneCheck(target);
+			this.block = MineManager.oreCheck(block);
+			this.target = MineManager.stoneCheck(target);
 			this.numberOfOres = numberOfOres;
 			numberOfVeins = 1;
 		}
@@ -161,29 +155,6 @@ public class MineRegistry implements IMineRegistry {
 	@Override
 	public float rarityModifier() {
 		return rarityModifier;
-	}
-
-	public ISimpleItem oreCheck(ISimpleItem item) {
-		if (item instanceof SimpleOre)
-			return item;
-
-		for (int id : OreDictionary.getOreIDs(item.getStack()))
-			if (orePattern.matcher(OreDictionary.getOreName(id)).matches())
-				return new SimpleOre(OreDictionary.getOreName(id), item);
-
-		return item;
-	}
-
-	public ISimpleItem stoneCheck(ISimpleItem item) {
-		if (GeocraftConfig.stoneOre.equals(item))
-			return GeocraftConfig.stoneOre;
-
-		else if (netherrack.equals(item))
-			return netherrack;
-		else if (endStone.equals(item))
-			return endStone;
-		else
-			return item;
 	}
 	
 	public boolean listCheck(ISimpleItem item, Collection<ISimpleItem> list){
@@ -239,7 +210,7 @@ public class MineRegistry implements IMineRegistry {
 
 	public Mine registerCylinder(String name, ISimpleItem block, ISimpleItem target, float mineRarity, float mineSize,
 			int veinSize, boolean trace) {
-		Mine ans = registerMine(new MineCylinder(name, block, target, mineRarity, mineSize, veinSize));
+		Mine ans = registerMine(new MineCylinderComplex(name, block, target, mineRarity, mineSize, veinSize, false));
 		if (trace)
 			registerTrace(name + "Trace", block, target, (int) mineSize);
 		return ans;

@@ -10,7 +10,7 @@ import redgear.core.util.SimpleItem;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
-import redgear.geocraft.mines.MineCylinder;
+import redgear.geocraft.mines.MineCylinderComplex;
 import redgear.geocraft.mines.MineThaumInfusedStone;
 import cpw.mods.fml.common.LoaderState.ModState;
 
@@ -75,8 +75,8 @@ public class ThaumcraftPlugin implements IPlugin {
 
 
 
-					reg.registerMine(new MineCylinder("Amber", amber, stone, 4, 8, 4));
-					reg.registerMine(new MineCylinder("Cinnibar", cinnibar, stone, 4, 8, 4));
+					reg.registerMine(new MineCylinderComplex("Amber", amber, stone, 4, 8, 4, false));
+					reg.registerMine(new MineCylinderComplex("Cinnibar", cinnibar, stone, 4, 8, 4, false));
 					
 					
 				}

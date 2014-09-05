@@ -1,4 +1,4 @@
-package redgear.geocraft.mines;
+package redgear.geocraft.api.mine;
 
 import java.util.Random;
 
@@ -6,7 +6,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.world.WorldLocation;
-import redgear.geocraft.generation.VeinHelper;
 
 /**
  * Defines a vertical standing cylinder
@@ -14,7 +13,7 @@ import redgear.geocraft.generation.VeinHelper;
  * @author BlackHole
  *
  */
-public class MineCylinder extends MineSingleOre {
+public abstract class MineCylinder extends MineSingleOre {
 
 	protected transient int intRarity;
 	protected transient int intMineSize;
@@ -79,9 +78,7 @@ public class MineCylinder extends MineSingleOre {
 
 	}
 
-	protected void generateVein(WorldLocation start, ISimpleItem block, ISimpleItem target, Random rand, int size) {
-		VeinHelper.generateSphere(start, block, target, rand, size);
-	}
+	protected abstract void generateVein(WorldLocation start, ISimpleItem block, ISimpleItem target, Random rand, int size);
 
 	@Override
 	public void init() {

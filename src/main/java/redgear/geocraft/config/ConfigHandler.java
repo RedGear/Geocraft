@@ -10,7 +10,7 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 
-import redgear.geocraft.api.gen.Mine;
+import redgear.geocraft.api.mine.Mine;
 import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.generation.MineRegistry;
 

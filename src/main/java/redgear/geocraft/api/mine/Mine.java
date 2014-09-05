@@ -1,4 +1,4 @@
-package redgear.geocraft.api.gen;
+package redgear.geocraft.api.mine;
 
 import java.util.Random;
 

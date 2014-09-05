@@ -2,7 +2,7 @@ package redgear.geocraft.api;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import redgear.geocraft.api.gen.Mine;
+import redgear.geocraft.api.mine.Mine;
 
 
 public interface IMineRegistry {
