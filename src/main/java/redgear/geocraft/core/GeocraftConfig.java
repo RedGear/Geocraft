@@ -1,5 +1,8 @@
 package redgear.geocraft.core;
 
+import cpw.mods.fml.common.LoaderState.ModState;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -9,9 +12,6 @@ import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
 import redgear.core.util.SimpleOre;
 import redgear.geocraft.block.SubBlockGeoOre;
-import cpw.mods.fml.common.LoaderState.ModState;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class GeocraftConfig implements IPlugin{
 	
@@ -31,6 +31,7 @@ public class GeocraftConfig implements IPlugin{
 	public static SimpleItem tinLump;
 	public static SimpleItem silverLump;
 	public static SimpleItem leadLump;
+    public static SimpleItem terraQuartz;
 	
 	public static SimpleItem copperOre;
 	public static SimpleItem tinOre;
@@ -38,15 +39,15 @@ public class GeocraftConfig implements IPlugin{
 	
 	public static SubBlockGeoOre galenaOreBlock;
 	
-	public static SimpleItem marble;
-	
-	
+	public static ISimpleItem marble;
+
+
 	
 	public static CreativeTabs geoTab = new CreativeTabs("Geocraft"){
 
 		@SideOnly(Side.CLIENT)
 	    public int func_151243_f(){
-			return marble.meta;
+			return marble.getMeta();
 		}
 		
 		@Override

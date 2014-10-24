@@ -1,5 +1,7 @@
 package redgear.geocraft.plugins;
 
+import cpw.mods.fml.common.LoaderState.ModState;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -18,19 +20,12 @@ import redgear.core.util.ItemRegUtil;
 import redgear.core.util.ItemStackUtil;
 import redgear.core.util.SimpleItem;
 import redgear.core.util.SimpleOre;
-import redgear.geocraft.api.mine.MineCylinder;
 import redgear.geocraft.block.SubBlockGeoOre;
 import redgear.geocraft.block.WeightedItem;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
-import redgear.geocraft.mines.MineCoal;
-import redgear.geocraft.mines.MineCylinderComplex;
-import redgear.geocraft.mines.MineDiamond;
-import redgear.geocraft.mines.MineGold;
-import redgear.geocraft.mines.MineTrace;
-import cpw.mods.fml.common.LoaderState.ModState;
-import cpw.mods.fml.common.registry.GameRegistry;
+import redgear.geocraft.mines.*;
 
 public class ComplexOresPlugin implements IPlugin {
 
@@ -69,8 +64,8 @@ public class ComplexOresPlugin implements IPlugin {
 		SimpleItem coalNugget = drops.addMetaItem(new SubItem("nuggetCoal"));
 		mod.registerOre("nuggetCoal", coalNugget);
 
-		SimpleItem terraQuartz = drops.addMetaItem(new SubItem("terraQuartz"));
-		mod.registerOre("quartz", terraQuartz);
+        GeocraftConfig.terraQuartz = drops.addMetaItem(new SubItem("terraQuartz"));
+		mod.registerOre("quartz", GeocraftConfig.terraQuartz);
 
 		SimpleItem goldLump = drops.addMetaItem(new SubItem("goldLump"));
 		mod.registerOre("oreGold", goldLump);
@@ -106,8 +101,8 @@ public class ComplexOresPlugin implements IPlugin {
 		//mod.registerOre("oreCoal", GeocraftConfig.coalDenseOre);
 
 		GeocraftConfig.terraQuartzOre = oreBlock.addMetaBlock(new SubBlockGeoOre("terraQuartzOre", new WeightedItem(
-				terraQuartz, 2, 4, 1)));
-		GeocraftConfig.goldOre = oreBlock.addMetaBlock(new SubBlockGeoOre("goldOre", new WeightedItem(terraQuartz, 1,
+                GeocraftConfig.terraQuartz, 2, 4, 1)));
+		GeocraftConfig.goldOre = oreBlock.addMetaBlock(new SubBlockGeoOre("goldOre", new WeightedItem(GeocraftConfig.terraQuartz, 1,
 				4, 1), new WeightedItem(goldLump, 1, 3, 1), new WeightedItem(new SimpleItem(Items.gold_nugget, 0), 0,
 				1, 1)));
 		//mod.registerOre("oreGold", GeocraftConfig.goldOre);
@@ -155,7 +150,7 @@ public class ComplexOresPlugin implements IPlugin {
 		nugs.addLevel(true, 'X', "nuggetCoal");
 		nugs.registerShaped(coal);
 
-		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.quartz), terraQuartz.getStack(),
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.quartz), GeocraftConfig.terraQuartz.getStack(),
 				Blocks.soul_sand));
 
 	}

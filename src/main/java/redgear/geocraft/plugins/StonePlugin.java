@@ -1,22 +1,59 @@
 package redgear.geocraft.plugins;
 
+import cpw.mods.fml.common.LoaderState.ModState;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import redgear.core.block.MetaBlock;
-import redgear.core.block.SubBlock;
-import redgear.core.block.SubBlockAntiConnected;
-import redgear.core.block.SubBlockConnected;
-import redgear.core.block.SubBlockDifferentDrop;
+import redgear.core.api.item.ISimpleItem;
+import redgear.core.block.*;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
-import redgear.core.util.SimpleItem;
 import redgear.geocraft.api.MineManager;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.mines.MineVanilla;
-import cpw.mods.fml.common.LoaderState.ModState;
-import cpw.mods.fml.common.registry.GameRegistry;
+
+import java.lang.ref.WeakReference;
 
 public class StonePlugin implements IPlugin {
+
+
+    public StonePlugin(){
+        inst = new WeakReference(this);
+    }
+
+    public static StonePlugin getInst(){
+        if (inst != null) {
+            return inst.get();
+        }
+        else
+            return new StonePlugin();
+    }
+
+    private static WeakReference<StonePlugin> inst;
+
+    public ISimpleItem limeCobble;
+    public ISimpleItem limeClean;
+    public ISimpleItem limeCracked;
+    public ISimpleItem limeBrick;
+    public ISimpleItem limeCarved;
+    public ISimpleItem limePaver;
+    public ISimpleItem limeAntiPaver;
+
+    public ISimpleItem basaltCobble;
+    public ISimpleItem basaltClean;
+    public ISimpleItem basaltCracked;
+    public ISimpleItem basaltBrick;
+    public ISimpleItem basaltCarved;
+    public ISimpleItem basaltPaver;
+    public ISimpleItem basaltAntiPaver;
+
+    public ISimpleItem marbleCobble;
+    public ISimpleItem marbleClean;
+    public ISimpleItem marbleCracked;
+    public ISimpleItem marbleBrick;
+    public ISimpleItem marbleCarved ;
+    public ISimpleItem marblePaver;
+    public ISimpleItem marbleAntiPaver;
 
 	@Override
 	public String getName() {
@@ -37,13 +74,13 @@ public class StonePlugin implements IPlugin {
 	public void preInit(ModUtils mod) {
 		MetaBlock<SubBlock> limestone = new MetaBlock<SubBlock>(Material.rock, "Limestone");
 		limestone.setHardness(0.5F).setStepSound(Block.soundTypeStone).setCreativeTab(GeocraftConfig.geoTab);
-		SimpleItem limeCobble = limestone.addMetaBlock(new SubBlock("limeCobble"));
-		SimpleItem limeClean = limestone.addMetaBlock(new SubBlockDifferentDrop("limeClean", limeCobble.getStack()));
-		SimpleItem limeCracked = limestone.addMetaBlock(new SubBlock("limeCracked"));
-		SimpleItem limeBrick = limestone.addMetaBlock(new SubBlockDifferentDrop("limeBrick", limeCracked.getStack()));
-		SimpleItem limeCarved = limestone.addMetaBlock(new SubBlock("limeCarved"));
-		SimpleItem limePaver = limestone.addMetaBlock(new SubBlockConnected("limePaver"));
-		SimpleItem limeAntiPaver = limestone.addMetaBlock(new SubBlockAntiConnected("limeAntiPaver", "limePaver"));
+        limeCobble = limestone.addMetaBlock(new SubBlock("limeCobble"));
+        limeClean = limestone.addMetaBlock(new SubBlockDifferentDrop("limeClean", limeCobble.getStack()));
+        limeCracked = limestone.addMetaBlock(new SubBlock("limeCracked"));
+        limeBrick = limestone.addMetaBlock(new SubBlockDifferentDrop("limeBrick", limeCracked.getStack()));
+        limeCarved = limestone.addMetaBlock(new SubBlock("limeCarved"));
+        limePaver = limestone.addMetaBlock(new SubBlockConnected("limePaver"));
+        limeAntiPaver = limestone.addMetaBlock(new SubBlockAntiConnected("limeAntiPaver", "limePaver"));
 
 		GameRegistry.addRecipe(limeBrick.getStack(4), "XX", "XX", 'X', limeClean.getStack());
 		GameRegistry.addRecipe(limeCarved.getStack(4), " X ", "X X", " X ", 'X', limeBrick.getStack());
@@ -60,16 +97,23 @@ public class StonePlugin implements IPlugin {
 		mod.registerOre("stone", limeClean);
 		mod.registerOre("cobblestone", limeCobble);
 
+        mod.registerOre("blockLimestone", limeCobble);
+        mod.registerOre("blockLimestone", limeClean);
+        mod.registerOre("blockLimestone", limeCracked);
+        mod.registerOre("blockLimestone", limeBrick);
+        mod.registerOre("blockLimestone", limeCarved);
+        mod.registerOre("blockLimestone", limePaver);
+        mod.registerOre("blockLimestone", limeAntiPaver);
+
 		MetaBlock<SubBlock> basalt = new MetaBlock<SubBlock>(Material.rock, "Basalt");
 		basalt.setHardness(4.0F).setStepSound(Block.soundTypeStone).setCreativeTab(GeocraftConfig.geoTab);
-		SimpleItem basaltCobble = basalt.addMetaBlock(new SubBlock("basaltCobble"));
-		SimpleItem basaltClean = basalt.addMetaBlock(new SubBlockDifferentDrop("basaltClean", basaltCobble.getStack()));
-		SimpleItem basaltCracked = basalt.addMetaBlock(new SubBlock("basaltCracked"));
-		SimpleItem basaltBrick = basalt
-				.addMetaBlock(new SubBlockDifferentDrop("basaltBrick", basaltCracked.getStack()));
-		SimpleItem basaltCarved = basalt.addMetaBlock(new SubBlock("basaltCarved"));
-		SimpleItem basaltPaver = basalt.addMetaBlock(new SubBlockConnected("basaltPaver"));
-		SimpleItem basaltAntiPaver = basalt.addMetaBlock(new SubBlockAntiConnected("basaltAntiPaver", "basaltPaver"));
+	    basaltCobble = basalt.addMetaBlock(new SubBlock("basaltCobble"));
+		basaltClean = basalt.addMetaBlock(new SubBlockDifferentDrop("basaltClean", basaltCobble.getStack()));
+		basaltCracked = basalt.addMetaBlock(new SubBlock("basaltCracked"));
+		basaltBrick = basalt.addMetaBlock(new SubBlockDifferentDrop("basaltBrick", basaltCracked.getStack()));
+		basaltCarved = basalt.addMetaBlock(new SubBlock("basaltCarved"));
+		basaltPaver = basalt.addMetaBlock(new SubBlockConnected("basaltPaver"));
+		basaltAntiPaver = basalt.addMetaBlock(new SubBlockAntiConnected("basaltAntiPaver", "basaltPaver"));
 
 		GameRegistry.addRecipe(basaltBrick.getStack(4), "XX", "XX", 'X', basaltClean.getStack());
 		GameRegistry.addRecipe(basaltCarved.getStack(4), " X ", "X X", " X ", 'X', basaltBrick.getStack());
@@ -88,14 +132,13 @@ public class StonePlugin implements IPlugin {
 
 		MetaBlock<SubBlock> marble = new MetaBlock<SubBlock>(Material.rock, "Marble");
 		marble.setHardness(4.0F).setStepSound(Block.soundTypeStone).setCreativeTab(GeocraftConfig.geoTab);
-		SimpleItem marbleCobble = marble.addMetaBlock(new SubBlock("marbleCobble"));
-		SimpleItem marbleClean = marble.addMetaBlock(new SubBlockDifferentDrop("marbleClean", marbleCobble.getStack()));
-		SimpleItem marbleCracked = marble.addMetaBlock(new SubBlock("marbleCracked"));
-		SimpleItem marbleBrick = marble
-				.addMetaBlock(new SubBlockDifferentDrop("marbleBrick", marbleCracked.getStack()));
-		SimpleItem marbleCarved = marble.addMetaBlock(new SubBlock("marbleCarved"));
-		SimpleItem marblePaver = marble.addMetaBlock(new SubBlockConnected("marblePaver"));
-		SimpleItem marbleAntiPaver = marble.addMetaBlock(new SubBlockAntiConnected("marbleAntiPaver", "marblePaver"));
+		marbleCobble = marble.addMetaBlock(new SubBlock("marbleCobble"));
+		marbleClean = marble.addMetaBlock(new SubBlockDifferentDrop("marbleClean", marbleCobble.getStack()));
+		marbleCracked = marble.addMetaBlock(new SubBlock("marbleCracked"));
+		marbleBrick = marble.addMetaBlock(new SubBlockDifferentDrop("marbleBrick", marbleCracked.getStack()));
+		marbleCarved = marble.addMetaBlock(new SubBlock("marbleCarved"));
+		marblePaver = marble.addMetaBlock(new SubBlockConnected("marblePaver"));
+		marbleAntiPaver = marble.addMetaBlock(new SubBlockAntiConnected("marbleAntiPaver", "marblePaver"));
 
 		GameRegistry.addRecipe(marbleBrick.getStack(4), "XX", "XX", 'X', marbleClean.getStack());
 		GameRegistry.addRecipe(marbleCarved.getStack(4), " X ", "X X", " X ", 'X', marbleBrick.getStack());
@@ -132,5 +175,4 @@ public class StonePlugin implements IPlugin {
 	public void postInit(ModUtils mod) {
 
 	}
-
 }

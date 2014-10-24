@@ -6,12 +6,7 @@ import redgear.core.util.SimpleItem;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
 import redgear.geocraft.mines.MineVanilla;
-import redgear.geocraft.plugins.ComplexOresPlugin;
-import redgear.geocraft.plugins.ForestryPlugin;
-import redgear.geocraft.plugins.NetherOresPlugin;
-import redgear.geocraft.plugins.StonePlugin;
-import redgear.geocraft.plugins.ThaumcraftPlugin;
-import redgear.geocraft.plugins.ThermalExpansionPlugin;
+import redgear.geocraft.plugins.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -31,6 +26,8 @@ public class Geocraft extends ModUtils {
 		addPlugin(new GeocraftConfig());
 		addPlugin(new StonePlugin());
 		addPlugin(new ComplexOresPlugin());
+        addPlugin(new MultiPartPlugin());
+        addPlugin(new AE2Plugin());
 
 		addPlugin(new ThermalExpansionPlugin());
 		addPlugin(new ForestryPlugin());
