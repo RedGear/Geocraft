@@ -10,6 +10,8 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 
+import redgear.core.api.item.ISimpleItem;
+import redgear.core.simpleitem.SimpleItemTypeAdapter;
 import redgear.geocraft.api.mine.Mine;
 import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.generation.MineRegistry;
@@ -22,7 +24,9 @@ public class ConfigHandler {
 	public File base;
 
 	public static final ConfigHandler inst = new ConfigHandler();
-	Gson gson = new GsonBuilder().registerTypeAdapter(Mine.class, new MineTypeAdapter()).setPrettyPrinting().serializeNulls().create();
+	Gson gson = new GsonBuilder().registerTypeAdapter(Mine.class, new MineTypeAdapter())
+			.registerTypeAdapter(ISimpleItem.class, new SimpleItemTypeAdapter())
+			.setPrettyPrinting().create();
 
 	public void saveJson(Mine mine) {
 		Writer w = null;

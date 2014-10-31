@@ -26,13 +26,15 @@ public class Geocraft extends ModUtils {
 		addPlugin(new GeocraftConfig());
 		addPlugin(new StonePlugin());
 		addPlugin(new ComplexOresPlugin());
-        addPlugin(new MultiPartPlugin());
-        addPlugin(new AE2Plugin());
+        
 
 		addPlugin(new ThermalExpansionPlugin());
 		addPlugin(new ForestryPlugin());
 		addPlugin(new ThaumcraftPlugin());
 		addPlugin(new NetherOresPlugin());
+		addPlugin(new MultiPartPlugin());
+        addPlugin(new AE2Plugin());
+		addPlugin(new TinkersSteelworksPlugin());
 	}
 
 	@Override

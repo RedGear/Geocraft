@@ -56,8 +56,8 @@ public class GeocraftConfig implements IPlugin{
 		}
 		
 	};
-	public static boolean hasSilver = false;
-	public static boolean hasLead = false;
+	//public static boolean hasSilver = false;
+	//public static boolean hasLead = false;
 	
 
 	public static boolean cylinderMode = true; //Forces all unknown ores to spawn in Cylinder shaped mines. If false unknonwn ores will be generated like vanilla only ignoring height.

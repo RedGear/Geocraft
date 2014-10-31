@@ -1,10 +1,7 @@
 package redgear.geocraft.generation;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -12,6 +9,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import redgear.core.api.item.ISimpleItem;
+import redgear.core.collections.EquivalencySet;
+import redgear.core.collections.EquivalentSimpleItem;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
 import redgear.core.util.StringHelper;
@@ -28,8 +27,8 @@ import redgear.geocraft.mines.MineVanilla;
 public class MineRegistry implements IMineRegistry {
 	public Set<Mine> mines = Collections.newSetFromMap(new ConcurrentHashMap<Mine, Boolean>());
 	public Set<NewOre> newOres = new HashSet<NewOre>();
-	public List<ISimpleItem> ignoreOres = new LinkedList<ISimpleItem>();
-	public List<ISimpleItem> normalOres = new LinkedList<ISimpleItem>();
+	public Set<ISimpleItem> ignoreOres = new EquivalencySet<ISimpleItem>(EquivalentSimpleItem.inst);
+	public Set<ISimpleItem> normalOres = new EquivalencySet<ISimpleItem>(EquivalentSimpleItem.inst);
 
 	public final float volumeModifier; //more or less ore in a mine
 	public final float rarityModifier; //rarity of mines
@@ -63,9 +62,9 @@ public class MineRegistry implements IMineRegistry {
 	public boolean checkForNew(Block block, int blockMeta, int numberOfBlocks, Block target) {
 		ISimpleItem item = new SimpleItem(block, blockMeta);
 
-		if (listCheck(item, ignoreOres))
+		if (ignoreOres.contains(item))
 			return false;
-		else if (listCheck(item, normalOres))
+		else if (normalOres.contains(item))
 			return true;
 		else {
 			ItemStack stack = item.getStack();
@@ -129,22 +128,6 @@ public class MineRegistry implements IMineRegistry {
 			this.numberOfOres += numberOfOres;
 			numberOfVeins++;
 		}
-
-		@Override
-		public boolean equals(Object other) {
-			if (other instanceof NewOre)
-				return equals((NewOre) other);
-			return block.equals(other);
-		}
-
-		public boolean equals(NewOre other) {
-			return block.equals(other.block);
-		}
-
-		@Override
-		public int hashCode() {
-			return block.hashCode();
-		}
 	}
 
 	@Override
@@ -155,14 +138,6 @@ public class MineRegistry implements IMineRegistry {
 	@Override
 	public float rarityModifier() {
 		return rarityModifier;
-	}
-	
-	public boolean listCheck(ISimpleItem item, Collection<ISimpleItem> list){
-		for(ISimpleItem check : list)
-			if(check.isItemEqual(item, false))
-				return true;
-		
-		return false;
 	}
 
 	public void load() {

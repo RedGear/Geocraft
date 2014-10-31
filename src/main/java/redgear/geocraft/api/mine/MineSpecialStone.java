@@ -11,7 +11,7 @@ import redgear.geocraft.api.MineManager;
 
 public abstract class MineSpecialStone extends MineSingleOre {
 
-	protected transient ISimpleItem bearer;
+	protected ISimpleItem bearer;
 
 	protected String rockOreName;
 	protected String rockName;
@@ -24,14 +24,14 @@ public abstract class MineSpecialStone extends MineSingleOre {
 		super(name, block, target);
 		this.bearer = bearer;
 		
-		if (bearer instanceof SimpleItem)
-			rockName = bearer.getName();
-		else if (bearer instanceof SimpleOre) {
-			rockOreName = bearer.getName();
-			ISimpleItem t = ((SimpleOre) bearer).getTarget();
-			if (t != null)
-				rockName = t.getName();
-		}
+//		if (bearer instanceof SimpleItem)
+//			rockName = bearer.getName();
+//		else if (bearer instanceof SimpleOre) {
+//			rockOreName = bearer.getName();
+//			ISimpleItem t = ((SimpleOre) bearer).getTarget();
+//			if (t != null)
+//				rockName = t.getName();
+//		}
 	}
 
 	protected void gen(WorldLocation loc, Random rand, int ratio) {
@@ -44,7 +44,7 @@ public abstract class MineSpecialStone extends MineSingleOre {
 	@Override
 	public void init() {
 		if(!init){
-		if (ItemRegUtil.isInOreDict(rockOreName))
+		if (bearer != null && ItemRegUtil.isInOreDict(rockOreName))
 			bearer = new SimpleOre(rockOreName, ItemRegUtil.findItem(rockName));
 		else {
 			bearer = ItemRegUtil.findItem(rockName);

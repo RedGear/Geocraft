@@ -3,14 +3,13 @@ package redgear.geocraft.api.mine;
 import net.minecraft.item.ItemStack;
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.util.ItemRegUtil;
-import redgear.core.util.SimpleItem;
 import redgear.core.util.SimpleOre;
 import redgear.geocraft.api.MineManager;
 
 public abstract class MineSingleOre extends Mine {
 
-	protected transient ISimpleItem block;
-	protected transient ISimpleItem target;
+	protected ISimpleItem block;
+	protected ISimpleItem target;
 	protected transient boolean init;
 
 	public String blockOreName;
@@ -32,7 +31,7 @@ public abstract class MineSingleOre extends Mine {
 	@Override
 	public void init() {
 		if (!init) {
-			if (ItemRegUtil.isInOreDict(blockOreName))
+			if (block == null && ItemRegUtil.isInOreDict(blockOreName))
 				block = new SimpleOre(blockOreName, ItemRegUtil.findItem(blockName));
 			else {
 				block = ItemRegUtil.findItem(blockName);
@@ -45,7 +44,7 @@ public abstract class MineSingleOre extends Mine {
 				}
 			}
 
-			if (ItemRegUtil.isInOreDict(targetOreName))
+			if (target == null && ItemRegUtil.isInOreDict(targetOreName))
 				target = new SimpleOre(targetOreName, ItemRegUtil.findItem(targetName));
 			else {
 				target = ItemRegUtil.findItem(targetName);
@@ -64,7 +63,7 @@ public abstract class MineSingleOre extends Mine {
 
 	@Override
 	public void preSave() {
-		if (block instanceof SimpleItem)
+		/*if (block instanceof SimpleItem)
 			blockName = block.getName();
 		else if (block instanceof SimpleOre) {
 			blockOreName = block.getName();
@@ -80,7 +79,14 @@ public abstract class MineSingleOre extends Mine {
 			ISimpleItem t = ((SimpleOre) target).getTarget();
 			if (t != null)
 				targetName = t.getName();
-		}
+		}*/
+		
+		
+		
+		blockOreName = null;
+		blockName = null;
+		targetOreName = null;
+		targetName = null;
 	}
 
 	@Override

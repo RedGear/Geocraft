@@ -11,7 +11,6 @@ import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
 import redgear.geocraft.mines.MineCylinderComplex;
-import redgear.geocraft.mines.MineThaumInfusedStone;
 import cpw.mods.fml.common.LoaderState.ModState;
 
 public class ThaumcraftPlugin implements IPlugin {
@@ -61,7 +60,7 @@ public class ThaumcraftPlugin implements IPlugin {
 					SimpleItem entropy = new SimpleItem(block, 6);
 					SimpleItem amber = new SimpleItem(block, 7);
 					
-					reg.registerMine(new MineThaumInfusedStone(cinnibar));
+					
 
 
 					reg.registerTrace("CinnibarTrace", cinnibar, stone, 4);
@@ -77,7 +76,12 @@ public class ThaumcraftPlugin implements IPlugin {
 
 					reg.registerMine(new MineCylinderComplex("Amber", amber, stone, 4, 8, 4, false));
 					reg.registerMine(new MineCylinderComplex("Cinnibar", cinnibar, stone, 4, 8, 4, false));
-					
+					reg.registerMine(new MineCylinderComplex("AirInfusedStone", air, stone, 4, 16, 6, false));
+					reg.registerMine(new MineCylinderComplex("FireInfusedStone", fire, stone, 4, 16, 6, false));
+					reg.registerMine(new MineCylinderComplex("WaterInfusedStone", water, stone, 4, 16, 6, false));
+					reg.registerMine(new MineCylinderComplex("EarthInfusedStone", earth, stone, 4, 16, 6, false));
+					reg.registerMine(new MineCylinderComplex("OrderInfusedStone", order, stone, 4, 16, 6, false));
+					reg.registerMine(new MineCylinderComplex("EntropyInfusedStone", entropy, stone, 4, 16, 6, false));
 					
 				}
 				
