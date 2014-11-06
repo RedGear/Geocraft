@@ -1,0 +1,51 @@
+#
+itemGroup.Geocraft=Geocraft
+#
+# Drops
+item.Drops.nuggetDiamond.name=Pepita de Diamante
+item.Drops.nuggetCoal.name=Pepita de Carvão
+item.Drops.terraQuartz.name=Quartzo da Terra
+item.Drops.goldLump.name=Torrão de Ouro
+item.Drops.ironLump.name=Torrão de Ferro
+item.Drops.tinLump.name=Torrão de Estanho
+item.Drops.copperLump.name=Torrão de Cobre
+item.Drops.leadLump.name=Torrão de Chumbo
+item.Drops.silverLump.name=Torrão de Prata
+#
+# Minérios
+tile.Ore.kimberlite.name=Kimberlito
+tile.Ore.kimberliteDiamond.name=Kimberlito com Diamante
+tile.Ore.coalMid.name=Minério de Carvão
+tile.Ore.coalRich.name=Minério de Carvão Enriquecido
+tile.Ore.terraQuartzOre.name=Quartzo da Terra
+tile.Ore.goldOre.name=Minério de Cristais de Ouro
+tile.Ore.ironOre.name=Minério de Hematita
+tile.Ore.copperOre.name=Minério de Calcopirita
+tile.Ore.tinOre.name=Minério de Cassiterita
+tile.Ore.galenaOre.name=Minério de Galena
+#
+# Blocos Decorativos
+tile.Limestone.limeCobble.name=Pedra de Calcário
+tile.Limestone.limeClean.name=Calcário
+tile.Limestone.limeCracked.name=Tijolo de Calcário Quebrado
+tile.Limestone.limeBrick.name=Tijolo de Calcário
+tile.Limestone.limeCarved.name=Tijolo de Calcário Entalhado
+tile.Limestone.limePaver.name=Piso de Calcário
+tile.Limestone.limeAntiPaver.name=Ante-piso de Calcário
+#
+tile.Basalt.basaltCobble.name=Pedra de Basalto
+tile.Basalt.basaltClean.name=Basalto
+tile.Basalt.basaltCracked.name=Tijolo de Basalto Quebrado
+tile.Basalt.basaltBrick.name=Tijolo de Basalto
+tile.Basalt.basaltCarved.name=Tijolo de Basalto Entalhado
+tile.Basalt.basaltPaver.name=Piso de Basalto
+tile.Basalt.basaltAntiPaver.name=Ante-piso  de Basalto
+#
+tile.Marble.marbleCobble.name=Pedra de Mármore
+tile.Marble.marbleClean.name=Mármore
+tile.Marble.marbleCracked.name=Tijolo de Mármore Quebrado
+tile.Marble.marbleBrick.name=Tijolo de Mármore
+tile.Marble.marbleCarved.name=Tijolo de Mármore Entalhado
+tile.Marble.marblePaver.name=Piso de Mármore
+tile.Marble.marbleAntiPaver.name=Ante-piso de Mármore
+#
