@@ -6,7 +6,17 @@ import redgear.core.util.SimpleItem;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
 import redgear.geocraft.mines.MineVanilla;
-import redgear.geocraft.plugins.*;
+import redgear.geocraft.plugins.AE2Plugin;
+import redgear.geocraft.plugins.ChiselPlugin;
+import redgear.geocraft.plugins.ComplexOresPlugin;
+import redgear.geocraft.plugins.ForestryPlugin;
+import redgear.geocraft.plugins.MultiPartPlugin;
+import redgear.geocraft.plugins.NetherOresPlugin;
+import redgear.geocraft.plugins.ProjectRedPlugin;
+import redgear.geocraft.plugins.StonePlugin;
+import redgear.geocraft.plugins.ThaumcraftPlugin;
+import redgear.geocraft.plugins.ThermalExpansionPlugin;
+import redgear.geocraft.plugins.TinkersSteelworksPlugin;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -35,6 +45,9 @@ public class Geocraft extends ModUtils {
 		addPlugin(new MultiPartPlugin());
         addPlugin(new AE2Plugin());
 		addPlugin(new TinkersSteelworksPlugin());
+		addPlugin(new ProjectRedPlugin());
+		addPlugin(new ChiselPlugin());
+		
 	}
 
 	@Override

@@ -1,24 +1,28 @@
 package redgear.geocraft.plugins;
 
-import cpw.mods.fml.common.LoaderState.ModState;
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.lang.ref.WeakReference;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import redgear.core.api.item.ISimpleItem;
-import redgear.core.block.*;
+import redgear.core.block.MetaBlock;
+import redgear.core.block.SubBlock;
+import redgear.core.block.SubBlockAntiConnected;
+import redgear.core.block.SubBlockConnected;
+import redgear.core.block.SubBlockDifferentDrop;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
 import redgear.geocraft.api.MineManager;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.mines.MineVanilla;
-
-import java.lang.ref.WeakReference;
+import cpw.mods.fml.common.LoaderState.ModState;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class StonePlugin implements IPlugin {
 
 
     public StonePlugin(){
-        inst = new WeakReference(this);
+        inst = new WeakReference<StonePlugin>(this);
     }
 
     public static StonePlugin getInst(){
@@ -74,6 +78,7 @@ public class StonePlugin implements IPlugin {
 	public void preInit(ModUtils mod) {
 		MetaBlock<SubBlock> limestone = new MetaBlock<SubBlock>(Material.rock, "Limestone");
 		limestone.setHardness(0.5F).setStepSound(Block.soundTypeStone).setCreativeTab(GeocraftConfig.geoTab);
+		GeocraftConfig.limestoneBlock = limestone;
         limeCobble = limestone.addMetaBlock(new SubBlock("limeCobble"));
         limeClean = limestone.addMetaBlock(new SubBlockDifferentDrop("limeClean", limeCobble.getStack()));
         limeCracked = limestone.addMetaBlock(new SubBlock("limeCracked"));
@@ -107,6 +112,7 @@ public class StonePlugin implements IPlugin {
 
 		MetaBlock<SubBlock> basalt = new MetaBlock<SubBlock>(Material.rock, "Basalt");
 		basalt.setHardness(4.0F).setStepSound(Block.soundTypeStone).setCreativeTab(GeocraftConfig.geoTab);
+		GeocraftConfig.basaltBlock = basalt;
 	    basaltCobble = basalt.addMetaBlock(new SubBlock("basaltCobble"));
 		basaltClean = basalt.addMetaBlock(new SubBlockDifferentDrop("basaltClean", basaltCobble.getStack()));
 		basaltCracked = basalt.addMetaBlock(new SubBlock("basaltCracked"));
@@ -129,9 +135,18 @@ public class StonePlugin implements IPlugin {
 
 		mod.registerOre("stone", basaltClean);
 		mod.registerOre("cobblestone", basaltCobble);
+		
+		mod.registerOre("blockBasalt", basaltCobble);
+        mod.registerOre("blockBasalt", basaltClean);
+        mod.registerOre("blockBasalt", basaltCracked);
+        mod.registerOre("blockBasalt", basaltBrick);
+        mod.registerOre("blockBasalt", basaltCarved);
+        mod.registerOre("blockBasalt", basaltPaver);
+        mod.registerOre("blockBasalt", basaltAntiPaver);
 
 		MetaBlock<SubBlock> marble = new MetaBlock<SubBlock>(Material.rock, "Marble");
 		marble.setHardness(4.0F).setStepSound(Block.soundTypeStone).setCreativeTab(GeocraftConfig.geoTab);
+		GeocraftConfig.marbleBlock = marble;
 		marbleCobble = marble.addMetaBlock(new SubBlock("marbleCobble"));
 		marbleClean = marble.addMetaBlock(new SubBlockDifferentDrop("marbleClean", marbleCobble.getStack()));
 		marbleCracked = marble.addMetaBlock(new SubBlock("marbleCracked"));
@@ -154,6 +169,14 @@ public class StonePlugin implements IPlugin {
 
 		mod.registerOre("stone", marbleClean);
 		mod.registerOre("cobblestone", marbleCobble);
+		
+		mod.registerOre("blockMarble", marbleCobble);
+        mod.registerOre("blockMarble", marbleClean);
+        mod.registerOre("blockMarble", marbleCracked);
+        mod.registerOre("blockMarble", marbleBrick);
+        mod.registerOre("blockMarble", marbleCarved);
+        mod.registerOre("blockMarble", marblePaver);
+        mod.registerOre("blockMarble", marbleAntiPaver);
 
 		GeocraftConfig.marble = marbleClean;
 

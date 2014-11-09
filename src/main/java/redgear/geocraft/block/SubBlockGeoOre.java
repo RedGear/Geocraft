@@ -11,19 +11,19 @@ import redgear.core.world.WorldLocation;
 
 public class SubBlockGeoOre extends SubBlock implements IDifferentDrop{
 	
-	private List<WeightedItem> items;
+	private List<BlockDrop> items;
 	
 	public SubBlockGeoOre(String name) {
 		super(name);
-		items = new ArrayList<WeightedItem>();
+		items = new ArrayList<BlockDrop>();
 	}
 
-	public SubBlockGeoOre(String name, WeightedItem... items) {
+	public SubBlockGeoOre(String name, BlockDrop... items) {
 		this(name);
 		this.items.addAll(Arrays.asList(items));
 	}
 	
-	public void addItem(WeightedItem item){
+	public void addItem(BlockDrop item){
 		items.add(item);
 	}
 
@@ -32,7 +32,7 @@ public class SubBlockGeoOre extends SubBlock implements IDifferentDrop{
 		ArrayList<ItemStack> ans = new ArrayList<ItemStack>(items.size());
 		
 		
-		for(WeightedItem item : items){
+		for(BlockDrop item : items){
 			ItemStack stack = item.getStack(fortune, loc.world.rand);
 			if(stack != null && stack.stackSize > 0)
 				ans.add(stack);

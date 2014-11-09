@@ -1,7 +1,5 @@
 package redgear.geocraft.plugins;
 
-import cpw.mods.fml.common.LoaderState.ModState;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -11,6 +9,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.block.MetaBlock;
 import redgear.core.block.SubBlock;
+import redgear.core.block.SubBlockDifferentDrop;
 import redgear.core.item.MetaItem;
 import redgear.core.item.SubItem;
 import redgear.core.mod.IPlugin;
@@ -20,12 +19,20 @@ import redgear.core.util.ItemRegUtil;
 import redgear.core.util.ItemStackUtil;
 import redgear.core.util.SimpleItem;
 import redgear.core.util.SimpleOre;
+import redgear.geocraft.block.RareDrop;
+import redgear.geocraft.block.SingleDrop;
 import redgear.geocraft.block.SubBlockGeoOre;
 import redgear.geocraft.block.WeightedItem;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
-import redgear.geocraft.mines.*;
+import redgear.geocraft.mines.MineCoal;
+import redgear.geocraft.mines.MineCylinderComplex;
+import redgear.geocraft.mines.MineDiamond;
+import redgear.geocraft.mines.MineGold;
+import redgear.geocraft.mines.MineTrace;
+import cpw.mods.fml.common.LoaderState.ModState;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ComplexOresPlugin implements IPlugin {
 
@@ -87,42 +94,43 @@ public class ComplexOresPlugin implements IPlugin {
 		MetaBlock<SubBlock> oreBlock = new MetaBlock<SubBlock>(Material.rock, "Ore");
 		oreBlock.setCreativeTab(GeocraftConfig.geoTab);
 		oreBlock.setHardness(3f).setStepSound(Block.soundTypeStone);
-		GeocraftConfig.kimberlite = oreBlock.addMetaBlock(new SubBlock("kimberlite"));
-		GeocraftConfig.diamondOre = oreBlock.addMetaBlock(new SubBlockGeoOre("kimberliteDiamond", new WeightedItem(
-				diamond, 1, 1, 1), new WeightedItem(diamondNugget, 0, 2, 2)));
-		//mod.registerOre("oreDiamond", GeocraftConfig.diamondOre);
+		GeocraftConfig.kimberlite = oreBlock.addMetaBlock(new SubBlockDifferentDrop("kimberlite", new SimpleItem(Blocks.gravel).getStack()));
+		GeocraftConfig.diamondOre = oreBlock.addMetaBlock(new SubBlockGeoOre("kimberliteDiamond", new SingleDrop(new SimpleItem(Blocks.gravel), 1), new WeightedItem(
+				diamond, 1, 1, 1), new RareDrop(diamondNugget, 3, 6)));
+		mod.registerOre("denseoreDiamond", GeocraftConfig.diamondOre);
 
 		GeocraftConfig.coalOre = oreBlock.addMetaBlock(new SubBlockGeoOre("coalMid", new WeightedItem(coal, 1, 2, 1),
-				new WeightedItem(coalNugget, 0, 4, 2)));
-		mod.registerOre("oreCoal", GeocraftConfig.coalOre);
+				new RareDrop(coalNugget, 4, 3)));
+		mod.registerOre("denseoreCoal", GeocraftConfig.coalOre);
 
 		GeocraftConfig.coalDenseOre = oreBlock.addMetaBlock(new SubBlockGeoOre("coalRich", new WeightedItem(coal, 2, 6,
-				2), new WeightedItem(coalNugget, 0, 6, 4)));
-		//mod.registerOre("oreCoal", GeocraftConfig.coalDenseOre);
+				2), new RareDrop(coalNugget, 6, 4)));
+		mod.registerOre("denseoreCoal", GeocraftConfig.coalDenseOre);
 
 		GeocraftConfig.terraQuartzOre = oreBlock.addMetaBlock(new SubBlockGeoOre("terraQuartzOre", new WeightedItem(
-                GeocraftConfig.terraQuartz, 2, 4, 1)));
+                GeocraftConfig.terraQuartz, 2, 4, 1), new RareDrop(goldLump, 1, 10)));
+		mod.registerOre("denseoreQuartz", GeocraftConfig.terraQuartz);
+		
 		GeocraftConfig.goldOre = oreBlock.addMetaBlock(new SubBlockGeoOre("goldOre", new WeightedItem(GeocraftConfig.terraQuartz, 1,
-				4, 1), new WeightedItem(goldLump, 1, 3, 1), new WeightedItem(new SimpleItem(Items.gold_nugget, 0), 0,
-				1, 1)));
-		//mod.registerOre("oreGold", GeocraftConfig.goldOre);
+				4, 1), new WeightedItem(goldLump, 1, 3, 1), new RareDrop(new SimpleItem(Items.gold_nugget),
+				2, 9), new RareDrop(GeocraftConfig.silverLump, 1, 9)));
+		mod.registerOre("denseoreGold", GeocraftConfig.goldOre);
 
 		ironOreBlock = new SubBlockGeoOre("ironOre", new WeightedItem(ironLump, 1, 2, 1));
 		ironOre = oreBlock.addMetaBlock(ironOreBlock);
-		//mod.registerOre("oreIron", ironOre);
+		mod.registerOre("denseoreIron", ironOre);
 
-		copperOreBlock = new SubBlockGeoOre("copperOre", new WeightedItem(GeocraftConfig.copperLump, 1, 2, 1));
+		copperOreBlock = new SubBlockGeoOre("copperOre", new WeightedItem(GeocraftConfig.copperLump, 1, 2, 1), new RareDrop(new SimpleItem(Items.gold_nugget), 1, 30));
 		GeocraftConfig.copperOre = oreBlock.addMetaBlock(copperOreBlock);
-		//mod.registerOre("oreCopper", GeocraftConfig.copperOre);
+		mod.registerOre("denseoreCopper", GeocraftConfig.copperOre);
 
-		tinOreBlock = new SubBlockGeoOre("tinOre", new WeightedItem(GeocraftConfig.tinLump, 1, 2, 1));
+		tinOreBlock = new SubBlockGeoOre("tinOre", new WeightedItem(GeocraftConfig.tinLump, 1, 2, 1), new RareDrop(ironLump, 1, 15));
 		GeocraftConfig.tinOre = oreBlock.addMetaBlock(tinOreBlock);
-		//mod.registerOre("oreTin", GeocraftConfig.tinOre);
+		mod.registerOre("denseoreTin", GeocraftConfig.tinOre);
 
 		GeocraftConfig.galenaOreBlock = new SubBlockGeoOre("galenaOre");
 		GeocraftConfig.galenaOre = oreBlock.addMetaBlock(GeocraftConfig.galenaOreBlock);
-		//mod.registerOre("oreSilver", GeocraftConfig.galenaOre);
-		//mod.registerOre("oreLead", GeocraftConfig.galenaOre);
+		mod.registerOre("oreGalena", GeocraftConfig.galenaOre);
 
 		final String pick = "pickaxe";
 		final String cat = "HarvestLevel";
@@ -232,7 +240,7 @@ public class ComplexOresPlugin implements IPlugin {
 
 		ItemStack ironNugget = ItemStackUtil.getOreWithName("nuggetIron", 1);
 		if (ironNugget != null)
-			ironOreBlock.addItem(new WeightedItem(new SimpleItem(ironNugget), 0, 1, 1));
+			ironOreBlock.addItem(new RareDrop(new SimpleItem(ironNugget), 1, 20));
 
 		ItemStack copperIngot = ItemStackUtil.getOreWithName("ingotCopper", 1);
 		if (copperIngot != null)
@@ -240,7 +248,7 @@ public class ComplexOresPlugin implements IPlugin {
 
 		ItemStack copperNugget = ItemStackUtil.getOreWithName("nuggetCopper", 1);
 		if (copperNugget != null)
-			copperOreBlock.addItem(new WeightedItem(new SimpleItem(copperNugget), 0, 1, 1));
+			copperOreBlock.addItem(new RareDrop(new SimpleItem(copperNugget), 1, 10));
 
 		ItemStack tinIngot = ItemStackUtil.getOreWithName("ingotTin", 1);
 		if (tinIngot != null)
@@ -248,7 +256,7 @@ public class ComplexOresPlugin implements IPlugin {
 
 		ItemStack tinNugget = ItemStackUtil.getOreWithName("nuggetTin", 1);
 		if (tinNugget != null)
-			tinOreBlock.addItem(new WeightedItem(new SimpleItem(tinNugget), 0, 1, 1));
+			tinOreBlock.addItem(new RareDrop(new SimpleItem(tinNugget), 1, 10));
 
 		ItemStack ingotSilver = ItemStackUtil.getOreWithName("ingotSilver", 1);
 		if (ingotSilver != null) {
@@ -257,7 +265,7 @@ public class ComplexOresPlugin implements IPlugin {
 		}
 		ItemStack nuggetSilver = ItemStackUtil.getOreWithName("nuggetSilver", 1);
 		if (nuggetSilver != null)
-			GeocraftConfig.galenaOreBlock.addItem(new WeightedItem(new SimpleItem(nuggetSilver), 0, 1, 1));
+			GeocraftConfig.galenaOreBlock.addItem(new RareDrop(new SimpleItem(nuggetSilver), 1, 8));
 
 		ItemStack ingotLead = ItemStackUtil.getOreWithName("ingotLead", 1);
 		if (ingotLead != null) {
@@ -266,7 +274,7 @@ public class ComplexOresPlugin implements IPlugin {
 		}
 		ItemStack nuggetLead = ItemStackUtil.getOreWithName("nuggetLead", 1);
 		if (nuggetLead != null)
-			GeocraftConfig.galenaOreBlock.addItem(new WeightedItem(new SimpleItem(nuggetLead), 0, 1, 1));
+			GeocraftConfig.galenaOreBlock.addItem(new RareDrop(new SimpleItem(nuggetLead), 1, 6));
 	}
 
 }

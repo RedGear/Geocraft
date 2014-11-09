@@ -7,6 +7,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import redgear.core.api.item.ISimpleItem;
+import redgear.core.block.MetaBlock;
+import redgear.core.block.SubBlock;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
 import redgear.core.util.SimpleItem;
@@ -41,6 +43,9 @@ public class GeocraftConfig implements IPlugin{
 	
 	public static ISimpleItem marble;
 
+	public static MetaBlock<SubBlock> limestoneBlock;
+	public static MetaBlock<SubBlock> basaltBlock;
+	public static MetaBlock<SubBlock> marbleBlock;
 
 	
 	public static CreativeTabs geoTab = new CreativeTabs("Geocraft"){

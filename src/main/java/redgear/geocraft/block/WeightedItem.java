@@ -5,7 +5,7 @@ import java.util.Random;
 import net.minecraft.item.ItemStack;
 import redgear.core.api.item.ISimpleItem;
 
-public class WeightedItem {
+public class WeightedItem implements BlockDrop{
 
 	final ISimpleItem item;
 	final int min;
