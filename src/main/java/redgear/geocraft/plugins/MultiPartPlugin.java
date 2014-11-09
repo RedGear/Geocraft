@@ -7,6 +7,7 @@ import cpw.mods.fml.common.LoaderState.ModState;
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
+import redgear.geocraft.core.Geocraft;
 
 /**
  * @author Blackhole
@@ -35,7 +36,7 @@ public class MultiPartPlugin implements IPlugin {
 
     @Override
     public void Init(ModUtils modUtils) {
-        StonePlugin stone = StonePlugin.getInst();
+        StonePlugin stone = Geocraft.inst.stonePlugin;
 
         register(stone.limeCobble);
         register(stone.limeClean);
@@ -57,6 +58,16 @@ public class MultiPartPlugin implements IPlugin {
         register(stone.marbleBrick);
         register(stone.marbleCarved);
         register(stone.marblePaver);
+        
+        OnePointEightPlugin oneEight = Geocraft.inst.oneEightPlugin;
+        
+        
+        register(oneEight.graniteRough);
+        register(oneEight.granitePolished);
+        register(oneEight.doriteRough);
+        register(oneEight.doritePolished);
+        register(oneEight.andesiteRough);
+        register(oneEight.andesitePolished);
     }
 
     @Override

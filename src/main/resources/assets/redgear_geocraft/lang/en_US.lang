@@ -48,3 +48,10 @@ tile.Marble.marbleBrick.name=Marble Bricks
 tile.Marble.marbleCarved.name=Carved Marble Bricks
 tile.Marble.marblePaver.name=Marble Pavingstone
 tile.Marble.marbleAntiPaver.name=Marble Anti-Pavingstone
+
+tile.OnePointEightStone.graniteRough.name=Granite
+tile.OnePointEightStone.granitePolished.name=Polished Granite
+tile.OnePointEightStone.doriteRough.name=Dorite
+tile.OnePointEightStone.doritePolished.name=Polished Dorite
+tile.OnePointEightStone.andesiteRough.name=Andesite
+tile.OnePointEightStone.andesitePolished.name=Polished Andesite

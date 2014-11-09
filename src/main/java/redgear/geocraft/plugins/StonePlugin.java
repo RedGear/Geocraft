@@ -1,7 +1,5 @@
 package redgear.geocraft.plugins;
 
-import java.lang.ref.WeakReference;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import redgear.core.api.item.ISimpleItem;
@@ -19,21 +17,6 @@ import cpw.mods.fml.common.LoaderState.ModState;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class StonePlugin implements IPlugin {
-
-
-    public StonePlugin(){
-        inst = new WeakReference<StonePlugin>(this);
-    }
-
-    public static StonePlugin getInst(){
-        if (inst != null) {
-            return inst.get();
-        }
-        else
-            return new StonePlugin();
-    }
-
-    private static WeakReference<StonePlugin> inst;
 
     public ISimpleItem limeCobble;
     public ISimpleItem limeClean;
