@@ -12,6 +12,7 @@ import redgear.geocraft.plugins.ComplexOresPlugin;
 import redgear.geocraft.plugins.ForestryPlugin;
 import redgear.geocraft.plugins.MultiPartPlugin;
 import redgear.geocraft.plugins.NetherOresPlugin;
+import redgear.geocraft.plugins.OnePointEightPlugin;
 import redgear.geocraft.plugins.ProjectRedPlugin;
 import redgear.geocraft.plugins.StonePlugin;
 import redgear.geocraft.plugins.ThaumcraftPlugin;
@@ -28,13 +29,17 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 public class Geocraft extends ModUtils {
 
 	@Instance("redgear_geocraft")
-	public static ModUtils inst;
+	public static Geocraft inst;
 
 	public static boolean init = false;
+	
+	public StonePlugin stonePlugin = new StonePlugin();
+	public OnePointEightPlugin oneEightPlugin = new OnePointEightPlugin();
 
 	public Geocraft() {
 		addPlugin(new GeocraftConfig());
-		addPlugin(new StonePlugin());
+		addPlugin(stonePlugin);
+		addPlugin(oneEightPlugin);
 		addPlugin(new ComplexOresPlugin());
         
 
@@ -46,7 +51,7 @@ public class Geocraft extends ModUtils {
         addPlugin(new AE2Plugin());
 		addPlugin(new TinkersSteelworksPlugin());
 		addPlugin(new ProjectRedPlugin());
-		addPlugin(new ChiselPlugin());
+		addPlugin(new ChiselPlugin());	
 		
 	}
 
