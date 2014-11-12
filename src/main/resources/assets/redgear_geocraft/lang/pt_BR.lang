@@ -1,9 +1,9 @@
-#
 itemGroup.Geocraft=Geocraft
-#
+
 # Drops
 item.Drops.nuggetDiamond.name=Pepita de Diamante
 item.Drops.nuggetCoal.name=Pepita de Carvão
+#
 item.Drops.terraQuartz.name=Quartzo da Terra
 item.Drops.goldLump.name=Torrão de Ouro
 item.Drops.ironLump.name=Torrão de Ferro
@@ -11,7 +11,7 @@ item.Drops.tinLump.name=Torrão de Estanho
 item.Drops.copperLump.name=Torrão de Cobre
 item.Drops.leadLump.name=Torrão de Chumbo
 item.Drops.silverLump.name=Torrão de Prata
-#
+
 # Minérios
 tile.Ore.kimberlite.name=Kimberlito
 tile.Ore.kimberliteDiamond.name=Kimberlito com Diamante
@@ -23,7 +23,7 @@ tile.Ore.ironOre.name=Minério de Hematita
 tile.Ore.copperOre.name=Minério de Calcopirita
 tile.Ore.tinOre.name=Minério de Cassiterita
 tile.Ore.galenaOre.name=Minério de Galena
-#
+
 # Blocos Decorativos
 tile.Limestone.limeCobble.name=Pedra de Calcário
 tile.Limestone.limeClean.name=Calcário
@@ -49,3 +49,11 @@ tile.Marble.marbleCarved.name=Tijolo de Mármore Entalhado
 tile.Marble.marblePaver.name=Piso de Mármore
 tile.Marble.marbleAntiPaver.name=Ante-piso de Mármore
 #
+tile.OnePointEightStone.graniteRough.name=Granito
+tile.OnePointEightStone.granitePolished.name=Granito
+#
+tile.OnePointEightStone.doriteRough.name=Dorito
+tile.OnePointEightStone.doritePolished.name=Diorito Polido
+#
+tile.OnePointEightStone.andesiteRough.name=Andesito
+tile.OnePointEightStone.andesitePolished.name=Andesito Polido
