@@ -49,6 +49,9 @@ public class MineDiamond extends MineSpecialStone {
 			// volume of a cone: 1/3PIr^2h divided by ores in volume
 			final float fMax = yMax;
 			final int ratio = (int) (1f / 3f * Math.PI * fMax * angle * fMax * angle * fMax / intMineSize);
+			
+			if(ratio < 1)
+				return;
 
 			for (int y = 1; y <= yMax; y++) {
 				radius = (int) (y * angle);

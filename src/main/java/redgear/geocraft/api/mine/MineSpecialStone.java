@@ -4,7 +4,6 @@ import java.util.Random;
 
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.util.ItemRegUtil;
-import redgear.core.util.SimpleItem;
 import redgear.core.util.SimpleOre;
 import redgear.core.world.WorldLocation;
 import redgear.geocraft.api.MineManager;
@@ -35,6 +34,9 @@ public abstract class MineSpecialStone extends MineSingleOre {
 	}
 
 	protected void gen(WorldLocation loc, Random rand, int ratio) {
+		if(ratio < 1)
+			return;
+		
 		if (rand.nextInt(ratio) == 0)
 			loc.placeBlock(block, target);
 		else
