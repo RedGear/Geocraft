@@ -3,6 +3,7 @@ package redgear.geocraft.config;
 import java.lang.reflect.Type;
 
 import redgear.geocraft.api.mine.Mine;
+import redgear.geocraft.core.Geocraft;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -17,6 +18,7 @@ public class MineTypeAdapter implements JsonSerializer<Mine>, JsonDeserializer<M
 
 	@Override
 	public JsonElement serialize(Mine src, Type typeOfSrc, JsonSerializationContext context) {
+		Geocraft.inst.logDebug("Serializing Mine: ", src.name);
 		JsonObject result = new JsonObject();
 		result.add("mineType", new JsonPrimitive(src.getClass().getName()));
 		result.add("properties", context.serialize(src, src.getClass()));
@@ -24,8 +26,7 @@ public class MineTypeAdapter implements JsonSerializer<Mine>, JsonDeserializer<M
 	}
 
 	@Override
-	public Mine deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-			throws JsonParseException {
+	public Mine deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 		JsonObject jsonObj = json.getAsJsonObject();
 
 		JsonElement mineElement = jsonObj.get("mineType");

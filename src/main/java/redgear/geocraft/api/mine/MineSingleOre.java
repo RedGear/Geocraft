@@ -31,34 +31,37 @@ public abstract class MineSingleOre extends Mine {
 	@Override
 	public void init() {
 		if (!init) {
-			if (block == null && ItemRegUtil.isInOreDict(blockOreName))
-				block = new SimpleOre(blockOreName, ItemRegUtil.findItem(blockName));
-			else {
+			if (block == null) 
+				if(ItemRegUtil.isInOreDict(blockOreName))
+					block = new SimpleOre(blockOreName, ItemRegUtil.findItem(blockName));
+				else
+					block = ItemRegUtil.findItem(blockName);
+			/*else {
 				block = ItemRegUtil.findItem(blockName);
 				if (block == null) {
-					/*Geocraft.inst.myLogger.warn("Mine with name " + name
+					Geocraft.inst.myLogger.warn("Mine with name " + name
 							+ " was unable to find a block with ore dictionary name " + blockOreName
 							+ " nor a block of name " + blockName
-							+ " this mine must be deactivated until this is fixed.");*/
+							+ " this mine must be deactivated until this is fixed.");
 					isActive = false;
-				}
+				}*/
 			}
 
-			if (target == null && ItemRegUtil.isInOreDict(targetOreName))
+		if(target == null)
+			if (ItemRegUtil.isInOreDict(targetOreName))
 				target = new SimpleOre(targetOreName, ItemRegUtil.findItem(targetName));
-			else {
+			else 
 				target = ItemRegUtil.findItem(targetName);
-				if (target == null) {
-					/*Geocraft.inst.myLogger.warn("Mine with name " + name
+				/*if (target == null) {
+					Geocraft.inst.myLogger.warn("Mine with name " + name
 							+ " was unable to find a block with ore dictionary name " + targetOreName
 							+ " nor a block of name " + targetName
-							+ " this mine will be reset to default target Stone until this is fixed.");*/
+							+ " this mine will be reset to default target Stone until this is fixed.");
 					targetName = MineManager.stone.getName();
 					targetOreName = MineManager.stoneOre.getName();
 					target = MineManager.stoneOre;
-				}
-			}
-		}
+				}*/
+			
 	}
 
 	@Override

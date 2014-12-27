@@ -45,20 +45,20 @@ public abstract class MineSpecialStone extends MineSingleOre {
 
 	@Override
 	public void init() {
-		if(!init){
-		if (bearer != null && ItemRegUtil.isInOreDict(rockOreName))
+		if(!init && bearer == null){
+		if (ItemRegUtil.isInOreDict(rockOreName))
 			bearer = new SimpleOre(rockOreName, ItemRegUtil.findItem(rockName));
 		else {
 			bearer = ItemRegUtil.findItem(rockName);
-			if (bearer == null) {
-				/*Geocraft.inst.myLogger.warn("Mine with name " + name
+			/*if (bearer == null) {
+				Geocraft.inst.myLogger.warn("Mine with name " + name
 						+ " was unable to find a block with ore dictionary name " + rockOreName
 						+ " nor a block of name " + rockName
-						+ " this mine will be reset to default bearer to Stone until this is fixed.");*/
+						+ " this mine will be reset to default bearer to Stone until this is fixed.");
 				rockName = MineManager.stone.getName();
 				rockOreName = MineManager.stoneOre.getName();
 				bearer = MineManager.stoneOre;
-			}
+			}*/
 		}
 		}
 	}

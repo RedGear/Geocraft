@@ -163,18 +163,15 @@ public class StonePlugin implements IPlugin {
 
 		GeocraftConfig.marble = marbleClean;
 
-		boolean genStone = mod.getBoolean("GenerateNewStoneTypes");
-
-		//in order to prevent problems, we need to always add the blocks, and only make the mines configurable.
-		MineManager.oreRegistry.registerMine(new MineVanilla("Limestone", limeClean, GeocraftConfig.stone, 5, 32).setActive(genStone));
-		MineManager.oreRegistry.registerMine(new MineVanilla("Basalt", basaltClean, GeocraftConfig.stone, 5, 32).setActive(genStone));
-		MineManager.oreRegistry.registerMine(new MineVanilla("Marble", marbleClean, GeocraftConfig.stone, 5, 32).setActive(genStone));
-
 	}
 
 	@Override
 	public void Init(ModUtils mod) {
-
+		boolean genStone = mod.getBoolean("GenerateNewStoneTypes");
+		//in order to prevent problems, we need to always add the blocks, and only make the mines configurable.
+		MineManager.oreRegistry.registerMine(new MineVanilla("Limestone", limeClean, GeocraftConfig.stone, 5, 32).setActive(genStone));
+		MineManager.oreRegistry.registerMine(new MineVanilla("Basalt", basaltClean, GeocraftConfig.stone, 5, 32).setActive(genStone));
+		MineManager.oreRegistry.registerMine(new MineVanilla("Marble", marbleClean, GeocraftConfig.stone, 5, 32).setActive(genStone));
 	}
 
 	@Override

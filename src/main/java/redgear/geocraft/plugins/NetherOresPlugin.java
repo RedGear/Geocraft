@@ -39,11 +39,6 @@ public class NetherOresPlugin implements IPlugin {
 
 	@Override
 	public void Init(ModUtils mod) {
-
-	}
-
-	@Override
-	public void postInit(ModUtils mod) {
 		try {
 			Class<?> clazz = Class.forName("powercrystals.netherores.NetherOresCore");
 			if (clazz != null) {
@@ -84,6 +79,11 @@ public class NetherOresPlugin implements IPlugin {
 		} catch (Exception e) {
 			mod.logDebug("Nether Ores config reflection failed", e);
 		}
+	}
+
+	@Override
+	public void postInit(ModUtils mod) {
+		
 	}
 
 }

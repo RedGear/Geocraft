@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 
+import net.minecraft.util.EnumTypeAdapterFactory;
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.simpleitem.SimpleItemTypeAdapter;
 import redgear.geocraft.api.mine.Mine;
@@ -26,6 +27,7 @@ public class ConfigHandler {
 	public static final ConfigHandler inst = new ConfigHandler();
 	Gson gson = new GsonBuilder().registerTypeAdapter(Mine.class, new MineTypeAdapter())
 			.registerTypeAdapter(ISimpleItem.class, new SimpleItemTypeAdapter())
+			.registerTypeAdapterFactory(new EnumTypeAdapterFactory())
 			.setPrettyPrinting().create();
 
 	public void saveJson(Mine mine) {
@@ -41,7 +43,7 @@ public class ConfigHandler {
 
 			mine.preSave();
 			gson.toJson(mine, Mine.class,  w);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			Geocraft.inst.myLogger.error("Something went wrong trying to save config file " + mine.name + ".json", e);
 		} finally {
 			if (w != null)

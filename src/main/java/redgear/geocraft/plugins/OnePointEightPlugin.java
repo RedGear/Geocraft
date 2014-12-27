@@ -75,19 +75,16 @@ public class OnePointEightPlugin implements IPlugin{
 		mod.registerOre("cobblestone", doriteRough);
 		mod.registerOre("cobblestone", andesiteRough);
 		
-		
+	}
+
+	@Override
+	public void Init(ModUtils mod) {
 		boolean genStone = mod.getBoolean("Plugins", "MinecraftOnePointEight");
 
 		//in order to prevent problems, we need to always add the blocks, and only make the mines configurable.
 		MineManager.oreRegistry.registerMine(new MineVanilla("Granite", graniteRough, GeocraftConfig.stone, 5, 32).setActive(genStone));
 		MineManager.oreRegistry.registerMine(new MineVanilla("Dorite", doriteRough, GeocraftConfig.stone, 5, 32).setActive(genStone));
 		MineManager.oreRegistry.registerMine(new MineVanilla("Andesite", andesiteRough, GeocraftConfig.stone, 5, 32).setActive(genStone));
-		
-	}
-
-	@Override
-	public void Init(ModUtils mod) {
-		
 	}
 
 	@Override

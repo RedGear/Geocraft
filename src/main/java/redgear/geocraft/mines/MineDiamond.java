@@ -14,9 +14,6 @@ import redgear.geocraft.core.GeocraftConfig;
 
 public class MineDiamond extends MineSpecialStone {
 
-	private transient final static ISimpleItem vanillaDiamond = new SimpleOre("oreDiamond", new SimpleItem(
-			Blocks.diamond_ore));
-
 	protected transient int intRarity;
 	protected transient int intMineSize;
 	protected transient int intVeinSize;

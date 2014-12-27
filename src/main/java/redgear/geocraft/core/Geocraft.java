@@ -58,11 +58,12 @@ public class Geocraft extends ModUtils {
 	@Override
 	public void PreInit(FMLPreInitializationEvent event) {
 		new MineGenerator(this);
-		MineGenerator.reg.load();
 	}
 
 	@Override
 	protected void Init(FMLInitializationEvent event) {
+		MineGenerator.reg.load();
+		
 		final MineRegistry reg = MineGenerator.reg;
 		reg.registerMine(new MineVanilla("Dirt", new SimpleItem(Blocks.dirt), GeocraftConfig.stone, 20, 32));//dirt
 		reg.registerMine(new MineVanilla("Gravel", new SimpleItem(Blocks.gravel), GeocraftConfig.stone, 10, 32));//gravel
