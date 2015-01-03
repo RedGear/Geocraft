@@ -29,11 +29,21 @@ public class GeocraftConfig implements IPlugin{
 	public static SimpleItem terraQuartzOre;
 	public static SimpleItem goldOre;
 	
+	public static SimpleItem lapisOre;
+	public static SimpleItem redstoneOre;
+	public static SimpleItem emeraldOre;
+	
+	public static SimpleItem lapisNugget;
+	public static SimpleItem emeraldNugget;
+	
 	public static SimpleItem copperLump;
 	public static SimpleItem tinLump;
 	public static SimpleItem silverLump;
 	public static SimpleItem leadLump;
     public static SimpleItem terraQuartz;
+    public static SimpleItem lapisLump;
+    public static SimpleItem redstoneLump;
+    public static SimpleItem emeraldLump;
 	
 	public static SimpleItem copperOre;
 	public static SimpleItem tinOre;
@@ -70,7 +80,7 @@ public class GeocraftConfig implements IPlugin{
 	
 	public static boolean genTrace = true; //Generates trace veins for cylinder mines and complex ores that allow it. Only applies to these if those mode are active.
 	public static boolean complexOres = true; //Known ores will get their complex block and item types activated. False will use vanilla blocks. 
-	public static boolean toughMode = false; //Changes the hardness of complex ores to require stronger tools. Defalts to off since it requires other mods to work. 
+	//public static boolean toughMode = false; //Changes the hardness of complex ores to require stronger tools. Defalts to off since it requires other mods to work. 
 	
 	public static boolean spiderVeins = false; //Uses a new spidery vein type for cyliderMode veins.
 	public static boolean spiderMetals = true; //Uses a new spidery vein type for iron, copper, tin, lead and silver. Only valid if complexMines is turned on.
@@ -100,7 +110,7 @@ public class GeocraftConfig implements IPlugin{
 		genTrace = mod.getBoolean(cat, "genTrace", "Generates trace veins for cylinder mines and complex ores that allow it. Only applies to these if those mode are active.", genTrace);
 		complexOres = mod.getBoolean(cat, "complexOres", "Known ores will get their complex block and item types activated. False will use vanilla blocks.", complexOres);
 		//toughMode isn't ready yet.
-		toughMode = mod.getBoolean(cat, "toughMode", "Changes the hardness of complex ores to require stronger tools. Defalts to off since it requires other mods to work. ", toughMode);
+		//toughMode = mod.getBoolean(cat, "toughMode", "Changes the hardness of complex ores to require stronger tools. Defalts to off since it requires other mods to work. ", toughMode);
 		
 		spiderVeins = mod.getBoolean(cat, "spiderVeins", "Uses a new spidery vein type for cyliderMode veins.", spiderVeins);
 		spiderMetals = mod.getBoolean(cat, "spiderMetals", "Uses a new spidery vein type for iron, copper, tin, lead and silver. Only valid if complexMines is turned on.", spiderMetals);

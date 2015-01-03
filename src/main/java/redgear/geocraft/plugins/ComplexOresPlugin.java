@@ -62,6 +62,8 @@ public class ComplexOresPlugin implements IPlugin {
 	public void preInit(ModUtils mod) {
 		final SimpleItem diamond = new SimpleItem(Items.diamond);
 		final SimpleItem coal = new SimpleItem(Items.coal);
+		final SimpleItem lapis = new SimpleItem(Items.dye, 4);
+		final SimpleItem emerald = new SimpleItem(Items.emerald);
 
 		MetaItem<SubItem> drops = new MetaItem<SubItem>("Drops");
 		drops.setCreativeTab(GeocraftConfig.geoTab);
@@ -90,6 +92,21 @@ public class ComplexOresPlugin implements IPlugin {
 		mod.registerOre("oreSilver", GeocraftConfig.silverLump);
 		GeocraftConfig.leadLump = drops.addMetaItem(new SubItem("leadLump"));
 		mod.registerOre("oreLead", GeocraftConfig.leadLump);
+		GeocraftConfig.lapisLump = drops.addMetaItem(new SubItem("lapisLump"));
+		mod.registerOre("oreLapis", GeocraftConfig.lapisLump);
+		
+		GeocraftConfig.lapisNugget = drops.addMetaItem(new SubItem("nuggetLapis"));
+		mod.registerOre("nuggetLapis", GeocraftConfig.lapisNugget);
+		
+		GeocraftConfig.redstoneLump = drops.addMetaItem(new SubItem("redstoneLump"));
+		mod.registerOre("oreRedstone", GeocraftConfig.redstoneLump);
+		
+		GeocraftConfig.emeraldLump = drops.addMetaItem(new SubItem("emeraldLump"));
+		mod.registerOre("oreEmerald", GeocraftConfig.emeraldLump);
+		
+		GeocraftConfig.emeraldNugget = drops.addMetaItem(new SubItem("nuggetEmerald"));
+		mod.registerOre("nuggetEmerald", GeocraftConfig.emeraldNugget);
+		
 
 		MetaBlock<SubBlock> oreBlock = new MetaBlock<SubBlock>(Material.rock, "Ore");
 		oreBlock.setCreativeTab(GeocraftConfig.geoTab);
@@ -131,7 +148,20 @@ public class ComplexOresPlugin implements IPlugin {
 		GeocraftConfig.galenaOreBlock = new SubBlockGeoOre("galenaOre");
 		GeocraftConfig.galenaOre = oreBlock.addMetaBlock(GeocraftConfig.galenaOreBlock);
 		mod.registerOre("oreGalena", GeocraftConfig.galenaOre);
-
+		
+		SubBlockGeoOre lapisOreBlock = new SubBlockGeoOre("lapisOre", new WeightedItem(GeocraftConfig.lapisLump, 1, 2, 1), new RareDrop(lapis, 1, 8), new RareDrop(lapis, 2, 20), new RareDrop(GeocraftConfig.lapisNugget, 1, 20));
+		GeocraftConfig.lapisOre = oreBlock.addMetaBlock(lapisOreBlock);
+		mod.registerOre("denseoreLapis", GeocraftConfig.lapisOre);
+		
+		SubBlockGeoOre redstoneOreBlock = new SubBlockGeoOre("redstoneOre", new WeightedItem(GeocraftConfig.redstoneLump, 1, 1, 1), new RareDrop(new SimpleItem(Items.redstone), 1, 4), new RareDrop(new SimpleItem(Items.redstone), 2, 20));
+		GeocraftConfig.redstoneOre = oreBlock.addMetaBlock(redstoneOreBlock);
+		mod.registerOre("denseoreRedstone", GeocraftConfig.redstoneOre);
+		
+		SubBlockGeoOre emeraldOreBlock = new SubBlockGeoOre("emeraldOre", new WeightedItem(GeocraftConfig.emeraldLump, 1, 1, 1), new RareDrop(GeocraftConfig.emeraldNugget, 1, 8), new RareDrop(emerald, 1, 24));
+		GeocraftConfig.emeraldOre = oreBlock.addMetaBlock(emeraldOreBlock);
+		mod.registerOre("denseoreEmerald", GeocraftConfig.emeraldOre);
+		
+		
 		final String pick = "pickaxe";
 		final String cat = "HarvestLevel";
 
@@ -145,6 +175,10 @@ public class ComplexOresPlugin implements IPlugin {
 		oreBlock.setHarvestLevel(pick, mod.getInt(cat, "GoldOre", 2), GeocraftConfig.goldOre.meta);
 
 		oreBlock.setHarvestLevel(pick, mod.getInt(cat, "IronOre", 1), ironOre.meta);
+		
+		oreBlock.setHarvestLevel(pick, mod.getInt(cat, "RedstoneOre", 2), GeocraftConfig.redstoneOre.meta);
+		oreBlock.setHarvestLevel(pick, mod.getInt(cat, "LapisOre", 2), GeocraftConfig.lapisOre.meta);
+		oreBlock.setHarvestLevel(pick, mod.getInt(cat, "EmeraldOre", 2), GeocraftConfig.emeraldOre.meta);
 
 		oreBlock.setHarvestLevel(pick, mod.getInt(cat, "CopperOre", 1), GeocraftConfig.copperOre.meta);
 		oreBlock.setHarvestLevel(pick, mod.getInt(cat, "TinOre", 1), GeocraftConfig.tinOre.meta);
@@ -157,6 +191,12 @@ public class ComplexOresPlugin implements IPlugin {
 
 		nugs.addLevel(true, 'X', "nuggetCoal");
 		nugs.registerShaped(coal);
+		
+		nugs.addLevel(true, 'X', "nuggetLapis");
+		nugs.registerShaped(lapis);
+		
+		nugs.addLevel(true, 'X', "nuggetEmerald");
+		nugs.registerShaped(emerald);
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.quartz), GeocraftConfig.terraQuartz.getStack(),
 				Blocks.soul_sand));
@@ -172,56 +212,62 @@ public class ComplexOresPlugin implements IPlugin {
 		final ISimpleItem vanillaDiamond = new SimpleOre("oreDiamond", new SimpleItem(Blocks.diamond_ore));
 		final ISimpleItem vanillaGold = new SimpleOre("oreGold", new SimpleItem(Blocks.gold_ore));
 		final ISimpleItem vanillaIron = new SimpleOre("oreIron", new SimpleItem(Blocks.iron_ore));
+		final ISimpleItem vanillaLapis = new SimpleOre("oreLapis", new SimpleItem(Blocks.lapis_ore));
+		final ISimpleItem vanillaRedstone = new SimpleOre("oreRedstone", new SimpleItem(Blocks.redstone_ore));
+		final ISimpleItem vanillaEmerald = new SimpleOre("oreEmerald", new SimpleItem(Blocks.emerald_ore));
 		final ISimpleItem copperOre = new SimpleOre("oreCopper");
 		final ISimpleItem tinOre = new SimpleOre("oreTin");
 		final ISimpleItem silverOre = new SimpleOre("oreSilver");
 		final ISimpleItem leadOre = new SimpleOre("oreLead");
 
 		reg.registerMine(new MineCoal());//Coal
-		reg.registerMine(new MineCylinderComplex("CoalCylinder", vanillaCoal, stone, 2, 20, 16, false)
-				.setActive(!GeocraftConfig.complexMines));
+		reg.registerMine(new MineCylinderComplex("CoalCylinder", vanillaCoal, stone, 2, 20, 16, false).setActive(!GeocraftConfig.complexMines));
 		reg.registerTrace("CoalTrace", GeocraftConfig.complexOres ? GeocraftConfig.coalOre : vanillaCoal, stone, 60);
 
 		reg.registerMine(new MineDiamond()); //Diamond
-		reg.registerMine(new MineCylinderComplex("CylinderDiamonds", vanillaDiamond, stone, 8, 2, 7, false)
-				.setActive(!GeocraftConfig.complexMines));
+		reg.registerMine(new MineCylinderComplex("CylinderDiamonds", vanillaDiamond, stone, 8, 2, 7, false).setActive(!GeocraftConfig.complexMines));
 		reg.registerTrace("DiamondTrace", vanillaDiamond, stone, 2);
 
 		reg.registerMine(new MineGold());//Gold
-		reg.registerMine(new MineCylinderComplex("GoldCylinder", vanillaGold, stone, 6, 4, 8, false)
-		.setActive(!GeocraftConfig.complexMines));
+		reg.registerMine(new MineCylinderComplex("GoldCylinder", vanillaGold, stone, 6, 4, 8, false).setActive(!GeocraftConfig.complexMines));
 		reg.registerTrace("GoldTrace", vanillaGold, stone, 4);
 
-		reg.registerMine(new MineCylinderComplex("IronComplex", ironOre, stone, 4, 20, 8, true)
-				.setActive(GeocraftConfig.complexMines));
-		reg.registerMine(new MineCylinderComplex("IronCylinder", vanillaIron, stone, 1, 20, 8, false)
-				.setActive(!GeocraftConfig.complexMines));
+		reg.registerMine(new MineCylinderComplex("IronComplex", ironOre, stone, 4, 20, 8, true) .setActive(GeocraftConfig.complexMines));
+		reg.registerMine(new MineCylinderComplex("IronCylinder", vanillaIron, stone, 1, 20, 8, false) .setActive(!GeocraftConfig.complexMines));
 		reg.registerMine(new MineTrace("IronComplexTrace", ironOre, stone, 20).setActive(GeocraftConfig.complexMines));
 		reg.registerMine(new MineTrace("IronTrace", vanillaIron, stone, 20).setActive(!GeocraftConfig.complexMines));
 
-		reg.addNewOre(new SimpleOre("oreRedstone", new SimpleItem(Blocks.redstone_ore)), stone, 8, 7);
-		reg.addNewOre(new SimpleOre("oreLapis", new SimpleItem(Blocks.lapis_ore)), stone, 1, 6);
+		
+		reg.registerMine(new MineCylinderComplex("RedstoneComplex", GeocraftConfig.redstoneOre, stone, 4, 8, 7, true).setActive(GeocraftConfig.complexMines));
+		reg.registerMine(new MineCylinderComplex("RedstoneCylinder", vanillaRedstone, stone, 1, 8, 7, false).setActive(!GeocraftConfig.complexMines));
+		reg.registerMine(new MineTrace("RedstoneComplexTrace", GeocraftConfig.redstoneOre, stone, 4).setActive(GeocraftConfig.complexMines));
+		reg.registerMine(new MineTrace("RedstoneTrace", vanillaRedstone, stone, 8).setActive(!GeocraftConfig.complexMines));
+		
+		reg.registerMine(new MineCylinderComplex("LapisComplex", GeocraftConfig.lapisOre, stone, 8, 2, 6, true).setActive(GeocraftConfig.complexMines));
+		reg.registerMine(new MineCylinderComplex("LapisCylinder", vanillaLapis, stone, 4, 2, 6, false).setActive(!GeocraftConfig.complexMines));
+		reg.registerMine(new MineTrace("LapisComplexTrace", GeocraftConfig.lapisOre, stone, 2).setActive(GeocraftConfig.complexMines));
+		reg.registerMine(new MineTrace("LapisTrace", vanillaLapis, stone, 4).setActive(!GeocraftConfig.complexMines));
+		
+		reg.registerMine(new MineCylinderComplex("EmeraldComplex", GeocraftConfig.emeraldOre, stone, 8, 3, 6, true).setActive(GeocraftConfig.complexMines));
+		reg.registerMine(new MineCylinderComplex("EmeraldCylinder", vanillaEmerald, stone, 4, 3, 6, false).setActive(!GeocraftConfig.complexMines));
+		reg.registerMine(new MineTrace("EmeraldComplexTrace", GeocraftConfig.emeraldOre, stone, 1).setActive(GeocraftConfig.complexMines));
+		reg.registerMine(new MineTrace("EmeraldTrace", vanillaEmerald, stone, 2).setActive(!GeocraftConfig.complexMines));
 
 		if (GeocraftConfig.complexMines) {
 
 			if (ItemRegUtil.isInOreDict("ingotCopper")) {
-				reg.registerMine(new MineCylinderComplex("CopperComplex", GeocraftConfig.copperOre,
-						GeocraftConfig.stone, 4, 16, 10, true));
+				reg.registerMine(new MineCylinderComplex("CopperComplex", GeocraftConfig.copperOre, GeocraftConfig.stone, 4, 16, 10, true));
 				reg.registerMine(new MineTrace("CopperComplexTrace", GeocraftConfig.copperOre, GeocraftConfig.stone, 20));
 			}
 
 			if (ItemRegUtil.isInOreDict("ingotTin")) {
-				reg.registerMine(new MineCylinderComplex("TinComplex", GeocraftConfig.tinOre, GeocraftConfig.stone, 4,
-						32, 6, true).setActive(GeocraftConfig.complexMines));
-				reg.registerMine(new MineTrace("TinTrace", GeocraftConfig.tinOre, GeocraftConfig.stone, 20)
-						.setActive(GeocraftConfig.complexMines));
+				reg.registerMine(new MineCylinderComplex("TinComplex", GeocraftConfig.tinOre, GeocraftConfig.stone, 4, 32, 6, true).setActive(GeocraftConfig.complexMines));
+				reg.registerMine(new MineTrace("TinTrace", GeocraftConfig.tinOre, GeocraftConfig.stone, 20) .setActive(GeocraftConfig.complexMines));
 			}
 
 			if (ItemRegUtil.isInOreDict("ingotLead") || ItemRegUtil.isInOreDict("ingotSilver")) {
-				reg.registerMine(new MineCylinderComplex("Galena", GeocraftConfig.galenaOre, GeocraftConfig.stone, 4,
-						4, 16, true).setActive(GeocraftConfig.complexMines));
-				reg.registerMine(new MineTrace("GalenaTrace", GeocraftConfig.galenaOre, GeocraftConfig.stone, 3)
-						.setActive(GeocraftConfig.complexMines));
+				reg.registerMine(new MineCylinderComplex("Galena", GeocraftConfig.galenaOre, GeocraftConfig.stone, 4, 4, 16, true).setActive(GeocraftConfig.complexMines));
+				reg.registerMine(new MineTrace("GalenaTrace", GeocraftConfig.galenaOre, GeocraftConfig.stone, 3) .setActive(GeocraftConfig.complexMines));
 			}
 		}
 
@@ -229,6 +275,9 @@ public class ComplexOresPlugin implements IPlugin {
 		reg.registerIgnore(vanillaDiamond);
 		reg.registerIgnore(vanillaGold);
 		reg.registerIgnore(vanillaIron);
+		reg.registerIgnore(vanillaLapis);
+		reg.registerIgnore(vanillaRedstone);
+		reg.registerIgnore(vanillaEmerald);
 		reg.registerIgnore(copperOre);
 		reg.registerIgnore(tinOre);
 		reg.registerIgnore(silverOre);
