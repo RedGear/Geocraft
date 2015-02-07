@@ -64,6 +64,7 @@ public class ComplexOresPlugin implements IPlugin {
 		final SimpleItem coal = new SimpleItem(Items.coal);
 		final SimpleItem lapis = new SimpleItem(Items.dye, 4);
 		final SimpleItem emerald = new SimpleItem(Items.emerald);
+		final SimpleItem redstone = new SimpleItem(Items.redstone);
 
 		MetaItem<SubItem> drops = new MetaItem<SubItem>("Drops");
 		drops.setCreativeTab(GeocraftConfig.geoTab);
@@ -94,15 +95,18 @@ public class ComplexOresPlugin implements IPlugin {
 		mod.registerOre("oreLead", GeocraftConfig.leadLump);
 		GeocraftConfig.lapisLump = drops.addMetaItem(new SubItem("lapisLump"));
 		mod.registerOre("oreLapis", GeocraftConfig.lapisLump);
+		mod.addSmelting(GeocraftConfig.lapisLump.getStack(), lapis.getStack(6));
 		
 		GeocraftConfig.lapisNugget = drops.addMetaItem(new SubItem("nuggetLapis"));
 		mod.registerOre("nuggetLapis", GeocraftConfig.lapisNugget);
 		
 		GeocraftConfig.redstoneLump = drops.addMetaItem(new SubItem("redstoneLump"));
 		mod.registerOre("oreRedstone", GeocraftConfig.redstoneLump);
+		mod.addSmelting(GeocraftConfig.redstoneLump.getStack(), redstone.getStack(4));
 		
 		GeocraftConfig.emeraldLump = drops.addMetaItem(new SubItem("emeraldLump"));
 		mod.registerOre("oreEmerald", GeocraftConfig.emeraldLump);
+		mod.addSmelting(GeocraftConfig.emeraldLump.getStack(), emerald.getStack());
 		
 		GeocraftConfig.emeraldNugget = drops.addMetaItem(new SubItem("nuggetEmerald"));
 		mod.registerOre("nuggetEmerald", GeocraftConfig.emeraldNugget);
@@ -153,7 +157,7 @@ public class ComplexOresPlugin implements IPlugin {
 		GeocraftConfig.lapisOre = oreBlock.addMetaBlock(lapisOreBlock);
 		mod.registerOre("denseoreLapis", GeocraftConfig.lapisOre);
 		
-		SubBlockGeoOre redstoneOreBlock = new SubBlockGeoOre("redstoneOre", new WeightedItem(GeocraftConfig.redstoneLump, 1, 1, 1), new RareDrop(new SimpleItem(Items.redstone), 1, 4), new RareDrop(new SimpleItem(Items.redstone), 2, 20));
+		SubBlockGeoOre redstoneOreBlock = new SubBlockGeoOre("redstoneOre", new WeightedItem(GeocraftConfig.redstoneLump, 1, 1, 1), new RareDrop(redstone, 1, 4), new RareDrop(redstone, 2, 20));
 		GeocraftConfig.redstoneOre = oreBlock.addMetaBlock(redstoneOreBlock);
 		mod.registerOre("denseoreRedstone", GeocraftConfig.redstoneOre);
 		

@@ -1,13 +1,13 @@
 package redgear.geocraft.plugins;
 
-import codechicken.microblock.BlockMicroMaterial;
-import codechicken.microblock.MicroMaterialRegistry;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.LoaderState.ModState;
 import redgear.core.api.item.ISimpleItem;
 import redgear.core.mod.IPlugin;
 import redgear.core.mod.ModUtils;
 import redgear.geocraft.core.Geocraft;
+import codechicken.microblock.BlockMicroMaterial;
+import codechicken.microblock.MicroMaterialRegistry;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.LoaderState.ModState;
 
 /**
  * @author Blackhole
@@ -37,37 +37,39 @@ public class MultiPartPlugin implements IPlugin {
     @Override
     public void Init(ModUtils modUtils) {
         StonePlugin stone = Geocraft.inst.stonePlugin;
+        
+        Test t = new Test();
 
-        register(stone.limeCobble);
-        register(stone.limeClean);
-        register(stone.limeCracked);
-        register(stone.limeBrick);
-        register(stone.limeCarved);
-        register(stone.limePaver);
+        t.register(stone.limeCobble);
+        t.register(stone.limeClean);
+        t.register(stone.limeCracked);
+        t.register(stone.limeBrick);
+        t.register(stone.limeCarved);
+        t.register(stone.limePaver);
 
-        register(stone.basaltCobble);
-        register(stone.basaltClean);
-        register(stone.basaltCracked);
-        register(stone.basaltBrick);
-        register(stone.basaltCarved);
-        register(stone.basaltPaver);
+        t.register(stone.basaltCobble);
+        t.register(stone.basaltClean);
+        t.register(stone.basaltCracked);
+        t.register(stone.basaltBrick);
+        t.register(stone.basaltCarved);
+        t.register(stone.basaltPaver);
 
-        register(stone.marbleCobble);
-        register(stone.marbleClean);
-        register(stone.marbleCracked);
-        register(stone.marbleBrick);
-        register(stone.marbleCarved);
-        register(stone.marblePaver);
+        t.register(stone.marbleCobble);
+        t.register(stone.marbleClean);
+        t.register(stone.marbleCracked);
+        t.register(stone.marbleBrick);
+        t.register(stone.marbleCarved);
+        t.register(stone.marblePaver);
         
         OnePointEightPlugin oneEight = Geocraft.inst.oneEightPlugin;
         
         
-        register(oneEight.graniteRough);
-        register(oneEight.granitePolished);
-        register(oneEight.doriteRough);
-        register(oneEight.doritePolished);
-        register(oneEight.andesiteRough);
-        register(oneEight.andesitePolished);
+        t.register(oneEight.graniteRough);
+        t.register(oneEight.granitePolished);
+        t.register(oneEight.doriteRough);
+        t.register(oneEight.doritePolished);
+        t.register(oneEight.andesiteRough);
+        t.register(oneEight.andesitePolished);
     }
 
     @Override
@@ -75,7 +77,11 @@ public class MultiPartPlugin implements IPlugin {
 
     }
 
-    private void register(ISimpleItem block){
-        MicroMaterialRegistry.registerMaterial(new BlockMicroMaterial(block.getBlock(), block.getMeta()), block.getName());
+    //Private class keeps the Multipart stuff separate. 
+    
+    private class Test{
+    	private void register(ISimpleItem block){
+    		MicroMaterialRegistry.registerMaterial(new BlockMicroMaterial(block.getBlock(), block.getMeta()), block.getName());
+    	}
     }
 }
