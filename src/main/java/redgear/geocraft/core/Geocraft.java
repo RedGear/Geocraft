@@ -16,7 +16,7 @@ import redgear.geocraft.plugins.OnePointEightPlugin;
 import redgear.geocraft.plugins.ProjectRedPlugin;
 import redgear.geocraft.plugins.StonePlugin;
 import redgear.geocraft.plugins.ThaumcraftPlugin;
-import redgear.geocraft.plugins.ThermalExpansionPlugin;
+import redgear.geocraft.plugins.ThermalFoundationPlugin;
 import redgear.geocraft.plugins.TinkersSteelworksPlugin;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -43,12 +43,12 @@ public class Geocraft extends ModUtils {
 		addPlugin(new ComplexOresPlugin());
         
 
-		addPlugin(new ThermalExpansionPlugin());
+		addPlugin(new ThermalFoundationPlugin());
 		addPlugin(new ForestryPlugin());
 		addPlugin(new ThaumcraftPlugin());
 		addPlugin(new NetherOresPlugin());
 		addPlugin(new MultiPartPlugin());
-        addPlugin(new AE2Plugin());
+        	addPlugin(new AE2Plugin());
 		addPlugin(new TinkersSteelworksPlugin());
 		addPlugin(new ProjectRedPlugin());
 		addPlugin(new ChiselPlugin());	
