@@ -19,7 +19,7 @@ public class ThermalFoundationPlugin implements IPlugin {
 
 	@Override
 	public String getName() {
-		return "Thermal Expansion Compatibility";
+		return "Thermal Foundation Compatibility";
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class ThermalFoundationPlugin implements IPlugin {
 				reg.registerMine(new MineCylinderComplex("Platinum", platinum, stone, 4, 6, 4, false));
 				//reg.registerMine(new MineCylinderComplex("Mithril", mithril, stone, 4, 16, 6, true));
 			} catch (Throwable t) {
-				inst.logDebug("Thermal Expansion reflection failed!", t);
+				inst.logDebug("Thermal Foundation reflection failed!", t);
 			}
 		}
 	}
