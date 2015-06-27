@@ -35,7 +35,7 @@ public class ChiselPlugin implements IPlugin {
 	@Override
 	public void preInit(ModUtils mod) {
 		try {
-			Class<?> compat = Class.forName("info.jbcs.minecraft.chisel.Compatibility");
+			Class<?> compat = Class.forName("com.cricketcraft.chisel.compat.Compatibility");
 
 			//public static void addSupport(String modname, String blockname, String name, int metadata, int order)
 			addSupport = compat.getMethod("addSupport", String.class, String.class, String.class, int.class, int.class);
@@ -55,12 +55,9 @@ public class ChiselPlugin implements IPlugin {
 		if (addSupport == null)
 			return;
 		
-		
-
 		fromOreName("blockLimestone", "limestone");
 		fromOreName("blockBasalt", "basalt");
 		fromOreName("blockMarble", "marble");
-
 	}
 
 	private void fromOreName(String oreName, String chiselName) {
