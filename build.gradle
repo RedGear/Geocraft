@@ -33,14 +33,12 @@ dependencies {
 	compile "redgear.core:RedGearCore:${minecraft_version}-${core_version}:dev"
 }
 
-
-
 version = mod_version
 group= mod_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = mod_name
 
 minecraft{
-	version = "${minecraft_version}-${forge_version}"
+	version = "${forge_version}-${minecraft_version}"
 
 	replace "@ModVersion@", project.version
 }
