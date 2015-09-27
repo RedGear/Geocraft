@@ -53,6 +53,8 @@ jar{
 	}
 	
 	exclude "thaumcraft*"
+	exclude "exterminatorJeff*"
+	exclude "Zeno410Utils*"
 }
 
 processResources

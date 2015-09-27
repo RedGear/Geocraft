@@ -6,18 +6,7 @@ import redgear.core.util.SimpleItem;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
 import redgear.geocraft.mines.MineVanilla;
-import redgear.geocraft.plugins.AE2Plugin;
-import redgear.geocraft.plugins.ChiselPlugin;
-import redgear.geocraft.plugins.ComplexOresPlugin;
-import redgear.geocraft.plugins.ForestryPlugin;
-import redgear.geocraft.plugins.MultiPartPlugin;
-import redgear.geocraft.plugins.NetherOresPlugin;
-import redgear.geocraft.plugins.OnePointEightPlugin;
-import redgear.geocraft.plugins.ProjectRedPlugin;
-import redgear.geocraft.plugins.StonePlugin;
-import redgear.geocraft.plugins.ThaumcraftPlugin;
-import redgear.geocraft.plugins.ThermalFoundationPlugin;
-import redgear.geocraft.plugins.TinkersSteelworksPlugin;
+import redgear.geocraft.plugins.*;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -25,7 +14,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "redgear_geocraft", name = "Geocraft", version = "@ModVersion@", dependencies = "required-after:redgear_core;after:ThermalExpansion;after:NetherOres")
+@Mod(modid = "redgear_geocraft", name = "Geocraft", version = "@ModVersion@", dependencies = "required-after:redgear_core;after:ThermalExpansion;after:NetherOres;before:UndergroundBiomes")
 public class Geocraft extends ModUtils {
 
 	@Instance("redgear_geocraft")
@@ -35,6 +24,7 @@ public class Geocraft extends ModUtils {
 	
 	public StonePlugin stonePlugin = new StonePlugin();
 	public OnePointEightPlugin oneEightPlugin = new OnePointEightPlugin();
+	public UndergroundBiomesPlugin undergroundBiomesPlugin = new UndergroundBiomesPlugin();
 
 	public Geocraft() {
 		addPlugin(new GeocraftConfig());
@@ -48,10 +38,11 @@ public class Geocraft extends ModUtils {
 		addPlugin(new ThaumcraftPlugin());
 		addPlugin(new NetherOresPlugin());
 		addPlugin(new MultiPartPlugin());
-        	addPlugin(new AE2Plugin());
+		addPlugin(new AE2Plugin());
 		addPlugin(new TinkersSteelworksPlugin());
 		addPlugin(new ProjectRedPlugin());
-		addPlugin(new ChiselPlugin());	
+		addPlugin(new ChiselPlugin());
+		addPlugin(undergroundBiomesPlugin);
 		
 	}
 

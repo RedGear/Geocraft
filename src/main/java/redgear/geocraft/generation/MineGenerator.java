@@ -103,6 +103,7 @@ public class MineGenerator implements IWorldGenerator {
 			}
 		}
 		world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
+		Geocraft.inst.undergroundBiomesPlugin.replace(chunkX * 16, chunkZ * 16, world);
 
 		return System.nanoTime() - start < maxTime;
 	}
