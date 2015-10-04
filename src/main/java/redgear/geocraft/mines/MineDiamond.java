@@ -16,7 +16,6 @@ public class MineDiamond extends MineSpecialStone {
 
 	protected transient int intRarity;
 	protected transient int intMineSize;
-	protected transient int intVeinSize;
 
 	float mineRarity;
 	float mineSize;
@@ -28,7 +27,7 @@ public class MineDiamond extends MineSpecialStone {
 
 		isActive = GeocraftConfig.complexMines;
 
-		mineRarity = 3;
+		mineRarity = 12;
 		mineSize = 40;
 	}
 
@@ -44,8 +43,7 @@ public class MineDiamond extends MineSpecialStone {
 			int radius = 0;
 
 			// volume of a cone: 1/3PIr^2h divided by ores in volume
-			final float fMax = yMax;
-			final int ratio = (int) (1f / 3f * Math.PI * fMax * angle * fMax * angle * fMax / intMineSize);
+			final int ratio = (int) (1f / 3f * Math.PI * (float) yMax * angle * (float) yMax * angle * (float) yMax / intMineSize);
 			
 			if(ratio < 1)
 				return;

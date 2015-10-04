@@ -29,8 +29,7 @@ public class UndergroundBiomesPlugin implements IPlugin {
 
 	@Override
 	public boolean shouldRun(ModUtils mod, ModState state) {
-		Geocraft.inst.logDebug("Is in: ", Mods.UndergroundBiomes.isIn(), ", and turned on: ", mod.getBoolean("plugins", "UndergroundBiomes"));
-		active = Mods.UndergroundBiomes.isIn() && mod.getBoolean("plugins", "UndergroundBiomes");
+		active = mod.getBoolean("plugins", "UndergroundBiomes") && Mods.UndergroundBiomes.isIn();
 		return active;
 	}
 

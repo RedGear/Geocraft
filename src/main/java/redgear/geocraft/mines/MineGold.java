@@ -35,7 +35,7 @@ public class MineGold extends MineSpecialStone {
 		isActive = GeocraftConfig.complexMines;
 		complexOre = GeocraftConfig.complexOres;
 
-		mineRarity = 2;
+		mineRarity = 12;
 		mineSize = 4;
 		veinSize = 20;
 		ratio = 5;// times more quartz than gold.
