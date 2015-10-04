@@ -155,25 +155,24 @@ public class MineRegistry implements IMineRegistry {
 	@Override
 	public Mine registerMine(Mine mine) {
 		if (mineAllowed(mine)) {
+			Geocraft.inst.logDebug("Registering mine: ", mine.name);
+
 			if (Geocraft.init) {
 				mine.init();
 				ConfigHandler.inst.saveJson(mine);
 			}
 			genHash += mine.hashCode();
 			ores.setBoolean(mine.name, true);
+		} else {
+			Geocraft.inst.logDebug("Did NOT registering mine: ", mine.name);
 		}
+
 		return mine;
 	}
 
 	private boolean mineAllowed(Mine mine) {
-		if(mine.name == null || mine.name.length() <= 0)
-			return false;
-		
-		boolean value = mines.add(mine);
-		
-		Geocraft.inst.logDebug("Registering mine: ", mine.name, " : ", value);
-		
-		return value;
+		return !(mine.name == null || mine.name.length() <= 0) && mines.add(mine);
+
 	}
 
 	@Override

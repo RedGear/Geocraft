@@ -23,6 +23,7 @@ import redgear.geocraft.block.RareDrop;
 import redgear.geocraft.block.SingleDrop;
 import redgear.geocraft.block.SubBlockGeoOre;
 import redgear.geocraft.block.WeightedItem;
+import redgear.geocraft.core.Geocraft;
 import redgear.geocraft.core.GeocraftConfig;
 import redgear.geocraft.generation.MineGenerator;
 import redgear.geocraft.generation.MineRegistry;
@@ -205,6 +206,23 @@ public class ComplexOresPlugin implements IPlugin {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Items.quartz), GeocraftConfig.terraQuartz.getStack(),
 				Blocks.soul_sand));
 
+
+		final UndergroundBiomesPlugin undergroundBiomesPlugin = Geocraft.inst.undergroundBiomesPlugin;
+
+		undergroundBiomesPlugin.setup(oreBlock, GeocraftConfig.coalOre.getMeta(), "redgear_geocraft:coalMidOverlay", "tile.Ore.coalMid");
+		undergroundBiomesPlugin.setup(oreBlock, ironOre.getMeta(), "redgear_geocraft:ironOreOverlay", "tile.Ore.ironOre");
+
+		undergroundBiomesPlugin.setup(oreBlock, GeocraftConfig.terraQuartzOre.getMeta(), "redgear_geocraft:terraQuartzOreOverlay", "tile.Ore.terraQuartzOre");
+		undergroundBiomesPlugin.setup(oreBlock, GeocraftConfig.goldOre.getMeta(), "redgear_geocraft:goldOreOverlay", "tile.Ore.goldOre");
+
+		undergroundBiomesPlugin.setup(oreBlock, GeocraftConfig.redstoneOre.getMeta(), "redgear_geocraft:redstoneOreOverlay", "tile.Ore.redstoneOre");
+		undergroundBiomesPlugin.setup(oreBlock, GeocraftConfig.lapisOre.getMeta(), "redgear_geocraft:lapisOreOverlay", "tile.Ore.lapisOre");
+		undergroundBiomesPlugin.setup(oreBlock, GeocraftConfig.emeraldOre.getMeta(), "redgear_geocraft:emeraldOreOverlay", "tile.Ore.emeraldOre");
+
+		undergroundBiomesPlugin.setup(oreBlock, GeocraftConfig.copperOre.getMeta(), "redgear_geocraft:copperOreOverlay", "tile.Ore.copperOre");
+		undergroundBiomesPlugin.setup(oreBlock, GeocraftConfig.tinOre.getMeta(), "redgear_geocraft:tinOreOverlay", "tile.Ore.tinOre");
+
+		undergroundBiomesPlugin.setup(oreBlock, GeocraftConfig.galenaOre.getMeta(), "redgear_geocraft:galenaOreOverlay", "tile.Ore.galenaOre");
 	}
 
 	@Override
@@ -260,12 +278,12 @@ public class ComplexOresPlugin implements IPlugin {
 		if (GeocraftConfig.complexMines) {
 
 			if (ItemRegUtil.isInOreDict("ingotCopper")) {
-				reg.registerMine(new MineCylinderComplex("CopperComplex", GeocraftConfig.copperOre, GeocraftConfig.stone, 4, 16, 10, true));
+				reg.registerMine(new MineCylinderComplex("CopperComplex", GeocraftConfig.copperOre, GeocraftConfig.stone, 6, 16, 10, true));
 				reg.registerMine(new MineTrace("CopperComplexTrace", GeocraftConfig.copperOre, GeocraftConfig.stone, 20));
 			}
 
 			if (ItemRegUtil.isInOreDict("ingotTin")) {
-				reg.registerMine(new MineCylinderComplex("TinComplex", GeocraftConfig.tinOre, GeocraftConfig.stone, 4, 32, 6, true).setActive(GeocraftConfig.complexMines));
+				reg.registerMine(new MineCylinderComplex("TinComplex", GeocraftConfig.tinOre, GeocraftConfig.stone, 8, 32, 6, true).setActive(GeocraftConfig.complexMines));
 				reg.registerMine(new MineTrace("TinTrace", GeocraftConfig.tinOre, GeocraftConfig.stone, 20) .setActive(GeocraftConfig.complexMines));
 			}
 
